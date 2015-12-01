@@ -1,0 +1,31 @@
+
+Esta diretoria contém documentação, examplos e a implementação da
+tradução de uma linguagem (imperativa) simples para MSP
+
+Está organizada nas seguintes sub-diretorias
+
+- doc
+
+  documentação de MSP. Esquemas de tradução de algoritmos/estuturas para MSP.
+
+- ficha11
+
+  definição da linguagem MSP. 
+  A diretoria sl contém versão mais atual.
+
+- sl
+ 
+  definição e documentação da linguagem MSP e SL.
+  ver texto README nesta diretoria
+
+- test
+
+  vários programas escritos numa linguagem simples e o ficheiro  
+  correspondente em MSP
+
+- winmsp
+
+  máquina virtual de MSP com um interface windows interactivo
+
+
+   

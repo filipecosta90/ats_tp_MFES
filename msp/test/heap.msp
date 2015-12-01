@@ -1,0 +1,439 @@
+MEMORIA DE DADOS 
+heap_0  0  TAM 20
+heapIndex_0  20  TAM 20
+freeIndex_0  40  TAM 1
+main_1  41  TAM 1
+a_1  42  TAM 1
+b_1  43  TAM 1
+c_1  44  TAM 1
+d_1  45  TAM 1
+e_1  46  TAM 1
+init_heap_2  47  TAM 1
+i_2  48  TAM 1
+cons_lista_3  49  TAM 1
+a_3  50  TAM 1
+l_3  51  TAM 1
+aux_3  52  TAM 1
+show_lista_4  53  TAM 1
+l_4  54  TAM 1
+i_4  55  TAM 1
+free_lista_5  56  TAM 1
+l_5  57  TAM 1
+i_5  58  TAM 1
+aux_5  59  TAM 1
+concat_lista_6  60  TAM 1
+la_6  61  TAM 1
+lb_6  62  TAM 1
+i_6  63  TAM 1
+aux_6  64  TAM 1
+head_7  65  TAM 1
+l_7  66  TAM 1
+tail_8  67  TAM 1
+l_8  68  TAM 1
+elem_9  69  TAM 1
+e_9  70  TAM 1
+l_9  71  TAM 1
+ler_lista_10  72  TAM 1
+c_10  73  TAM 1
+l_10  74  TAM 1
+CODIGO 
+CALL  main
+HALT   
+main: 
+CALL  init_heap
+PSHA  a_1
+CALL  ler_lista
+PSHA  ler_lista_10
+LOAD  
+STORE 
+PSHA  b_1
+CALL  ler_lista
+PSHA  ler_lista_10
+LOAD  
+STORE 
+PSHA  l_4
+PSHA  a_1
+LOAD  
+STORE 
+CALL  show_lista
+PSHA  l_7
+PSHA  a_1
+LOAD  
+STORE 
+CALL  head
+PSHA  head_7
+LOAD  
+OUT   
+PSHA  l_4
+PSHA  l_8
+PSHA  a_1
+LOAD  
+STORE 
+CALL  tail
+PSHA  tail_8
+LOAD  
+STORE 
+CALL  show_lista
+PSHA  l_5
+PSHA  a_1
+LOAD  
+STORE 
+CALL  free_lista
+PSHA  c_1
+CALL  ler_lista
+PSHA  ler_lista_10
+LOAD  
+STORE 
+PSHA  l_4
+PSHA  c_1
+LOAD  
+STORE 
+CALL  show_lista
+PSHA  d_1
+PSHA  la_6
+PSHA  c_1
+LOAD  
+STORE 
+PSHA  lb_6
+PSHA  b_1
+LOAD  
+STORE 
+CALL  concat_lista
+PSHA  concat_lista_6
+LOAD  
+STORE 
+PSHA  l_4
+PSHA  d_1
+LOAD  
+STORE 
+CALL  show_lista
+PSHA  e_9
+PUSH  71
+STORE 
+PSHA  l_9
+PSHA  d_1
+LOAD  
+STORE 
+CALL  elem
+PSHA  elem_9
+LOAD  
+OUT   
+RET   
+init_heap: 
+PSHA  i_2
+PUSH  1
+STORE 
+PSHA  freeIndex_2
+PUSH  1
+STORE 
+while_1: 
+PSHA  i_2
+LOAD  
+PUSH  20
+LT    
+JMPF  e_whl_1
+PSHA  heapIndex_0
+PSHA  i_2
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+PSHA  i_2
+LOAD  
+PUSH  1
+ADD   
+STORE 
+PSHA  i_2
+PSHA  i_2
+LOAD  
+PUSH  1
+ADD   
+STORE 
+JMP   while_1
+e_whl_1: 
+PSHA  heapIndex_0
+PSHA  i_2
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+PUSH  -1
+STORE 
+RET   
+cons_lista: 
+PSHA  aux_3
+PSHA  freeIndex_3
+LOAD  
+STORE 
+PSHA  freeIndex_3
+PSHA  heapIndex_0
+PSHA  freeIndex_3
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+LOAD  
+STORE 
+PSHA  heap_0
+PSHA  aux_3
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+PSHA  a_3
+LOAD  
+STORE 
+PSHA  heapIndex_0
+PSHA  aux_3
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+PSHA  l_3
+LOAD  
+STORE 
+PSHA  cons_lista_3
+PSHA  aux_3
+LOAD  
+STORE 
+RET   
+show_lista: 
+PSHA  i_4
+PSHA  l_4
+LOAD  
+STORE 
+while_2: 
+PSHA  heapIndex_0
+PSHA  i_4
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+LOAD  
+PUSH  0
+GT    
+JMPF  e_whl_2
+PSHA  heap_0
+PSHA  i_4
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+LOAD  
+OUTC  
+PSHA  i_4
+PSHA  heapIndex_0
+PSHA  i_4
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+LOAD  
+STORE 
+JMP   while_2
+e_whl_2: 
+RET   
+free_lista: 
+PSHA  i_5
+PSHA  l_5
+LOAD  
+STORE 
+while_3: 
+PSHA  heapIndex_0
+PSHA  i_5
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+LOAD  
+PUSH  0
+GT    
+JMPF  e_whl_3
+PSHA  heap_0
+PSHA  i_5
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+PUSH  0
+STORE 
+PSHA  aux_5
+PSHA  i_5
+LOAD  
+STORE 
+PSHA  i_5
+PSHA  heapIndex_0
+PSHA  i_5
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+LOAD  
+STORE 
+JMP   while_3
+e_whl_3: 
+PSHA  heapIndex_0
+PSHA  aux_5
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+PSHA  freeIndex_5
+LOAD  
+STORE 
+PSHA  freeIndex_5
+PSHA  l_5
+LOAD  
+STORE 
+RET   
+concat_lista: 
+PSHA  i_6
+PSHA  la_6
+LOAD  
+STORE 
+while_4: 
+PSHA  heapIndex_0
+PSHA  i_6
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+LOAD  
+PUSH  0
+GT    
+JMPF  e_whl_4
+PSHA  aux_6
+PSHA  i_6
+LOAD  
+STORE 
+PSHA  i_6
+PSHA  heapIndex_0
+PSHA  i_6
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+LOAD  
+STORE 
+JMP   while_4
+e_whl_4: 
+PSHA  heapIndex_0
+PSHA  aux_6
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+PSHA  lb_6
+LOAD  
+STORE 
+PSHA  concat_lista_6
+PSHA  la_6
+LOAD  
+STORE 
+RET   
+head: 
+PSHA  head_7
+PSHA  heap_0
+PSHA  l_7
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+LOAD  
+STORE 
+RET   
+tail: 
+PSHA  tail_8
+PSHA  heapIndex_0
+PSHA  l_8
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+LOAD  
+STORE 
+RET   
+elem: 
+PSHA  l_9
+LOAD  
+PUSH  -1
+EQ    
+JMPF  else_5
+PSHA  elem_9
+PUSH  0
+STORE 
+JMP   e_if_5
+else_5: 
+PSHA  e_9
+LOAD  
+PSHA  l_7
+PSHA  l_9
+LOAD  
+STORE 
+CALL  head
+PSHA  head_7
+LOAD  
+EQ    
+JMPF  else_6
+PSHA  elem_9
+PUSH  1
+STORE 
+JMP   e_if_6
+else_6: 
+PSHA  elem_9
+PSHA  e_9
+PSHA  e_9
+LOAD  
+STORE 
+PSHA  l_9
+PSHA  l_8
+PSHA  l_9
+LOAD  
+STORE 
+CALL  tail
+PSHA  tail_8
+LOAD  
+STORE 
+CALL  elem
+PSHA  elem_9
+LOAD  
+STORE 
+e_if_6: 
+e_if_5: 
+RET   
+ler_lista: 
+PSHA  l_10
+PUSH  -1
+STORE 
+PSHA  c_10
+IN    
+STORE 
+while_7: 
+PSHA  c_10
+LOAD  
+PUSH  0
+GT    
+JMPF  e_whl_7
+PSHA  l_10
+PSHA  a_3
+PSHA  c_10
+LOAD  
+STORE 
+PSHA  l_3
+PSHA  l_10
+LOAD  
+STORE 
+CALL  cons_lista
+PSHA  cons_lista_3
+LOAD  
+STORE 
+PSHA  c_10
+IN    
+STORE 
+JMP   while_7
+e_whl_7: 
+PSHA  ler_lista_10
+PSHA  l_10
+LOAD  
+STORE 
+RET   

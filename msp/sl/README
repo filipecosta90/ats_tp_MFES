@@ -1,0 +1,155 @@
+
+Análise e Transformação de Software
+2012/2013
+
+--------------------------------------------------------------------
+
+Ficheiros:
+----------
+
+Msp.lhs    - máquina virtual 
+MainMsp.hs - função main para termos um executável 
+SL.lhs     - linguagem SL e tradução para MSP
+
+maiorDeDoisNums.msp - programa msp que lê dois número e indica qual o maior.
+                      (este programa foi gerado a partir de um programa SL,
+                       ver em baixo)
+tc1_maiorDedois - Um caso de teste para o programa anterior
+                  (ver em baixo como utilizar)
+
+
+---------------------------------------------------------------------
+
+Compilar a Máquina Virtual:
+---------------------------
+
+Para criar um programa executável para MSP deve instalar o compilador
+de Haskell ghc (disponível em www.haskell.org) e depois fazer
+
+make msp
+
+o programa msp é gerado.
+
+
+Executar a Máquina Virtual
+--------------------------
+
+Para executar a máquina virtual basta dar um programa MSP como
+argumento. Utilizando o programa maiorDeDoisNums.msp incluído, basta
+fazer:
+
+acs/Msp-Haskell/msp/sl$ ./msp maiorDeDoisNums.msp 
+Introduza um inteiro:
+3
+Introduza um inteiro:
+4
+s:1
+s:3
+4
+End!
+
+
+Execução de Casos de Teste
+--------------------------
+
+A execução dos programas pode ser feita automaticamente a partir de
+casos de teste. O ficheiro tc1_maiorDedois contém um caso de teste,
+que pode ser passado ao programa anterior para executar o programa:
+
+
+acs/Msp-Haskell/msp/sl$ ./msp maiorDeDoisNums.msp < tc1_maiorDedois 
+Introduza um inteiro:
+Introduza um inteiro:
+s:1
+s:3
+7
+End!
+
+
+Obviamente, que o caso de teste não está completo, pois deverá conter
+também o resultado esperado. Após a execução do programa o resultado
+produzido deve ser comparado com o esperado, para se determinar se o
+caso de teste falhou ou não.
+
+
+--------------------------------------------------------------------
+
+O Interpretador da Linguagem "Simple Language" (SL)
+---------------------------------------------------
+
+
+Para melhor testar a máquina virtual pode gerar código MSP usando o
+tradutor da linguagem SL.  Para o fazer, deve usar o interpretador de
+Haskell ghci (instaldo com o ghc) e fazer:
+
+ghci SL.lhs
+
+dentro do interpretador ghci, pode escrever a seguinte expressão
+Haskell
+
+*SL> compileSL2Msp progSL2 "prog.msp"
+
+que compila o programa progSL2, definido em SL.lhs, para MSP. O
+ficheiro prog.msp é gerado, tal como pode ser verificado, após sair do
+interpretador ghci, editando o ficheiro prog.msp com um editor de
+texto.
+
+Para executar este programa basta usar de novo o interpretador de msp:
+
+acs/Msp-Haskell//msp/sl$ ./msp prog.msp
+5
+24
+End!
+
+
+Monitorização de Programas SL
+-----------------------------
+
+Para a monitorização dos statements que são usados durante a execução
+de um programa, foi definido uma função que faz a instrumentação dos
+programas. Por exemplo, para instrumentar o programa que lê dois
+números e determina o maior, basta fazer no ghci:
+
+
+*SL> compileSL_sfl maiorDeDoisNums "maiorDeDoisNums.msp" 
+
+
+o compliador de SL traduz o programa SL maiorDeDoisNums (definido no
+ficheiro SL.lhs) para MSP e grava esse código no ficheiro
+maiorDeDoisNums.msp (ie, o ficheiro incluído nesta distribuição).
+
+
+
+
+--------------------------------------------------------------------
+
+Documentação
+------------
+
+
+Para produzir a documentação da máquina virtual e da linguagem SL
+basta fazer:
+
+make doc
+
+
+A diretoria test contém vários programas escritos numa linguagem
+imperativa simples e a sua tradução para MSP (concreto).
+
+
+
+---------------------------------------------------------------------
+
+Limpeza
+-------
+
+
+Para apagar ficheiros temporários fazer
+
+make clean
+
+e para apagar pdf e executável
+
+make cleanall
+
+

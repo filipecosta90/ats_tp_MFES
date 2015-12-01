@@ -1,0 +1,99 @@
+;
+;
+Memoria de Dados
+      x 0 TAM 2  val 1 2
+      Y 2 TAM 1 val 3
+      Z 3 TAM 1 val 4
+    Res 4 TAM 1 val -5
+    Codigo
+    PSHA X ; Ler(x)
+    IN
+    STORE
+    PSHA Y ; Ler(y)
+    IN
+C1: STORE
+    PSHA Z ; Z<--3*y+2
+    PUSH 3
+    PSHA Y
+    LOAD
+    MUL
+    PUSH 2
+    ADD
+    STORE
+    PSHA X ; Condicao1
+    LOAD
+    PSHA Y
+    LOAD
+    NE
+    JMPF C2
+    PSHA Res ; Accao1
+    PUSH 1
+    STORE
+    PSHA Y
+    PSHA X
+    LOAD
+    STORE
+   JMP Ci
+ C2:PSHA X ; Condicao2
+    LOAD
+    PSHA Y
+    LOAD
+    LE
+    JMPF C3
+    PSHA Res ; Accao2
+    PUSH 2
+    STORE
+    PSHA Y
+    PSHA Y
+    LOAD
+    PSHA X
+    LOAD
+    SUB
+    STORE
+    JMP Ci
+ C3:PUSH 2 ; Condicao3
+    PSHA X
+    LOAD
+    ADD
+    PSHA Z
+    LOAD
+    GT
+    JMPF Sen
+    PSHA Res ; Accao3
+    PUSH 3
+    STORE
+    PSHA Z
+    PUSH 5
+    STORE
+    PSHA X
+    PSHA Y
+    LOAD
+    STORE
+    JMP Ci
+Sen:PSHA Res
+    PUSH 4
+    STORE
+ Ci:PSHA Res ; Condicao Ciclo
+    LOAD
+    PUSH 0
+    GT
+    JMPF Fim
+    PSHA Res ; Accao Ciclo
+    LOAD
+    OUT
+    PSHA Res
+    PSHA Res
+    LOAD
+    PUSH 1
+    SUB
+    STORE
+    JMP Ci
+Fim:HALT
+
+
+
+
+
+
+
+

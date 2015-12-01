@@ -1,0 +1,22 @@
+
+main() : int
+{ 
+  int x;
+  int f;
+  input x;
+  f = factorial (x);
+  print f;
+};
+
+
+factorial (int n) : int
+{ int res;
+  res = 1;
+  while ( n > 0 )
+  { res = res * n;
+    n = n - 1;
+  };
+  factorial = res;
+};
+
+

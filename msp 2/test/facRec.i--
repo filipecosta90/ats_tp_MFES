@@ -1,0 +1,20 @@
+
+main() : int
+{ 
+  int x;
+  int f;
+  input x;
+  f = factorialRec (x);
+  print f;
+};
+
+
+factorialRec (int x) : int
+{ if ( x == 0) then
+   { factorialRec = 1;}
+  else
+   { factorialRec = x * factorialRec (x - 1); };
+};
+
+
+

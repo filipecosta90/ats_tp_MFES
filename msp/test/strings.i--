@@ -1,0 +1,33 @@
+
+
+char string[20];
+
+main() : int
+{
+  ler_string ();
+  show_string();
+};
+
+
+ler_string() : int
+{ char c;
+  int i ;
+  i = 1;  
+
+  input c;
+  while (c > 0)
+   { string[i] = c;
+     i = i+1;
+     input c;
+   };
+};
+
+show_string() : int
+{ int i ;
+  i = 1 ;
+  while (string[i] > 0)
+   { print string[i];
+     i = i+1;
+   };
+};
+

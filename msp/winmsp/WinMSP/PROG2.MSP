@@ -1,0 +1,71 @@
+    Memoria de Dados
+          i 0  TAM 1
+    VectorA 1  TAM 10 VAL 00 10 20 30 40 50 60 70 80 90
+    VectorB 11 TAM 10
+    Codigo
+    CALL Rot ; i<--1
+Ci1:PSHA 0 ; Controla Ciclo
+    LOAD
+    PUSH 10
+    LE
+    JMPF Ci2
+    PSHA 11 ; EndBase
+    PSHA 0  ; IndiceCorrente
+    LOAD
+    PUSH 1  ; IndMin
+    SUB     ; DeslRelat
+    ADDA    ; EndComp
+    IN      ; LeVectorB[i]
+    STORE
+    PSHA 0  ; Incrementa i
+    PSHA 0
+    LOAD
+    PUSH 1
+    ADD
+    STORE
+    JMP Ci1
+Ci2:CALL Rot ; i<--1
+Ci3:PSHA 0   ; ControlaCiclo
+    LOAD
+    PUSH 10
+    LE
+    JMPF Fim2
+    PSHA 11 ; CarregaVectorB[i]
+    PSHA 0
+    LOAD
+    PUSH 1
+    SUB
+    ADDA
+    LOAD
+    PSHA 1 ; CarregaVectorA[i]
+    PSHA 0
+    LOAD
+    PUSH 1
+    SUB
+    ADDA
+    LOAD
+    EQ     ; ComparaVectores
+    JMPF Ci4
+    PSHA 0
+    LOAD
+    OUT  ; ImprimeIndiceDoValorComum
+    HALT ; *AcabaComValorComum*
+Ci4:PSHA 0 ; Incrementa i
+    PSHA 0
+    LOAD
+    PUSH 1
+    ADD
+    STORE
+    JMP Ci3 ; Regressa
+Fim2:PUSH 63 ; Imprime '?'
+     OUTC
+     HALT    ; *AcabaSemValorComum*
+Rot:PSHA 0  ; i<--1
+    PUSH 1
+    STORE
+    RET
+
+
+
+
+

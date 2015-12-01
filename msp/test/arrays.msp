@@ -1,0 +1,60 @@
+MEMORIA DE DADOS 
+arr_0  0  TAM 10
+main_1  10  TAM 1
+i_1  11  TAM 1
+CODIGO 
+CALL  main
+HALT   
+main: 
+PSHA  i_1
+PUSH  1
+STORE 
+while_1: 
+PSHA  i_1
+LOAD  
+PUSH  11
+LT    
+JMPF  e_whl_1
+PSHA  arr_0
+PSHA  i_1
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+PSHA  i_1
+LOAD  
+STORE 
+PSHA  i_1
+PSHA  i_1
+LOAD  
+PUSH  1
+ADD   
+STORE 
+JMP   while_1
+e_whl_1: 
+PSHA  i_1
+PUSH  1
+STORE 
+while_2: 
+PSHA  i_1
+LOAD  
+PUSH  11
+LT    
+JMPF  e_whl_2
+PSHA  arr_0
+PSHA  i_1
+LOAD  
+PUSH  1
+SUB   
+ADDA  
+LOAD  
+OUT   
+PSHA  i_1
+PSHA  i_1
+LOAD  
+PUSH  1
+ADD   
+STORE 
+JMP   while_2
+e_whl_2: 
+RET   
