@@ -69,27 +69,6 @@ public abstract class LComentarios extends gram.i.iAbstractType  {
   }
 
   /**
-   * Returns the subterm corresponding to the slot HeadComentarios
-   *
-   * @return the subterm corresponding to the slot HeadComentarios
-   */
-  public gram.i.types.LComentarios getHeadComentarios() {
-    throw new UnsupportedOperationException("This LComentarios has no HeadComentarios");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot HeadComentarios
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot HeadComentarios is replaced by _arg
-   */
-  public LComentarios setHeadComentarios(gram.i.types.LComentarios _arg) {
-    throw new UnsupportedOperationException("This LComentarios has no HeadComentarios");
-  }
-
-  /**
    * Returns the subterm corresponding to the slot TailComentarios
    *
    * @return the subterm corresponding to the slot TailComentarios
@@ -108,6 +87,27 @@ public abstract class LComentarios extends gram.i.iAbstractType  {
    */
   public LComentarios setTailComentarios(gram.i.types.LComentarios _arg) {
     throw new UnsupportedOperationException("This LComentarios has no TailComentarios");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot HeadComentarios
+   *
+   * @return the subterm corresponding to the slot HeadComentarios
+   */
+  public gram.i.types.LComentarios getHeadComentarios() {
+    throw new UnsupportedOperationException("This LComentarios has no HeadComentarios");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot HeadComentarios
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot HeadComentarios is replaced by _arg
+   */
+  public LComentarios setHeadComentarios(gram.i.types.LComentarios _arg) {
+    throw new UnsupportedOperationException("This LComentarios has no HeadComentarios");
   }
 
   protected static tom.library.utils.IdConverter idConv = new tom.library.utils.IdConverter();

@@ -39,6 +39,27 @@ public abstract class Parametros extends gram.i.iAbstractType  {
   }
 
   /**
+   * Returns the subterm corresponding to the slot TailListaParametros
+   *
+   * @return the subterm corresponding to the slot TailListaParametros
+   */
+  public gram.i.types.Parametros getTailListaParametros() {
+    throw new UnsupportedOperationException("This Parametros has no TailListaParametros");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot TailListaParametros
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot TailListaParametros is replaced by _arg
+   */
+  public Parametros setTailListaParametros(gram.i.types.Parametros _arg) {
+    throw new UnsupportedOperationException("This Parametros has no TailListaParametros");
+  }
+
+  /**
    * Returns the subterm corresponding to the slot c2
    *
    * @return the subterm corresponding to the slot c2
@@ -99,27 +120,6 @@ public abstract class Parametros extends gram.i.iAbstractType  {
    */
   public Parametros setHeadListaParametros(gram.i.types.Parametros _arg) {
     throw new UnsupportedOperationException("This Parametros has no HeadListaParametros");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot TailListaParametros
-   *
-   * @return the subterm corresponding to the slot TailListaParametros
-   */
-  public gram.i.types.Parametros getTailListaParametros() {
-    throw new UnsupportedOperationException("This Parametros has no TailListaParametros");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot TailListaParametros
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot TailListaParametros is replaced by _arg
-   */
-  public Parametros setTailListaParametros(gram.i.types.Parametros _arg) {
-    throw new UnsupportedOperationException("This Parametros has no TailListaParametros");
   }
 
   /**

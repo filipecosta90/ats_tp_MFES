@@ -3,9 +3,9 @@
 
 %include { int.tom }
 
-%typeterm Parametros {
-  implement { gram.i.types.Parametros }
-  is_sort(t) { ($t instanceof gram.i.types.Parametros) }
+%typeterm DefTipo {
+  implement { gram.i.types.DefTipo }
+  is_sort(t) { ($t instanceof gram.i.types.DefTipo) }
 
   equals(t1,t2) { ($t1==$t2) }
 
@@ -19,17 +19,17 @@
 
 }
 
-%typeterm OpComp {
-  implement { gram.i.types.OpComp }
-  is_sort(t) { ($t instanceof gram.i.types.OpComp) }
+%typeterm LComentarios {
+  implement { gram.i.types.LComentarios }
+  is_sort(t) { ($t instanceof gram.i.types.LComentarios) }
 
   equals(t1,t2) { ($t1==$t2) }
 
 }
 
-%typeterm OpAtribuicao {
-  implement { gram.i.types.OpAtribuicao }
-  is_sort(t) { ($t instanceof gram.i.types.OpAtribuicao) }
+%typeterm OpComp {
+  implement { gram.i.types.OpComp }
+  is_sort(t) { ($t instanceof gram.i.types.OpComp) }
 
   equals(t1,t2) { ($t1==$t2) }
 
@@ -43,6 +43,14 @@
 
 }
 
+%typeterm OpAtribuicao {
+  implement { gram.i.types.OpAtribuicao }
+  is_sort(t) { ($t instanceof gram.i.types.OpAtribuicao) }
+
+  equals(t1,t2) { ($t1==$t2) }
+
+}
+
 %typeterm OpInc {
   implement { gram.i.types.OpInc }
   is_sort(t) { ($t instanceof gram.i.types.OpInc) }
@@ -51,17 +59,25 @@
 
 }
 
-%typeterm DefTipo {
-  implement { gram.i.types.DefTipo }
-  is_sort(t) { ($t instanceof gram.i.types.DefTipo) }
+%typeterm Parametros {
+  implement { gram.i.types.Parametros }
+  is_sort(t) { ($t instanceof gram.i.types.Parametros) }
 
   equals(t1,t2) { ($t1==$t2) }
 
 }
 
-%typeterm LComentarios {
-  implement { gram.i.types.LComentarios }
-  is_sort(t) { ($t instanceof gram.i.types.LComentarios) }
+%typeterm Argumentos {
+  implement { gram.i.types.Argumentos }
+  is_sort(t) { ($t instanceof gram.i.types.Argumentos) }
+
+  equals(t1,t2) { ($t1==$t2) }
+
+}
+
+%typeterm Declaracoes {
+  implement { gram.i.types.Declaracoes }
+  is_sort(t) { ($t instanceof gram.i.types.Declaracoes) }
 
   equals(t1,t2) { ($t1==$t2) }
 
@@ -82,40 +98,29 @@
   equals(t1,t2) { ($t1==$t2) }
 
 }
-
-%typeterm Declaracoes {
-  implement { gram.i.types.Declaracoes }
-  is_sort(t) { ($t instanceof gram.i.types.Declaracoes) }
-
-  equals(t1,t2) { ($t1==$t2) }
-
+%op DefTipo DInt() {
+  is_fsym(t) { ($t instanceof gram.i.types.deftipo.DInt) }
+  make() { gram.i.types.deftipo.DInt.make() }
 }
 
-%typeterm Argumentos {
-  implement { gram.i.types.Argumentos }
-  is_sort(t) { ($t instanceof gram.i.types.Argumentos) }
-
-  equals(t1,t2) { ($t1==$t2) }
-
-}
-%op Parametros EmptyListaParametros() {
-  is_fsym(t) { ($t instanceof gram.i.types.parametros.EmptyListaParametros) }
-  make() { gram.i.types.parametros.EmptyListaParametros.make() }
+%op DefTipo DChar() {
+  is_fsym(t) { ($t instanceof gram.i.types.deftipo.DChar) }
+  make() { gram.i.types.deftipo.DChar.make() }
 }
 
-%op Parametros ConsListaParametros(HeadListaParametros:Parametros, TailListaParametros:Parametros) {
-  is_fsym(t) { ($t instanceof gram.i.types.parametros.ConsListaParametros) }
-  get_slot(HeadListaParametros, t) { $t.getHeadListaParametros() }
-  get_slot(TailListaParametros, t) { $t.getTailListaParametros() }
-  make(t0, t1) { gram.i.types.parametros.ConsListaParametros.make($t0, $t1) }
+%op DefTipo DBoolean() {
+  is_fsym(t) { ($t instanceof gram.i.types.deftipo.DBoolean) }
+  make() { gram.i.types.deftipo.DBoolean.make() }
 }
 
-%op Parametros Parametro(c1:LComentarios, Expressao:Expressao, c2:LComentarios) {
-  is_fsym(t) { ($t instanceof gram.i.types.parametros.Parametro) }
-  get_slot(c1, t) { $t.getc1() }
-  get_slot(Expressao, t) { $t.getExpressao() }
-  get_slot(c2, t) { $t.getc2() }
-  make(t0, t1, t2) { gram.i.types.parametros.Parametro.make($t0, $t1, $t2) }
+%op DefTipo DFloat() {
+  is_fsym(t) { ($t instanceof gram.i.types.deftipo.DFloat) }
+  make() { gram.i.types.deftipo.DFloat.make() }
+}
+
+%op DefTipo DVoid() {
+  is_fsym(t) { ($t instanceof gram.i.types.deftipo.DVoid) }
+  make() { gram.i.types.deftipo.DVoid.make() }
 }
 
 %op OpNum Mais() {
@@ -141,6 +146,29 @@
 %op OpNum Mod() {
   is_fsym(t) { ($t instanceof gram.i.types.opnum.Mod) }
   make() { gram.i.types.opnum.Mod.make() }
+}
+
+%op LComentarios EmptyComentarios() {
+  is_fsym(t) { ($t instanceof gram.i.types.lcomentarios.EmptyComentarios) }
+  make() { gram.i.types.lcomentarios.EmptyComentarios.make() }
+}
+
+%op LComentarios ConsComentarios(HeadComentarios:LComentarios, TailComentarios:LComentarios) {
+  is_fsym(t) { ($t instanceof gram.i.types.lcomentarios.ConsComentarios) }
+  get_slot(HeadComentarios, t) { $t.getHeadComentarios() }
+  get_slot(TailComentarios, t) { $t.getTailComentarios() }
+  make(t0, t1) { gram.i.types.lcomentarios.ConsComentarios.make($t0, $t1) }
+}
+
+%op LComentarios Comentario(comentario:String) {
+  is_fsym(t) { ($t instanceof gram.i.types.lcomentarios.Comentario) }
+  get_slot(comentario, t) { $t.getcomentario() }
+  make(t0) { gram.i.types.lcomentarios.Comentario.make($t0) }
+}
+
+%op LComentarios Vazio() {
+  is_fsym(t) { ($t instanceof gram.i.types.lcomentarios.Vazio) }
+  make() { gram.i.types.lcomentarios.Vazio.make() }
 }
 
 %op OpComp Maior() {
@@ -171,31 +199,6 @@
 %op OpComp Igual() {
   is_fsym(t) { ($t instanceof gram.i.types.opcomp.Igual) }
   make() { gram.i.types.opcomp.Igual.make() }
-}
-
-%op OpAtribuicao Atrib() {
-  is_fsym(t) { ($t instanceof gram.i.types.opatribuicao.Atrib) }
-  make() { gram.i.types.opatribuicao.Atrib.make() }
-}
-
-%op OpAtribuicao Mult() {
-  is_fsym(t) { ($t instanceof gram.i.types.opatribuicao.Mult) }
-  make() { gram.i.types.opatribuicao.Mult.make() }
-}
-
-%op OpAtribuicao Div() {
-  is_fsym(t) { ($t instanceof gram.i.types.opatribuicao.Div) }
-  make() { gram.i.types.opatribuicao.Div.make() }
-}
-
-%op OpAtribuicao Soma() {
-  is_fsym(t) { ($t instanceof gram.i.types.opatribuicao.Soma) }
-  make() { gram.i.types.opatribuicao.Soma.make() }
-}
-
-%op OpAtribuicao Sub() {
-  is_fsym(t) { ($t instanceof gram.i.types.opatribuicao.Sub) }
-  make() { gram.i.types.opatribuicao.Sub.make() }
 }
 
 %op Expressao ExpNum(Exp1:Expressao, c1:LComentarios, op:OpNum, c2:LComentarios, Exp2:Expressao) {
@@ -365,6 +368,31 @@
   make() { gram.i.types.expressao.Empty.make() }
 }
 
+%op OpAtribuicao Atrib() {
+  is_fsym(t) { ($t instanceof gram.i.types.opatribuicao.Atrib) }
+  make() { gram.i.types.opatribuicao.Atrib.make() }
+}
+
+%op OpAtribuicao Mult() {
+  is_fsym(t) { ($t instanceof gram.i.types.opatribuicao.Mult) }
+  make() { gram.i.types.opatribuicao.Mult.make() }
+}
+
+%op OpAtribuicao Div() {
+  is_fsym(t) { ($t instanceof gram.i.types.opatribuicao.Div) }
+  make() { gram.i.types.opatribuicao.Div.make() }
+}
+
+%op OpAtribuicao Soma() {
+  is_fsym(t) { ($t instanceof gram.i.types.opatribuicao.Soma) }
+  make() { gram.i.types.opatribuicao.Soma.make() }
+}
+
+%op OpAtribuicao Sub() {
+  is_fsym(t) { ($t instanceof gram.i.types.opatribuicao.Sub) }
+  make() { gram.i.types.opatribuicao.Sub.make() }
+}
+
 %op OpInc Inc() {
   is_fsym(t) { ($t instanceof gram.i.types.opinc.Inc) }
   make() { gram.i.types.opinc.Inc.make() }
@@ -375,52 +403,68 @@
   make() { gram.i.types.opinc.Dec.make() }
 }
 
-%op DefTipo DInt() {
-  is_fsym(t) { ($t instanceof gram.i.types.deftipo.DInt) }
-  make() { gram.i.types.deftipo.DInt.make() }
+%op Parametros EmptyListaParametros() {
+  is_fsym(t) { ($t instanceof gram.i.types.parametros.EmptyListaParametros) }
+  make() { gram.i.types.parametros.EmptyListaParametros.make() }
 }
 
-%op DefTipo DChar() {
-  is_fsym(t) { ($t instanceof gram.i.types.deftipo.DChar) }
-  make() { gram.i.types.deftipo.DChar.make() }
+%op Parametros ConsListaParametros(HeadListaParametros:Parametros, TailListaParametros:Parametros) {
+  is_fsym(t) { ($t instanceof gram.i.types.parametros.ConsListaParametros) }
+  get_slot(HeadListaParametros, t) { $t.getHeadListaParametros() }
+  get_slot(TailListaParametros, t) { $t.getTailListaParametros() }
+  make(t0, t1) { gram.i.types.parametros.ConsListaParametros.make($t0, $t1) }
 }
 
-%op DefTipo DBoolean() {
-  is_fsym(t) { ($t instanceof gram.i.types.deftipo.DBoolean) }
-  make() { gram.i.types.deftipo.DBoolean.make() }
+%op Parametros Parametro(c1:LComentarios, Expressao:Expressao, c2:LComentarios) {
+  is_fsym(t) { ($t instanceof gram.i.types.parametros.Parametro) }
+  get_slot(c1, t) { $t.getc1() }
+  get_slot(Expressao, t) { $t.getExpressao() }
+  get_slot(c2, t) { $t.getc2() }
+  make(t0, t1, t2) { gram.i.types.parametros.Parametro.make($t0, $t1, $t2) }
 }
 
-%op DefTipo DFloat() {
-  is_fsym(t) { ($t instanceof gram.i.types.deftipo.DFloat) }
-  make() { gram.i.types.deftipo.DFloat.make() }
+%op Argumentos EmptyListaArgumentos() {
+  is_fsym(t) { ($t instanceof gram.i.types.argumentos.EmptyListaArgumentos) }
+  make() { gram.i.types.argumentos.EmptyListaArgumentos.make() }
 }
 
-%op DefTipo DVoid() {
-  is_fsym(t) { ($t instanceof gram.i.types.deftipo.DVoid) }
-  make() { gram.i.types.deftipo.DVoid.make() }
+%op Argumentos ConsListaArgumentos(HeadListaArgumentos:Argumentos, TailListaArgumentos:Argumentos) {
+  is_fsym(t) { ($t instanceof gram.i.types.argumentos.ConsListaArgumentos) }
+  get_slot(HeadListaArgumentos, t) { $t.getHeadListaArgumentos() }
+  get_slot(TailListaArgumentos, t) { $t.getTailListaArgumentos() }
+  make(t0, t1) { gram.i.types.argumentos.ConsListaArgumentos.make($t0, $t1) }
 }
 
-%op LComentarios EmptyComentarios() {
-  is_fsym(t) { ($t instanceof gram.i.types.lcomentarios.EmptyComentarios) }
-  make() { gram.i.types.lcomentarios.EmptyComentarios.make() }
+%op Argumentos Argumento(c1:LComentarios, DefTipo:DefTipo, c2:LComentarios, Id:String, c3:LComentarios) {
+  is_fsym(t) { ($t instanceof gram.i.types.argumentos.Argumento) }
+  get_slot(c1, t) { $t.getc1() }
+  get_slot(DefTipo, t) { $t.getDefTipo() }
+  get_slot(c2, t) { $t.getc2() }
+  get_slot(Id, t) { $t.getId() }
+  get_slot(c3, t) { $t.getc3() }
+  make(t0, t1, t2, t3, t4) { gram.i.types.argumentos.Argumento.make($t0, $t1, $t2, $t3, $t4) }
 }
 
-%op LComentarios ConsComentarios(HeadComentarios:LComentarios, TailComentarios:LComentarios) {
-  is_fsym(t) { ($t instanceof gram.i.types.lcomentarios.ConsComentarios) }
-  get_slot(HeadComentarios, t) { $t.getHeadComentarios() }
-  get_slot(TailComentarios, t) { $t.getTailComentarios() }
-  make(t0, t1) { gram.i.types.lcomentarios.ConsComentarios.make($t0, $t1) }
+%op Declaracoes EmptyListaDecl() {
+  is_fsym(t) { ($t instanceof gram.i.types.declaracoes.EmptyListaDecl) }
+  make() { gram.i.types.declaracoes.EmptyListaDecl.make() }
 }
 
-%op LComentarios Comentario(comentario:String) {
-  is_fsym(t) { ($t instanceof gram.i.types.lcomentarios.Comentario) }
-  get_slot(comentario, t) { $t.getcomentario() }
-  make(t0) { gram.i.types.lcomentarios.Comentario.make($t0) }
+%op Declaracoes ConsListaDecl(HeadListaDecl:Declaracoes, TailListaDecl:Declaracoes) {
+  is_fsym(t) { ($t instanceof gram.i.types.declaracoes.ConsListaDecl) }
+  get_slot(HeadListaDecl, t) { $t.getHeadListaDecl() }
+  get_slot(TailListaDecl, t) { $t.getTailListaDecl() }
+  make(t0, t1) { gram.i.types.declaracoes.ConsListaDecl.make($t0, $t1) }
 }
 
-%op LComentarios Vazio() {
-  is_fsym(t) { ($t instanceof gram.i.types.lcomentarios.Vazio) }
-  make() { gram.i.types.lcomentarios.Vazio.make() }
+%op Declaracoes Decl(Id:String, c1:LComentarios, c2:LComentarios, Expressao:Expressao, c3:LComentarios) {
+  is_fsym(t) { ($t instanceof gram.i.types.declaracoes.Decl) }
+  get_slot(Id, t) { $t.getId() }
+  get_slot(c1, t) { $t.getc1() }
+  get_slot(c2, t) { $t.getc2() }
+  get_slot(Expressao, t) { $t.getExpressao() }
+  get_slot(c3, t) { $t.getc3() }
+  make(t0, t1, t2, t3, t4) { gram.i.types.declaracoes.Decl.make($t0, $t1, $t2, $t3, $t4) }
 }
 
 %op Instrucao Atribuicao(c1:LComentarios, Id:String, c2:LComentarios, op:OpAtribuicao, c3:LComentarios, Expressao:Expressao, c4:LComentarios) {
@@ -538,58 +582,14 @@
   make(t0) { gram.i.types.intwrapper.IntWrap.make($t0) }
 }
 
-%op Declaracoes EmptyListaDecl() {
-  is_fsym(t) { ($t instanceof gram.i.types.declaracoes.EmptyListaDecl) }
-  make() { gram.i.types.declaracoes.EmptyListaDecl.make() }
-}
 
-%op Declaracoes ConsListaDecl(HeadListaDecl:Declaracoes, TailListaDecl:Declaracoes) {
-  is_fsym(t) { ($t instanceof gram.i.types.declaracoes.ConsListaDecl) }
-  get_slot(HeadListaDecl, t) { $t.getHeadListaDecl() }
-  get_slot(TailListaDecl, t) { $t.getTailListaDecl() }
-  make(t0, t1) { gram.i.types.declaracoes.ConsListaDecl.make($t0, $t1) }
-}
-
-%op Declaracoes Decl(Id:String, c1:LComentarios, c2:LComentarios, Expressao:Expressao, c3:LComentarios) {
-  is_fsym(t) { ($t instanceof gram.i.types.declaracoes.Decl) }
-  get_slot(Id, t) { $t.getId() }
-  get_slot(c1, t) { $t.getc1() }
-  get_slot(c2, t) { $t.getc2() }
-  get_slot(Expressao, t) { $t.getExpressao() }
-  get_slot(c3, t) { $t.getc3() }
-  make(t0, t1, t2, t3, t4) { gram.i.types.declaracoes.Decl.make($t0, $t1, $t2, $t3, $t4) }
-}
-
-%op Argumentos EmptyListaArgumentos() {
-  is_fsym(t) { ($t instanceof gram.i.types.argumentos.EmptyListaArgumentos) }
-  make() { gram.i.types.argumentos.EmptyListaArgumentos.make() }
-}
-
-%op Argumentos ConsListaArgumentos(HeadListaArgumentos:Argumentos, TailListaArgumentos:Argumentos) {
-  is_fsym(t) { ($t instanceof gram.i.types.argumentos.ConsListaArgumentos) }
-  get_slot(HeadListaArgumentos, t) { $t.getHeadListaArgumentos() }
-  get_slot(TailListaArgumentos, t) { $t.getTailListaArgumentos() }
-  make(t0, t1) { gram.i.types.argumentos.ConsListaArgumentos.make($t0, $t1) }
-}
-
-%op Argumentos Argumento(c1:LComentarios, DefTipo:DefTipo, c2:LComentarios, Id:String, c3:LComentarios) {
-  is_fsym(t) { ($t instanceof gram.i.types.argumentos.Argumento) }
-  get_slot(c1, t) { $t.getc1() }
-  get_slot(DefTipo, t) { $t.getDefTipo() }
-  get_slot(c2, t) { $t.getc2() }
-  get_slot(Id, t) { $t.getId() }
-  get_slot(c3, t) { $t.getc3() }
-  make(t0, t1, t2, t3, t4) { gram.i.types.argumentos.Argumento.make($t0, $t1, $t2, $t3, $t4) }
-}
-
-
-%oplist Parametros ListaParametros(Parametros*) {
-  is_fsym(t) { (($t instanceof gram.i.types.parametros.ConsListaParametros) || ($t instanceof gram.i.types.parametros.EmptyListaParametros)) }
-  make_empty() { gram.i.types.parametros.EmptyListaParametros.make() }
-  make_insert(e,l) { gram.i.types.parametros.ConsListaParametros.make($e,$l) }
-  get_head(l) { $l.getHeadListaParametros() }
-  get_tail(l) { $l.getTailListaParametros() }
-  is_empty(l) { $l.isEmptyListaParametros() }
+%oplist LComentarios Comentarios(LComentarios*) {
+  is_fsym(t) { (($t instanceof gram.i.types.lcomentarios.ConsComentarios) || ($t instanceof gram.i.types.lcomentarios.EmptyComentarios)) }
+  make_empty() { gram.i.types.lcomentarios.EmptyComentarios.make() }
+  make_insert(e,l) { gram.i.types.lcomentarios.ConsComentarios.make($e,$l) }
+  get_head(l) { $l.getHeadComentarios() }
+  get_tail(l) { $l.getTailComentarios() }
+  is_empty(l) { $l.isEmptyComentarios() }
 }
 
 %oplist Expressao Expressoes(Expressao*) {
@@ -601,22 +601,22 @@
   is_empty(l) { $l.isEmptyExpressoes() }
 }
 
-%oplist LComentarios Comentarios(LComentarios*) {
-  is_fsym(t) { (($t instanceof gram.i.types.lcomentarios.ConsComentarios) || ($t instanceof gram.i.types.lcomentarios.EmptyComentarios)) }
-  make_empty() { gram.i.types.lcomentarios.EmptyComentarios.make() }
-  make_insert(e,l) { gram.i.types.lcomentarios.ConsComentarios.make($e,$l) }
-  get_head(l) { $l.getHeadComentarios() }
-  get_tail(l) { $l.getTailComentarios() }
-  is_empty(l) { $l.isEmptyComentarios() }
+%oplist Parametros ListaParametros(Parametros*) {
+  is_fsym(t) { (($t instanceof gram.i.types.parametros.ConsListaParametros) || ($t instanceof gram.i.types.parametros.EmptyListaParametros)) }
+  make_empty() { gram.i.types.parametros.EmptyListaParametros.make() }
+  make_insert(e,l) { gram.i.types.parametros.ConsListaParametros.make($e,$l) }
+  get_head(l) { $l.getHeadListaParametros() }
+  get_tail(l) { $l.getTailListaParametros() }
+  is_empty(l) { $l.isEmptyListaParametros() }
 }
 
-%oplist Instrucao SeqInstrucao(Instrucao*) {
-  is_fsym(t) { (($t instanceof gram.i.types.instrucao.ConsSeqInstrucao) || ($t instanceof gram.i.types.instrucao.EmptySeqInstrucao)) }
-  make_empty() { gram.i.types.instrucao.EmptySeqInstrucao.make() }
-  make_insert(e,l) { gram.i.types.instrucao.ConsSeqInstrucao.make($e,$l) }
-  get_head(l) { $l.getHeadSeqInstrucao() }
-  get_tail(l) { $l.getTailSeqInstrucao() }
-  is_empty(l) { $l.isEmptySeqInstrucao() }
+%oplist Argumentos ListaArgumentos(Argumentos*) {
+  is_fsym(t) { (($t instanceof gram.i.types.argumentos.ConsListaArgumentos) || ($t instanceof gram.i.types.argumentos.EmptyListaArgumentos)) }
+  make_empty() { gram.i.types.argumentos.EmptyListaArgumentos.make() }
+  make_insert(e,l) { gram.i.types.argumentos.ConsListaArgumentos.make($e,$l) }
+  get_head(l) { $l.getHeadListaArgumentos() }
+  get_tail(l) { $l.getTailListaArgumentos() }
+  is_empty(l) { $l.isEmptyListaArgumentos() }
 }
 
 %oplist Declaracoes ListaDecl(Declaracoes*) {
@@ -628,11 +628,11 @@
   is_empty(l) { $l.isEmptyListaDecl() }
 }
 
-%oplist Argumentos ListaArgumentos(Argumentos*) {
-  is_fsym(t) { (($t instanceof gram.i.types.argumentos.ConsListaArgumentos) || ($t instanceof gram.i.types.argumentos.EmptyListaArgumentos)) }
-  make_empty() { gram.i.types.argumentos.EmptyListaArgumentos.make() }
-  make_insert(e,l) { gram.i.types.argumentos.ConsListaArgumentos.make($e,$l) }
-  get_head(l) { $l.getHeadListaArgumentos() }
-  get_tail(l) { $l.getTailListaArgumentos() }
-  is_empty(l) { $l.isEmptyListaArgumentos() }
+%oplist Instrucao SeqInstrucao(Instrucao*) {
+  is_fsym(t) { (($t instanceof gram.i.types.instrucao.ConsSeqInstrucao) || ($t instanceof gram.i.types.instrucao.EmptySeqInstrucao)) }
+  make_empty() { gram.i.types.instrucao.EmptySeqInstrucao.make() }
+  make_insert(e,l) { gram.i.types.instrucao.ConsSeqInstrucao.make($e,$l) }
+  get_head(l) { $l.getHeadSeqInstrucao() }
+  get_tail(l) { $l.getTailSeqInstrucao() }
+  is_empty(l) { $l.isEmptySeqInstrucao() }
 }

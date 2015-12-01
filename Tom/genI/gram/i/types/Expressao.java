@@ -210,339 +210,24 @@ public abstract class Expressao extends gram.i.iAbstractType  {
   }
 
   /**
-   * Returns the subterm corresponding to the slot num
+   * Returns the subterm corresponding to the slot Cond2
    *
-   * @return the subterm corresponding to the slot num
+   * @return the subterm corresponding to the slot Cond2
    */
-  public int getnum() {
-    throw new UnsupportedOperationException("This Expressao has no num");
+  public gram.i.types.Expressao getCond2() {
+    throw new UnsupportedOperationException("This Expressao has no Cond2");
   }
 
   /**
-   * Returns a new term where the subterm corresponding to the slot num
+   * Returns a new term where the subterm corresponding to the slot Cond2
    * is replaced by the term given in argument.
    * Note that there is no side-effect: a new term is returned and the original term is left unchanged
    *
    * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot num is replaced by _arg
+   * @return a new term where the subterm corresponding to the slot Cond2 is replaced by _arg
    */
-  public Expressao setnum(int _arg) {
-    throw new UnsupportedOperationException("This Expressao has no num");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot op
-   *
-   * @return the subterm corresponding to the slot op
-   */
-  public gram.i.types.OpNum getop() {
-    throw new UnsupportedOperationException("This Expressao has no op");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot op
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot op is replaced by _arg
-   */
-  public Expressao setop(gram.i.types.OpNum _arg) {
-    throw new UnsupportedOperationException("This Expressao has no op");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot c2
-   *
-   * @return the subterm corresponding to the slot c2
-   */
-  public gram.i.types.LComentarios getc2() {
-    throw new UnsupportedOperationException("This Expressao has no c2");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot c2
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot c2 is replaced by _arg
-   */
-  public Expressao setc2(gram.i.types.LComentarios _arg) {
-    throw new UnsupportedOperationException("This Expressao has no c2");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Parametros
-   *
-   * @return the subterm corresponding to the slot Parametros
-   */
-  public gram.i.types.Parametros getParametros() {
-    throw new UnsupportedOperationException("This Expressao has no Parametros");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Parametros
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Parametros is replaced by _arg
-   */
-  public Expressao setParametros(gram.i.types.Parametros _arg) {
-    throw new UnsupportedOperationException("This Expressao has no Parametros");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot OpInc
-   *
-   * @return the subterm corresponding to the slot OpInc
-   */
-  public gram.i.types.OpInc getOpInc() {
-    throw new UnsupportedOperationException("This Expressao has no OpInc");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot OpInc
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot OpInc is replaced by _arg
-   */
-  public Expressao setOpInc(gram.i.types.OpInc _arg) {
-    throw new UnsupportedOperationException("This Expressao has no OpInc");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Condicao
-   *
-   * @return the subterm corresponding to the slot Condicao
-   */
-  public gram.i.types.Expressao getCondicao() {
-    throw new UnsupportedOperationException("This Expressao has no Condicao");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Condicao
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Condicao is replaced by _arg
-   */
-  public Expressao setCondicao(gram.i.types.Expressao _arg) {
-    throw new UnsupportedOperationException("This Expressao has no Condicao");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot TailExpressoes
-   *
-   * @return the subterm corresponding to the slot TailExpressoes
-   */
-  public gram.i.types.Expressao getTailExpressoes() {
-    throw new UnsupportedOperationException("This Expressao has no TailExpressoes");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot TailExpressoes
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot TailExpressoes is replaced by _arg
-   */
-  public Expressao setTailExpressoes(gram.i.types.Expressao _arg) {
-    throw new UnsupportedOperationException("This Expressao has no TailExpressoes");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot c3
-   *
-   * @return the subterm corresponding to the slot c3
-   */
-  public gram.i.types.LComentarios getc3() {
-    throw new UnsupportedOperationException("This Expressao has no c3");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot c3
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot c3 is replaced by _arg
-   */
-  public Expressao setc3(gram.i.types.LComentarios _arg) {
-    throw new UnsupportedOperationException("This Expressao has no c3");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Exp2
-   *
-   * @return the subterm corresponding to the slot Exp2
-   */
-  public gram.i.types.Expressao getExp2() {
-    throw new UnsupportedOperationException("This Expressao has no Exp2");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Exp2
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Exp2 is replaced by _arg
-   */
-  public Expressao setExp2(gram.i.types.Expressao _arg) {
-    throw new UnsupportedOperationException("This Expressao has no Exp2");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Char
-   *
-   * @return the subterm corresponding to the slot Char
-   */
-  public String getChar() {
-    throw new UnsupportedOperationException("This Expressao has no Char");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Char
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Char is replaced by _arg
-   */
-  public Expressao setChar(String _arg) {
-    throw new UnsupportedOperationException("This Expressao has no Char");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Int
-   *
-   * @return the subterm corresponding to the slot Int
-   */
-  public int getInt() {
-    throw new UnsupportedOperationException("This Expressao has no Int");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Int
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Int is replaced by _arg
-   */
-  public Expressao setInt(int _arg) {
-    throw new UnsupportedOperationException("This Expressao has no Int");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot OpComp
-   *
-   * @return the subterm corresponding to the slot OpComp
-   */
-  public gram.i.types.OpComp getOpComp() {
-    throw new UnsupportedOperationException("This Expressao has no OpComp");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot OpComp
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot OpComp is replaced by _arg
-   */
-  public Expressao setOpComp(gram.i.types.OpComp _arg) {
-    throw new UnsupportedOperationException("This Expressao has no OpComp");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Id
-   *
-   * @return the subterm corresponding to the slot Id
-   */
-  public String getId() {
-    throw new UnsupportedOperationException("This Expressao has no Id");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Id
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Id is replaced by _arg
-   */
-  public Expressao setId(String _arg) {
-    throw new UnsupportedOperationException("This Expressao has no Id");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Tipo
-   *
-   * @return the subterm corresponding to the slot Tipo
-   */
-  public gram.i.types.DefTipo getTipo() {
-    throw new UnsupportedOperationException("This Expressao has no Tipo");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Tipo
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Tipo is replaced by _arg
-   */
-  public Expressao setTipo(gram.i.types.DefTipo _arg) {
-    throw new UnsupportedOperationException("This Expressao has no Tipo");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot c5
-   *
-   * @return the subterm corresponding to the slot c5
-   */
-  public gram.i.types.LComentarios getc5() {
-    throw new UnsupportedOperationException("This Expressao has no c5");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot c5
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot c5 is replaced by _arg
-   */
-  public Expressao setc5(gram.i.types.LComentarios _arg) {
-    throw new UnsupportedOperationException("This Expressao has no c5");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot c4
-   *
-   * @return the subterm corresponding to the slot c4
-   */
-  public gram.i.types.LComentarios getc4() {
-    throw new UnsupportedOperationException("This Expressao has no c4");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot c4
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot c4 is replaced by _arg
-   */
-  public Expressao setc4(gram.i.types.LComentarios _arg) {
-    throw new UnsupportedOperationException("This Expressao has no c4");
+  public Expressao setCond2(gram.i.types.Expressao _arg) {
+    throw new UnsupportedOperationException("This Expressao has no Cond2");
   }
 
   /**
@@ -567,6 +252,27 @@ public abstract class Expressao extends gram.i.iAbstractType  {
   }
 
   /**
+   * Returns the subterm corresponding to the slot c2
+   *
+   * @return the subterm corresponding to the slot c2
+   */
+  public gram.i.types.LComentarios getc2() {
+    throw new UnsupportedOperationException("This Expressao has no c2");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot c2
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot c2 is replaced by _arg
+   */
+  public Expressao setc2(gram.i.types.LComentarios _arg) {
+    throw new UnsupportedOperationException("This Expressao has no c2");
+  }
+
+  /**
    * Returns the subterm corresponding to the slot c1
    *
    * @return the subterm corresponding to the slot c1
@@ -588,6 +294,321 @@ public abstract class Expressao extends gram.i.iAbstractType  {
   }
 
   /**
+   * Returns the subterm corresponding to the slot c3
+   *
+   * @return the subterm corresponding to the slot c3
+   */
+  public gram.i.types.LComentarios getc3() {
+    throw new UnsupportedOperationException("This Expressao has no c3");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot c3
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot c3 is replaced by _arg
+   */
+  public Expressao setc3(gram.i.types.LComentarios _arg) {
+    throw new UnsupportedOperationException("This Expressao has no c3");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot OpComp
+   *
+   * @return the subterm corresponding to the slot OpComp
+   */
+  public gram.i.types.OpComp getOpComp() {
+    throw new UnsupportedOperationException("This Expressao has no OpComp");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot OpComp
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot OpComp is replaced by _arg
+   */
+  public Expressao setOpComp(gram.i.types.OpComp _arg) {
+    throw new UnsupportedOperationException("This Expressao has no OpComp");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot TailExpressoes
+   *
+   * @return the subterm corresponding to the slot TailExpressoes
+   */
+  public gram.i.types.Expressao getTailExpressoes() {
+    throw new UnsupportedOperationException("This Expressao has no TailExpressoes");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot TailExpressoes
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot TailExpressoes is replaced by _arg
+   */
+  public Expressao setTailExpressoes(gram.i.types.Expressao _arg) {
+    throw new UnsupportedOperationException("This Expressao has no TailExpressoes");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Tipo
+   *
+   * @return the subterm corresponding to the slot Tipo
+   */
+  public gram.i.types.DefTipo getTipo() {
+    throw new UnsupportedOperationException("This Expressao has no Tipo");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Tipo
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Tipo is replaced by _arg
+   */
+  public Expressao setTipo(gram.i.types.DefTipo _arg) {
+    throw new UnsupportedOperationException("This Expressao has no Tipo");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot op
+   *
+   * @return the subterm corresponding to the slot op
+   */
+  public gram.i.types.OpNum getop() {
+    throw new UnsupportedOperationException("This Expressao has no op");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot op
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot op is replaced by _arg
+   */
+  public Expressao setop(gram.i.types.OpNum _arg) {
+    throw new UnsupportedOperationException("This Expressao has no op");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Parametros
+   *
+   * @return the subterm corresponding to the slot Parametros
+   */
+  public gram.i.types.Parametros getParametros() {
+    throw new UnsupportedOperationException("This Expressao has no Parametros");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Parametros
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Parametros is replaced by _arg
+   */
+  public Expressao setParametros(gram.i.types.Parametros _arg) {
+    throw new UnsupportedOperationException("This Expressao has no Parametros");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Condicao
+   *
+   * @return the subterm corresponding to the slot Condicao
+   */
+  public gram.i.types.Expressao getCondicao() {
+    throw new UnsupportedOperationException("This Expressao has no Condicao");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Condicao
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Condicao is replaced by _arg
+   */
+  public Expressao setCondicao(gram.i.types.Expressao _arg) {
+    throw new UnsupportedOperationException("This Expressao has no Condicao");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot c5
+   *
+   * @return the subterm corresponding to the slot c5
+   */
+  public gram.i.types.LComentarios getc5() {
+    throw new UnsupportedOperationException("This Expressao has no c5");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot c5
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot c5 is replaced by _arg
+   */
+  public Expressao setc5(gram.i.types.LComentarios _arg) {
+    throw new UnsupportedOperationException("This Expressao has no c5");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Id
+   *
+   * @return the subterm corresponding to the slot Id
+   */
+  public String getId() {
+    throw new UnsupportedOperationException("This Expressao has no Id");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Id
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Id is replaced by _arg
+   */
+  public Expressao setId(String _arg) {
+    throw new UnsupportedOperationException("This Expressao has no Id");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot OpInc
+   *
+   * @return the subterm corresponding to the slot OpInc
+   */
+  public gram.i.types.OpInc getOpInc() {
+    throw new UnsupportedOperationException("This Expressao has no OpInc");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot OpInc
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot OpInc is replaced by _arg
+   */
+  public Expressao setOpInc(gram.i.types.OpInc _arg) {
+    throw new UnsupportedOperationException("This Expressao has no OpInc");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Char
+   *
+   * @return the subterm corresponding to the slot Char
+   */
+  public String getChar() {
+    throw new UnsupportedOperationException("This Expressao has no Char");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Char
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Char is replaced by _arg
+   */
+  public Expressao setChar(String _arg) {
+    throw new UnsupportedOperationException("This Expressao has no Char");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot c4
+   *
+   * @return the subterm corresponding to the slot c4
+   */
+  public gram.i.types.LComentarios getc4() {
+    throw new UnsupportedOperationException("This Expressao has no c4");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot c4
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot c4 is replaced by _arg
+   */
+  public Expressao setc4(gram.i.types.LComentarios _arg) {
+    throw new UnsupportedOperationException("This Expressao has no c4");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Int
+   *
+   * @return the subterm corresponding to the slot Int
+   */
+  public int getInt() {
+    throw new UnsupportedOperationException("This Expressao has no Int");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Int
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Int is replaced by _arg
+   */
+  public Expressao setInt(int _arg) {
+    throw new UnsupportedOperationException("This Expressao has no Int");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot num
+   *
+   * @return the subterm corresponding to the slot num
+   */
+  public int getnum() {
+    throw new UnsupportedOperationException("This Expressao has no num");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot num
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot num is replaced by _arg
+   */
+  public Expressao setnum(int _arg) {
+    throw new UnsupportedOperationException("This Expressao has no num");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Exp2
+   *
+   * @return the subterm corresponding to the slot Exp2
+   */
+  public gram.i.types.Expressao getExp2() {
+    throw new UnsupportedOperationException("This Expressao has no Exp2");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Exp2
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Exp2 is replaced by _arg
+   */
+  public Expressao setExp2(gram.i.types.Expressao _arg) {
+    throw new UnsupportedOperationException("This Expressao has no Exp2");
+  }
+
+  /**
    * Returns the subterm corresponding to the slot Exp1
    *
    * @return the subterm corresponding to the slot Exp1
@@ -606,27 +627,6 @@ public abstract class Expressao extends gram.i.iAbstractType  {
    */
   public Expressao setExp1(gram.i.types.Expressao _arg) {
     throw new UnsupportedOperationException("This Expressao has no Exp1");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Cond2
-   *
-   * @return the subterm corresponding to the slot Cond2
-   */
-  public gram.i.types.Expressao getCond2() {
-    throw new UnsupportedOperationException("This Expressao has no Cond2");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Cond2
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Cond2 is replaced by _arg
-   */
-  public Expressao setCond2(gram.i.types.Expressao _arg) {
-    throw new UnsupportedOperationException("This Expressao has no Cond2");
   }
 
   /**

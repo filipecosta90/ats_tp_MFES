@@ -102,69 +102,6 @@ public abstract class Instrucao extends gram.i.iAbstractType  {
   }
 
   /**
-   * Returns the subterm corresponding to the slot TailSeqInstrucao
-   *
-   * @return the subterm corresponding to the slot TailSeqInstrucao
-   */
-  public gram.i.types.Instrucao getTailSeqInstrucao() {
-    throw new UnsupportedOperationException("This Instrucao has no TailSeqInstrucao");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot TailSeqInstrucao
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot TailSeqInstrucao is replaced by _arg
-   */
-  public Instrucao setTailSeqInstrucao(gram.i.types.Instrucao _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no TailSeqInstrucao");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Declaracoes
-   *
-   * @return the subterm corresponding to the slot Declaracoes
-   */
-  public gram.i.types.Declaracoes getDeclaracoes() {
-    throw new UnsupportedOperationException("This Instrucao has no Declaracoes");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Declaracoes
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Declaracoes is replaced by _arg
-   */
-  public Instrucao setDeclaracoes(gram.i.types.Declaracoes _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no Declaracoes");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot DefTipo
-   *
-   * @return the subterm corresponding to the slot DefTipo
-   */
-  public gram.i.types.DefTipo getDefTipo() {
-    throw new UnsupportedOperationException("This Instrucao has no DefTipo");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot DefTipo
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot DefTipo is replaced by _arg
-   */
-  public Instrucao setDefTipo(gram.i.types.DefTipo _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no DefTipo");
-  }
-
-  /**
    * Returns the subterm corresponding to the slot c2
    *
    * @return the subterm corresponding to the slot c2
@@ -183,279 +120,6 @@ public abstract class Instrucao extends gram.i.iAbstractType  {
    */
   public Instrucao setc2(gram.i.types.LComentarios _arg) {
     throw new UnsupportedOperationException("This Instrucao has no c2");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot op
-   *
-   * @return the subterm corresponding to the slot op
-   */
-  public gram.i.types.OpAtribuicao getop() {
-    throw new UnsupportedOperationException("This Instrucao has no op");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot op
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot op is replaced by _arg
-   */
-  public Instrucao setop(gram.i.types.OpAtribuicao _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no op");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot c6
-   *
-   * @return the subterm corresponding to the slot c6
-   */
-  public gram.i.types.LComentarios getc6() {
-    throw new UnsupportedOperationException("This Instrucao has no c6");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot c6
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot c6 is replaced by _arg
-   */
-  public Instrucao setc6(gram.i.types.LComentarios _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no c6");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot c8
-   *
-   * @return the subterm corresponding to the slot c8
-   */
-  public gram.i.types.LComentarios getc8() {
-    throw new UnsupportedOperationException("This Instrucao has no c8");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot c8
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot c8 is replaced by _arg
-   */
-  public Instrucao setc8(gram.i.types.LComentarios _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no c8");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot HeadSeqInstrucao
-   *
-   * @return the subterm corresponding to the slot HeadSeqInstrucao
-   */
-  public gram.i.types.Instrucao getHeadSeqInstrucao() {
-    throw new UnsupportedOperationException("This Instrucao has no HeadSeqInstrucao");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot HeadSeqInstrucao
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot HeadSeqInstrucao is replaced by _arg
-   */
-  public Instrucao setHeadSeqInstrucao(gram.i.types.Instrucao _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no HeadSeqInstrucao");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Instrucao2
-   *
-   * @return the subterm corresponding to the slot Instrucao2
-   */
-  public gram.i.types.Instrucao getInstrucao2() {
-    throw new UnsupportedOperationException("This Instrucao has no Instrucao2");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Instrucao2
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Instrucao2 is replaced by _arg
-   */
-  public Instrucao setInstrucao2(gram.i.types.Instrucao _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no Instrucao2");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Nome
-   *
-   * @return the subterm corresponding to the slot Nome
-   */
-  public String getNome() {
-    throw new UnsupportedOperationException("This Instrucao has no Nome");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Nome
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Nome is replaced by _arg
-   */
-  public Instrucao setNome(String _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no Nome");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Condicao
-   *
-   * @return the subterm corresponding to the slot Condicao
-   */
-  public gram.i.types.Expressao getCondicao() {
-    throw new UnsupportedOperationException("This Instrucao has no Condicao");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Condicao
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Condicao is replaced by _arg
-   */
-  public Instrucao setCondicao(gram.i.types.Expressao _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no Condicao");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot c3
-   *
-   * @return the subterm corresponding to the slot c3
-   */
-  public gram.i.types.LComentarios getc3() {
-    throw new UnsupportedOperationException("This Instrucao has no c3");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot c3
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot c3 is replaced by _arg
-   */
-  public Instrucao setc3(gram.i.types.LComentarios _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no c3");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Instrucao
-   *
-   * @return the subterm corresponding to the slot Instrucao
-   */
-  public gram.i.types.Instrucao getInstrucao() {
-    throw new UnsupportedOperationException("This Instrucao has no Instrucao");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Instrucao
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Instrucao is replaced by _arg
-   */
-  public Instrucao setInstrucao(gram.i.types.Instrucao _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no Instrucao");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Declaracao
-   *
-   * @return the subterm corresponding to the slot Declaracao
-   */
-  public gram.i.types.Instrucao getDeclaracao() {
-    throw new UnsupportedOperationException("This Instrucao has no Declaracao");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Declaracao
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Declaracao is replaced by _arg
-   */
-  public Instrucao setDeclaracao(gram.i.types.Instrucao _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no Declaracao");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot Id
-   *
-   * @return the subterm corresponding to the slot Id
-   */
-  public String getId() {
-    throw new UnsupportedOperationException("This Instrucao has no Id");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot Id
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Id is replaced by _arg
-   */
-  public Instrucao setId(String _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no Id");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot c5
-   *
-   * @return the subterm corresponding to the slot c5
-   */
-  public gram.i.types.LComentarios getc5() {
-    throw new UnsupportedOperationException("This Instrucao has no c5");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot c5
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot c5 is replaced by _arg
-   */
-  public Instrucao setc5(gram.i.types.LComentarios _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no c5");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot c4
-   *
-   * @return the subterm corresponding to the slot c4
-   */
-  public gram.i.types.LComentarios getc4() {
-    throw new UnsupportedOperationException("This Instrucao has no c4");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot c4
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot c4 is replaced by _arg
-   */
-  public Instrucao setc4(gram.i.types.LComentarios _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no c4");
   }
 
   /**
@@ -480,24 +144,66 @@ public abstract class Instrucao extends gram.i.iAbstractType  {
   }
 
   /**
-   * Returns the subterm corresponding to the slot Argumentos
+   * Returns the subterm corresponding to the slot c3
    *
-   * @return the subterm corresponding to the slot Argumentos
+   * @return the subterm corresponding to the slot c3
    */
-  public gram.i.types.Argumentos getArgumentos() {
-    throw new UnsupportedOperationException("This Instrucao has no Argumentos");
+  public gram.i.types.LComentarios getc3() {
+    throw new UnsupportedOperationException("This Instrucao has no c3");
   }
 
   /**
-   * Returns a new term where the subterm corresponding to the slot Argumentos
+   * Returns a new term where the subterm corresponding to the slot c3
    * is replaced by the term given in argument.
    * Note that there is no side-effect: a new term is returned and the original term is left unchanged
    *
    * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Argumentos is replaced by _arg
+   * @return a new term where the subterm corresponding to the slot c3 is replaced by _arg
    */
-  public Instrucao setArgumentos(gram.i.types.Argumentos _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no Argumentos");
+  public Instrucao setc3(gram.i.types.LComentarios _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no c3");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot c6
+   *
+   * @return the subterm corresponding to the slot c6
+   */
+  public gram.i.types.LComentarios getc6() {
+    throw new UnsupportedOperationException("This Instrucao has no c6");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot c6
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot c6 is replaced by _arg
+   */
+  public Instrucao setc6(gram.i.types.LComentarios _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no c6");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Instrucao2
+   *
+   * @return the subterm corresponding to the slot Instrucao2
+   */
+  public gram.i.types.Instrucao getInstrucao2() {
+    throw new UnsupportedOperationException("This Instrucao has no Instrucao2");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Instrucao2
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Instrucao2 is replaced by _arg
+   */
+  public Instrucao setInstrucao2(gram.i.types.Instrucao _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no Instrucao2");
   }
 
   /**
@@ -522,24 +228,171 @@ public abstract class Instrucao extends gram.i.iAbstractType  {
   }
 
   /**
-   * Returns the subterm corresponding to the slot Expressao
+   * Returns the subterm corresponding to the slot Instrucao
    *
-   * @return the subterm corresponding to the slot Expressao
+   * @return the subterm corresponding to the slot Instrucao
    */
-  public gram.i.types.Expressao getExpressao() {
-    throw new UnsupportedOperationException("This Instrucao has no Expressao");
+  public gram.i.types.Instrucao getInstrucao() {
+    throw new UnsupportedOperationException("This Instrucao has no Instrucao");
   }
 
   /**
-   * Returns a new term where the subterm corresponding to the slot Expressao
+   * Returns a new term where the subterm corresponding to the slot Instrucao
    * is replaced by the term given in argument.
    * Note that there is no side-effect: a new term is returned and the original term is left unchanged
    *
    * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot Expressao is replaced by _arg
+   * @return a new term where the subterm corresponding to the slot Instrucao is replaced by _arg
    */
-  public Instrucao setExpressao(gram.i.types.Expressao _arg) {
-    throw new UnsupportedOperationException("This Instrucao has no Expressao");
+  public Instrucao setInstrucao(gram.i.types.Instrucao _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no Instrucao");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Condicao
+   *
+   * @return the subterm corresponding to the slot Condicao
+   */
+  public gram.i.types.Expressao getCondicao() {
+    throw new UnsupportedOperationException("This Instrucao has no Condicao");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Condicao
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Condicao is replaced by _arg
+   */
+  public Instrucao setCondicao(gram.i.types.Expressao _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no Condicao");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot c5
+   *
+   * @return the subterm corresponding to the slot c5
+   */
+  public gram.i.types.LComentarios getc5() {
+    throw new UnsupportedOperationException("This Instrucao has no c5");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot c5
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot c5 is replaced by _arg
+   */
+  public Instrucao setc5(gram.i.types.LComentarios _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no c5");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Declaracoes
+   *
+   * @return the subterm corresponding to the slot Declaracoes
+   */
+  public gram.i.types.Declaracoes getDeclaracoes() {
+    throw new UnsupportedOperationException("This Instrucao has no Declaracoes");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Declaracoes
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Declaracoes is replaced by _arg
+   */
+  public Instrucao setDeclaracoes(gram.i.types.Declaracoes _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no Declaracoes");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Id
+   *
+   * @return the subterm corresponding to the slot Id
+   */
+  public String getId() {
+    throw new UnsupportedOperationException("This Instrucao has no Id");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Id
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Id is replaced by _arg
+   */
+  public Instrucao setId(String _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no Id");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Argumentos
+   *
+   * @return the subterm corresponding to the slot Argumentos
+   */
+  public gram.i.types.Argumentos getArgumentos() {
+    throw new UnsupportedOperationException("This Instrucao has no Argumentos");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Argumentos
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Argumentos is replaced by _arg
+   */
+  public Instrucao setArgumentos(gram.i.types.Argumentos _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no Argumentos");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot c8
+   *
+   * @return the subterm corresponding to the slot c8
+   */
+  public gram.i.types.LComentarios getc8() {
+    throw new UnsupportedOperationException("This Instrucao has no c8");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot c8
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot c8 is replaced by _arg
+   */
+  public Instrucao setc8(gram.i.types.LComentarios _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no c8");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot TailSeqInstrucao
+   *
+   * @return the subterm corresponding to the slot TailSeqInstrucao
+   */
+  public gram.i.types.Instrucao getTailSeqInstrucao() {
+    throw new UnsupportedOperationException("This Instrucao has no TailSeqInstrucao");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot TailSeqInstrucao
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot TailSeqInstrucao is replaced by _arg
+   */
+  public Instrucao setTailSeqInstrucao(gram.i.types.Instrucao _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no TailSeqInstrucao");
   }
 
   /**
@@ -561,6 +414,153 @@ public abstract class Instrucao extends gram.i.iAbstractType  {
    */
   public Instrucao setInstrucao1(gram.i.types.Instrucao _arg) {
     throw new UnsupportedOperationException("This Instrucao has no Instrucao1");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot op
+   *
+   * @return the subterm corresponding to the slot op
+   */
+  public gram.i.types.OpAtribuicao getop() {
+    throw new UnsupportedOperationException("This Instrucao has no op");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot op
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot op is replaced by _arg
+   */
+  public Instrucao setop(gram.i.types.OpAtribuicao _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no op");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot c4
+   *
+   * @return the subterm corresponding to the slot c4
+   */
+  public gram.i.types.LComentarios getc4() {
+    throw new UnsupportedOperationException("This Instrucao has no c4");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot c4
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot c4 is replaced by _arg
+   */
+  public Instrucao setc4(gram.i.types.LComentarios _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no c4");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot DefTipo
+   *
+   * @return the subterm corresponding to the slot DefTipo
+   */
+  public gram.i.types.DefTipo getDefTipo() {
+    throw new UnsupportedOperationException("This Instrucao has no DefTipo");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot DefTipo
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot DefTipo is replaced by _arg
+   */
+  public Instrucao setDefTipo(gram.i.types.DefTipo _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no DefTipo");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Nome
+   *
+   * @return the subterm corresponding to the slot Nome
+   */
+  public String getNome() {
+    throw new UnsupportedOperationException("This Instrucao has no Nome");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Nome
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Nome is replaced by _arg
+   */
+  public Instrucao setNome(String _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no Nome");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot HeadSeqInstrucao
+   *
+   * @return the subterm corresponding to the slot HeadSeqInstrucao
+   */
+  public gram.i.types.Instrucao getHeadSeqInstrucao() {
+    throw new UnsupportedOperationException("This Instrucao has no HeadSeqInstrucao");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot HeadSeqInstrucao
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot HeadSeqInstrucao is replaced by _arg
+   */
+  public Instrucao setHeadSeqInstrucao(gram.i.types.Instrucao _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no HeadSeqInstrucao");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Declaracao
+   *
+   * @return the subterm corresponding to the slot Declaracao
+   */
+  public gram.i.types.Instrucao getDeclaracao() {
+    throw new UnsupportedOperationException("This Instrucao has no Declaracao");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Declaracao
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Declaracao is replaced by _arg
+   */
+  public Instrucao setDeclaracao(gram.i.types.Instrucao _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no Declaracao");
+  }
+
+  /**
+   * Returns the subterm corresponding to the slot Expressao
+   *
+   * @return the subterm corresponding to the slot Expressao
+   */
+  public gram.i.types.Expressao getExpressao() {
+    throw new UnsupportedOperationException("This Instrucao has no Expressao");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot Expressao
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot Expressao is replaced by _arg
+   */
+  public Instrucao setExpressao(gram.i.types.Expressao _arg) {
+    throw new UnsupportedOperationException("This Instrucao has no Expressao");
   }
 
   protected static tom.library.utils.IdConverter idConv = new tom.library.utils.IdConverter();

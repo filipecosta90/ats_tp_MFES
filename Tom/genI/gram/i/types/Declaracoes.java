@@ -102,6 +102,27 @@ public abstract class Declaracoes extends gram.i.iAbstractType  {
   }
 
   /**
+   * Returns the subterm corresponding to the slot c3
+   *
+   * @return the subterm corresponding to the slot c3
+   */
+  public gram.i.types.LComentarios getc3() {
+    throw new UnsupportedOperationException("This Declaracoes has no c3");
+  }
+
+  /**
+   * Returns a new term where the subterm corresponding to the slot c3
+   * is replaced by the term given in argument.
+   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
+   *
+   * @param _arg the value of the new subterm
+   * @return a new term where the subterm corresponding to the slot c3 is replaced by _arg
+   */
+  public Declaracoes setc3(gram.i.types.LComentarios _arg) {
+    throw new UnsupportedOperationException("This Declaracoes has no c3");
+  }
+
+  /**
    * Returns the subterm corresponding to the slot c1
    *
    * @return the subterm corresponding to the slot c1
@@ -141,27 +162,6 @@ public abstract class Declaracoes extends gram.i.iAbstractType  {
    */
   public Declaracoes setHeadListaDecl(gram.i.types.Declaracoes _arg) {
     throw new UnsupportedOperationException("This Declaracoes has no HeadListaDecl");
-  }
-
-  /**
-   * Returns the subterm corresponding to the slot c3
-   *
-   * @return the subterm corresponding to the slot c3
-   */
-  public gram.i.types.LComentarios getc3() {
-    throw new UnsupportedOperationException("This Declaracoes has no c3");
-  }
-
-  /**
-   * Returns a new term where the subterm corresponding to the slot c3
-   * is replaced by the term given in argument.
-   * Note that there is no side-effect: a new term is returned and the original term is left unchanged
-   *
-   * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot c3 is replaced by _arg
-   */
-  public Declaracoes setc3(gram.i.types.LComentarios _arg) {
-    throw new UnsupportedOperationException("This Declaracoes has no c3");
   }
 
   /**

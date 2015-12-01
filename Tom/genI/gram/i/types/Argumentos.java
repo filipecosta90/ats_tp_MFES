@@ -60,24 +60,24 @@ public abstract class Argumentos extends gram.i.iAbstractType  {
   }
 
   /**
-   * Returns the subterm corresponding to the slot DefTipo
+   * Returns the subterm corresponding to the slot HeadListaArgumentos
    *
-   * @return the subterm corresponding to the slot DefTipo
+   * @return the subterm corresponding to the slot HeadListaArgumentos
    */
-  public gram.i.types.DefTipo getDefTipo() {
-    throw new UnsupportedOperationException("This Argumentos has no DefTipo");
+  public gram.i.types.Argumentos getHeadListaArgumentos() {
+    throw new UnsupportedOperationException("This Argumentos has no HeadListaArgumentos");
   }
 
   /**
-   * Returns a new term where the subterm corresponding to the slot DefTipo
+   * Returns a new term where the subterm corresponding to the slot HeadListaArgumentos
    * is replaced by the term given in argument.
    * Note that there is no side-effect: a new term is returned and the original term is left unchanged
    *
    * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot DefTipo is replaced by _arg
+   * @return a new term where the subterm corresponding to the slot HeadListaArgumentos is replaced by _arg
    */
-  public Argumentos setDefTipo(gram.i.types.DefTipo _arg) {
-    throw new UnsupportedOperationException("This Argumentos has no DefTipo");
+  public Argumentos setHeadListaArgumentos(gram.i.types.Argumentos _arg) {
+    throw new UnsupportedOperationException("This Argumentos has no HeadListaArgumentos");
   }
 
   /**
@@ -102,24 +102,24 @@ public abstract class Argumentos extends gram.i.iAbstractType  {
   }
 
   /**
-   * Returns the subterm corresponding to the slot TailListaArgumentos
+   * Returns the subterm corresponding to the slot c3
    *
-   * @return the subterm corresponding to the slot TailListaArgumentos
+   * @return the subterm corresponding to the slot c3
    */
-  public gram.i.types.Argumentos getTailListaArgumentos() {
-    throw new UnsupportedOperationException("This Argumentos has no TailListaArgumentos");
+  public gram.i.types.LComentarios getc3() {
+    throw new UnsupportedOperationException("This Argumentos has no c3");
   }
 
   /**
-   * Returns a new term where the subterm corresponding to the slot TailListaArgumentos
+   * Returns a new term where the subterm corresponding to the slot c3
    * is replaced by the term given in argument.
    * Note that there is no side-effect: a new term is returned and the original term is left unchanged
    *
    * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot TailListaArgumentos is replaced by _arg
+   * @return a new term where the subterm corresponding to the slot c3 is replaced by _arg
    */
-  public Argumentos setTailListaArgumentos(gram.i.types.Argumentos _arg) {
-    throw new UnsupportedOperationException("This Argumentos has no TailListaArgumentos");
+  public Argumentos setc3(gram.i.types.LComentarios _arg) {
+    throw new UnsupportedOperationException("This Argumentos has no c3");
   }
 
   /**
@@ -144,45 +144,45 @@ public abstract class Argumentos extends gram.i.iAbstractType  {
   }
 
   /**
-   * Returns the subterm corresponding to the slot c3
+   * Returns the subterm corresponding to the slot DefTipo
    *
-   * @return the subterm corresponding to the slot c3
+   * @return the subterm corresponding to the slot DefTipo
    */
-  public gram.i.types.LComentarios getc3() {
-    throw new UnsupportedOperationException("This Argumentos has no c3");
+  public gram.i.types.DefTipo getDefTipo() {
+    throw new UnsupportedOperationException("This Argumentos has no DefTipo");
   }
 
   /**
-   * Returns a new term where the subterm corresponding to the slot c3
+   * Returns a new term where the subterm corresponding to the slot DefTipo
    * is replaced by the term given in argument.
    * Note that there is no side-effect: a new term is returned and the original term is left unchanged
    *
    * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot c3 is replaced by _arg
+   * @return a new term where the subterm corresponding to the slot DefTipo is replaced by _arg
    */
-  public Argumentos setc3(gram.i.types.LComentarios _arg) {
-    throw new UnsupportedOperationException("This Argumentos has no c3");
+  public Argumentos setDefTipo(gram.i.types.DefTipo _arg) {
+    throw new UnsupportedOperationException("This Argumentos has no DefTipo");
   }
 
   /**
-   * Returns the subterm corresponding to the slot HeadListaArgumentos
+   * Returns the subterm corresponding to the slot TailListaArgumentos
    *
-   * @return the subterm corresponding to the slot HeadListaArgumentos
+   * @return the subterm corresponding to the slot TailListaArgumentos
    */
-  public gram.i.types.Argumentos getHeadListaArgumentos() {
-    throw new UnsupportedOperationException("This Argumentos has no HeadListaArgumentos");
+  public gram.i.types.Argumentos getTailListaArgumentos() {
+    throw new UnsupportedOperationException("This Argumentos has no TailListaArgumentos");
   }
 
   /**
-   * Returns a new term where the subterm corresponding to the slot HeadListaArgumentos
+   * Returns a new term where the subterm corresponding to the slot TailListaArgumentos
    * is replaced by the term given in argument.
    * Note that there is no side-effect: a new term is returned and the original term is left unchanged
    *
    * @param _arg the value of the new subterm
-   * @return a new term where the subterm corresponding to the slot HeadListaArgumentos is replaced by _arg
+   * @return a new term where the subterm corresponding to the slot TailListaArgumentos is replaced by _arg
    */
-  public Argumentos setHeadListaArgumentos(gram.i.types.Argumentos _arg) {
-    throw new UnsupportedOperationException("This Argumentos has no HeadListaArgumentos");
+  public Argumentos setTailListaArgumentos(gram.i.types.Argumentos _arg) {
+    throw new UnsupportedOperationException("This Argumentos has no TailListaArgumentos");
   }
 
   protected static tom.library.utils.IdConverter idConv = new tom.library.utils.IdConverter();

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 gram/i.g 2015-12-01 23:29:38
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 gram/i.g 2015-12-01 23:39:26
  package gram; 
 
 import org.antlr.runtime.*;
@@ -11,125 +11,125 @@ import org.antlr.runtime.tree.*;
 
 public class iParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "Argumento", "ListaArgumentos", "Decl", "ListaDecl", "IntWrap", "SeqInstrucao", "Exp", "Funcao", "Return", "For", "While", "If", "Declaracao", "Atribuicao", "Vazio", "Comentario", "Comentarios", "DVoid", "DFloat", "DBoolean", "DChar", "DInt", "Dec", "Inc", "Empty", "Expressoes", "Print", "Input", "Comp", "E", "Ou", "Float", "False", "True", "Char", "Int", "Condicional", "IncDepois", "IncAntes", "Call", "Nao", "Neg", "Pos", "Id", "ExpNum", "Sub", "Soma", "Div", "Mult", "Atrib", "Igual", "Dif", "MenorQ", "MaiorQ", "Menor", "Maior", "Mod", "Menos", "Divide", "Vezes", "Mais", "Parametro", "ListaParametros", "INT", "FLOAT", "CHAR", "ID", "COMENTARIO_LINHA", "COMENTARIO_LINHAS", "DIGITO", "SufixoFloat", "LETRA", "WS", "'char'", "'int'", "'boolean'", "'float'", "'void'", "';'", "','", "'='", "'('", "')'", "'if'", "'else'", "'for'", "'while'", "'return'", "'print'", "'input'", "'{'", "'}'", "'?'", "':'", "'||'", "'&&'", "'>'", "'<'", "'>='", "'<='", "'!='", "'=='", "'*='", "'/='", "'+='", "'-='", "'+'", "'-'", "'*'", "'/'", "'%'", "'++'", "'--'", "'!'", "'true'", "'false'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "IntWrap", "SeqInstrucao", "Exp", "Funcao", "Return", "For", "While", "If", "Declaracao", "Atribuicao", "Decl", "ListaDecl", "Argumento", "ListaArgumentos", "Parametro", "ListaParametros", "Dec", "Inc", "Sub", "Soma", "Div", "Mult", "Atrib", "Empty", "Expressoes", "Print", "Input", "Comp", "E", "Ou", "Float", "False", "True", "Char", "Int", "Condicional", "IncDepois", "IncAntes", "Call", "Nao", "Neg", "Pos", "Id", "ExpNum", "Igual", "Dif", "MenorQ", "MaiorQ", "Menor", "Maior", "Vazio", "Comentario", "Comentarios", "Mod", "Menos", "Divide", "Vezes", "Mais", "DVoid", "DFloat", "DBoolean", "DChar", "DInt", "INT", "FLOAT", "CHAR", "ID", "COMENTARIO_LINHA", "COMENTARIO_LINHAS", "DIGITO", "SufixoFloat", "LETRA", "WS", "'char'", "'int'", "'boolean'", "'float'", "'void'", "';'", "','", "'='", "'('", "')'", "'if'", "'else'", "'for'", "'while'", "'return'", "'print'", "'input'", "'{'", "'}'", "'?'", "':'", "'||'", "'&&'", "'>'", "'<'", "'>='", "'<='", "'!='", "'=='", "'*='", "'/='", "'+='", "'-='", "'+'", "'-'", "'*'", "'/'", "'%'", "'++'", "'--'", "'!'", "'true'", "'false'"
     };
-    public static final int Funcao=17;
-    public static final int Ou=40;
-    public static final int False=42;
-    public static final int Comp=38;
-    public static final int Print=36;
-    public static final int Atrib=59;
-    public static final int COMENTARIO_LINHA=77;
-    public static final int ID=76;
-    public static final int DVoid=27;
-    public static final int Sub=55;
-    public static final int LETRA=81;
-    public static final int DInt=31;
-    public static final int Argumento=10;
-    public static final int ListaDecl=13;
-    public static final int Float=41;
-    public static final int Pos=52;
-    public static final int Soma=56;
-    public static final int Id=53;
-    public static final int If=21;
-    public static final int T__125=125;
-    public static final int E=39;
+    public static final int Soma=29;
+    public static final int Decl=20;
     public static final int CHAR=75;
-    public static final int Char=44;
-    public static final int Igual=60;
-    public static final int ListaParametros=72;
-    public static final int IntWrap=14;
-    public static final int Dif=61;
-    public static final int Call=49;
-    public static final int DChar=30;
-    public static final int IncAntes=48;
-    public static final int DFloat=28;
-    public static final int MenorQ=62;
-    public static final int Div=57;
-    public static final int Neg=51;
-    public static final int Mult=58;
-    public static final int Menor=64;
-    public static final int Menos=67;
-    public static final int Declaracao=22;
-    public static final int T__91=91;
-    public static final int T__100=100;
-    public static final int T__92=92;
+    public static final int Empty=33;
+    public static final int DChar=71;
+    public static final int DVoid=68;
+    public static final int Neg=50;
+    public static final int EOF=-1;
+    public static final int Int=44;
     public static final int T__93=93;
-    public static final int T__102=102;
     public static final int T__94=94;
-    public static final int T__101=101;
+    public static final int T__91=91;
+    public static final int T__92=92;
     public static final int T__90=90;
-    public static final int True=43;
-    public static final int Comentarios=26;
-    public static final int Divide=68;
-    public static final int Vezes=69;
-    public static final int Input=37;
-    public static final int MaiorQ=63;
+    public static final int Parametro=24;
+    public static final int Char=43;
+    public static final int Comentario=61;
+    public static final int MaiorQ=57;
+    public static final int MenorQ=56;
+    public static final int Vazio=60;
     public static final int T__99=99;
-    public static final int Vazio=24;
-    public static final int T__95=95;
-    public static final int T__96=96;
-    public static final int T__97=97;
     public static final int T__98=98;
-    public static final int DBoolean=29;
-    public static final int For=19;
-    public static final int Maior=65;
-    public static final int Condicional=46;
-    public static final int Inc=33;
-    public static final int Expressoes=35;
+    public static final int T__97=97;
+    public static final int T__96=96;
+    public static final int T__95=95;
+    public static final int E=38;
+    public static final int Mod=63;
+    public static final int ListaDecl=21;
+    public static final int T__83=83;
+    public static final int DFloat=69;
+    public static final int Maior=59;
+    public static final int Atribuicao=19;
+    public static final int ListaArgumentos=23;
+    public static final int INT=73;
+    public static final int T__85=85;
+    public static final int T__84=84;
+    public static final int Dec=26;
+    public static final int T__87=87;
+    public static final int T__86=86;
+    public static final int T__89=89;
+    public static final int Menor=58;
+    public static final int T__88=88;
+    public static final int Menos=64;
+    public static final int DBoolean=70;
+    public static final int Float=40;
+    public static final int T__125=125;
+    public static final int Input=36;
+    public static final int WS=82;
+    public static final int SeqInstrucao=11;
+    public static final int Inc=27;
+    public static final int SufixoFloat=80;
+    public static final int Condicional=45;
+    public static final int Funcao=13;
+    public static final int ExpNum=53;
+    public static final int Comp=37;
+    public static final int Nao=49;
+    public static final int DIGITO=79;
+    public static final int T__118=118;
+    public static final int T__119=119;
+    public static final int T__116=116;
+    public static final int COMENTARIO_LINHAS=78;
+    public static final int T__117=117;
+    public static final int T__114=114;
+    public static final int False=41;
+    public static final int T__115=115;
+    public static final int T__124=124;
+    public static final int T__123=123;
     public static final int T__122=122;
     public static final int T__121=121;
-    public static final int T__124=124;
     public static final int FLOAT=74;
-    public static final int T__123=123;
-    public static final int ExpNum=54;
     public static final int T__120=120;
-    public static final int DIGITO=79;
-    public static final int Int=45;
-    public static final int INT=73;
-    public static final int COMENTARIO_LINHAS=78;
-    public static final int Empty=34;
-    public static final int IncDepois=47;
-    public static final int T__119=119;
-    public static final int T__118=118;
-    public static final int Atribuicao=23;
-    public static final int T__115=115;
-    public static final int WS=82;
-    public static final int EOF=-1;
-    public static final int T__114=114;
-    public static final int Comentario=25;
-    public static final int T__117=117;
-    public static final int T__116=116;
+    public static final int While=16;
+    public static final int ID=76;
+    public static final int Atrib=32;
+    public static final int IncDepois=46;
+    public static final int Expressoes=34;
+    public static final int COMENTARIO_LINHA=77;
+    public static final int Call=48;
+    public static final int Argumento=22;
+    public static final int T__107=107;
+    public static final int T__108=108;
+    public static final int T__109=109;
+    public static final int ListaParametros=25;
+    public static final int T__103=103;
+    public static final int T__104=104;
+    public static final int Print=35;
+    public static final int Dif=55;
+    public static final int T__105=105;
+    public static final int DInt=72;
+    public static final int T__106=106;
     public static final int T__111=111;
     public static final int T__110=110;
     public static final int T__113=113;
-    public static final int Dec=32;
-    public static final int Mod=66;
-    public static final int Return=18;
-    public static final int T__83=83;
+    public static final int Ou=39;
     public static final int T__112=112;
-    public static final int Parametro=71;
-    public static final int Decl=12;
-    public static final int While=20;
-    public static final int ListaArgumentos=11;
-    public static final int SeqInstrucao=15;
-    public static final int T__88=88;
-    public static final int T__108=108;
-    public static final int T__89=89;
-    public static final int T__107=107;
-    public static final int SufixoFloat=80;
-    public static final int Mais=70;
-    public static final int T__109=109;
-    public static final int Exp=16;
-    public static final int T__84=84;
-    public static final int T__104=104;
-    public static final int Nao=50;
-    public static final int T__85=85;
-    public static final int T__103=103;
-    public static final int T__86=86;
-    public static final int T__106=106;
-    public static final int T__87=87;
-    public static final int T__105=105;
+    public static final int Comentarios=62;
+    public static final int True=42;
+    public static final int Return=14;
+    public static final int Id=52;
+    public static final int If=17;
+    public static final int Div=30;
+    public static final int Igual=54;
+    public static final int Exp=12;
+    public static final int T__102=102;
+    public static final int Mais=67;
+    public static final int T__101=101;
+    public static final int T__100=100;
+    public static final int For=15;
+    public static final int Sub=28;
+    public static final int Divide=65;
+    public static final int Declaracao=18;
+    public static final int Mult=31;
+    public static final int Vezes=66;
+    public static final int IntWrap=10;
+    public static final int Pos=51;
+    public static final int IncAntes=47;
+    public static final int LETRA=81;
 
     // delegates
     // delegators
@@ -181,10 +181,10 @@ public class iParser extends Parser {
         Tree string_literal4_tree=null;
         Tree string_literal5_tree=null;
         RewriteRuleTokenStream stream_83=new RewriteRuleTokenStream(adaptor,"token 83");
-        RewriteRuleTokenStream stream_84=new RewriteRuleTokenStream(adaptor,"token 84");
-        RewriteRuleTokenStream stream_85=new RewriteRuleTokenStream(adaptor,"token 85");
         RewriteRuleTokenStream stream_86=new RewriteRuleTokenStream(adaptor,"token 86");
         RewriteRuleTokenStream stream_87=new RewriteRuleTokenStream(adaptor,"token 87");
+        RewriteRuleTokenStream stream_84=new RewriteRuleTokenStream(adaptor,"token 84");
+        RewriteRuleTokenStream stream_85=new RewriteRuleTokenStream(adaptor,"token 85");
 
         try {
             // gram/i.g:15:8: ( ( 'char' -> ^( DChar ) | 'int' -> ^( DInt ) | 'boolean' -> ^( DBoolean ) | 'float' -> ^( DFloat ) | 'void' -> ^( DVoid ) ) )
@@ -442,9 +442,9 @@ public class iParser extends Parser {
         Tree INT6_tree=null;
         Tree FLOAT7_tree=null;
         Tree CHAR8_tree=null;
-        RewriteRuleTokenStream stream_FLOAT=new RewriteRuleTokenStream(adaptor,"token FLOAT");
         RewriteRuleTokenStream stream_CHAR=new RewriteRuleTokenStream(adaptor,"token CHAR");
         RewriteRuleTokenStream stream_INT=new RewriteRuleTokenStream(adaptor,"token INT");
+        RewriteRuleTokenStream stream_FLOAT=new RewriteRuleTokenStream(adaptor,"token FLOAT");
         RewriteRuleSubtreeStream stream_boolean_=new RewriteRuleSubtreeStream(adaptor,"rule boolean_");
         try {
             // gram/i.g:18:6: ( ( INT -> ^( Int INT ) | FLOAT -> ^( Float FLOAT ) | CHAR -> ^( Char CHAR ) | boolean_ -> boolean_ ) )
@@ -906,9 +906,9 @@ public class iParser extends Parser {
 
         Tree char_literal17_tree=null;
         RewriteRuleTokenStream stream_89=new RewriteRuleTokenStream(adaptor,"token 89");
+        RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
         RewriteRuleSubtreeStream stream_dec_nodo=new RewriteRuleSubtreeStream(adaptor,"rule dec_nodo");
         RewriteRuleSubtreeStream stream_idTipo=new RewriteRuleSubtreeStream(adaptor,"rule idTipo");
-        RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
         try {
             // gram/i.g:33:12: (c1= comentarios idTipo c2= comentarios dec_nodo (c3= comentarios ',' c4= comentarios dec_nodo )* -> ^( Declaracao ^( Comentarios ( $c1)? ) idTipo ^( Comentarios ( $c2)? ) ^( ListaDecl ( dec_nodo )* ) ^( Comentarios ( $c3)? ) ^( Comentarios ( $c4)? ) ) )
             // gram/i.g:34:2: c1= comentarios idTipo c2= comentarios dec_nodo (c3= comentarios ',' c4= comentarios dec_nodo )*
@@ -985,18 +985,18 @@ public class iParser extends Parser {
 
 
             // AST REWRITE
-            // elements: c1, c2, idTipo, c4, dec_nodo, c3
+            // elements: c1, dec_nodo, c4, c3, idTipo, c2
             // token labels: 
-            // rule labels: c3, c4, c1, retval, c2
+            // rule labels: retval, c1, c2, c4, c3
             // token list labels: 
             // rule list labels: 
             // wildcard labels: 
             retval.tree = root_0;
-            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
-            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
-            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
+            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
 
             root_0 = (Tree)adaptor.nil();
             // 34:96: -> ^( Declaracao ^( Comentarios ( $c1)? ) idTipo ^( Comentarios ( $c2)? ) ^( ListaDecl ( dec_nodo )* ) ^( Comentarios ( $c3)? ) ^( Comentarios ( $c4)? ) )
@@ -1132,10 +1132,10 @@ public class iParser extends Parser {
         Tree ID19_tree=null;
         Tree ID20_tree=null;
         Tree char_literal21_tree=null;
-        RewriteRuleTokenStream stream_90=new RewriteRuleTokenStream(adaptor,"token 90");
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
-        RewriteRuleSubtreeStream stream_condicao=new RewriteRuleSubtreeStream(adaptor,"rule condicao");
+        RewriteRuleTokenStream stream_90=new RewriteRuleTokenStream(adaptor,"token 90");
         RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
+        RewriteRuleSubtreeStream stream_condicao=new RewriteRuleSubtreeStream(adaptor,"rule condicao");
         try {
             // gram/i.g:37:10: ( ( ID c1= comentarios -> ^( Decl ID ^( Comentarios ( $c1)? ) ^( Comentarios ) Empty ^( Comentarios ) ) | ID c1= comentarios '=' c2= comentarios condicao c3= comentarios -> ^( Decl ID ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) condicao ^( Comentarios ( $c3)? ) ) ) )
             // gram/i.g:38:2: ( ID c1= comentarios -> ^( Decl ID ^( Comentarios ( $c1)? ) ^( Comentarios ) Empty ^( Comentarios ) ) | ID c1= comentarios '=' c2= comentarios condicao c3= comentarios -> ^( Decl ID ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) condicao ^( Comentarios ( $c3)? ) ) )
@@ -1161,13 +1161,13 @@ public class iParser extends Parser {
                     // AST REWRITE
                     // elements: ID, c1
                     // token labels: 
-                    // rule labels: c1, retval
+                    // rule labels: retval, c1
                     // token list labels: 
                     // rule list labels: 
                     // wildcard labels: 
                     retval.tree = root_0;
-                    RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+                    RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
 
                     root_0 = (Tree)adaptor.nil();
                     // 38:22: -> ^( Decl ID ^( Comentarios ( $c1)? ) ^( Comentarios ) Empty ^( Comentarios ) )
@@ -1252,17 +1252,17 @@ public class iParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: c3, ID, c1, condicao, c2
+                    // elements: c2, c3, ID, condicao, c1
                     // token labels: 
-                    // rule labels: c3, c1, retval, c2
+                    // rule labels: retval, c1, c2, c3
                     // token list labels: 
                     // rule list labels: 
                     // wildcard labels: 
                     retval.tree = root_0;
-                    RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
-                    RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+                    RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
                     RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+                    RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
 
                     root_0 = (Tree)adaptor.nil();
                     // 39:65: -> ^( Decl ID ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) condicao ^( Comentarios ( $c3)? ) )
@@ -1389,13 +1389,13 @@ public class iParser extends Parser {
         Tree ID24_tree=null;
         Tree char_literal25_tree=null;
         Tree char_literal27_tree=null;
-        RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
         RewriteRuleTokenStream stream_92=new RewriteRuleTokenStream(adaptor,"token 92");
+        RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
-        RewriteRuleSubtreeStream stream_argumentos=new RewriteRuleSubtreeStream(adaptor,"rule argumentos");
         RewriteRuleSubtreeStream stream_blocoCodigo=new RewriteRuleSubtreeStream(adaptor,"rule blocoCodigo");
-        RewriteRuleSubtreeStream stream_idTipo=new RewriteRuleSubtreeStream(adaptor,"rule idTipo");
         RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
+        RewriteRuleSubtreeStream stream_argumentos=new RewriteRuleSubtreeStream(adaptor,"rule argumentos");
+        RewriteRuleSubtreeStream stream_idTipo=new RewriteRuleSubtreeStream(adaptor,"rule idTipo");
         try {
             // gram/i.g:43:8: (c1= comentarios idTipo c2= comentarios ID c3= comentarios '(' c4= comentarios ( argumentos )? c5= comentarios ')' c6= comentarios blocoCodigo c7= comentarios -> ^( Funcao ^( Comentarios ( $c1)? ) idTipo ^( Comentarios ( $c2)? ) ID ^( Comentarios ( $c3)? ) ^( Comentarios ( $c4)? ) ^( ListaArgumentos ( argumentos )? ) ^( Comentarios ( $c5)? ) ^( Comentarios ( $c6)? ) blocoCodigo ^( Comentarios ( $c7)? ) ) )
             // gram/i.g:44:2: c1= comentarios idTipo c2= comentarios ID c3= comentarios '(' c4= comentarios ( argumentos )? c5= comentarios ')' c6= comentarios blocoCodigo c7= comentarios
@@ -1485,21 +1485,21 @@ public class iParser extends Parser {
 
 
             // AST REWRITE
-            // elements: idTipo, c3, c2, blocoCodigo, c5, c6, ID, c4, c1, c7, argumentos
+            // elements: c3, idTipo, c1, c4, ID, c2, c6, blocoCodigo, argumentos, c7, c5
             // token labels: 
-            // rule labels: c3, c4, c5, c6, c7, c1, retval, c2
+            // rule labels: retval, c1, c2, c6, c5, c4, c3, c7
             // token list labels: 
             // rule list labels: 
             // wildcard labels: 
             retval.tree = root_0;
-            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
-            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
-            RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
-            RewriteRuleSubtreeStream stream_c6=new RewriteRuleSubtreeStream(adaptor,"rule c6",c6!=null?c6.tree:null);
-            RewriteRuleSubtreeStream stream_c7=new RewriteRuleSubtreeStream(adaptor,"rule c7",c7!=null?c7.tree:null);
-            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            RewriteRuleSubtreeStream stream_c6=new RewriteRuleSubtreeStream(adaptor,"rule c6",c6!=null?c6.tree:null);
+            RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
+            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
+            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
+            RewriteRuleSubtreeStream stream_c7=new RewriteRuleSubtreeStream(adaptor,"rule c7",c7!=null?c7.tree:null);
 
             root_0 = (Tree)adaptor.nil();
             // 44:149: -> ^( Funcao ^( Comentarios ( $c1)? ) idTipo ^( Comentarios ( $c2)? ) ID ^( Comentarios ( $c3)? ) ^( Comentarios ( $c4)? ) ^( ListaArgumentos ( argumentos )? ) ^( Comentarios ( $c5)? ) ^( Comentarios ( $c6)? ) blocoCodigo ^( Comentarios ( $c7)? ) )
@@ -1788,8 +1788,8 @@ public class iParser extends Parser {
 
         Tree ID33_tree=null;
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
-        RewriteRuleSubtreeStream stream_idTipo=new RewriteRuleSubtreeStream(adaptor,"rule idTipo");
         RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
+        RewriteRuleSubtreeStream stream_idTipo=new RewriteRuleSubtreeStream(adaptor,"rule idTipo");
         try {
             // gram/i.g:51:11: (c1= comentarios idTipo c2= comentarios ID c3= comentarios -> ^( Argumento ^( Comentarios ( $c1)? ) idTipo ^( Comentarios ( $c2)? ) ID ^( Comentarios ( $c3)? ) ) )
             // gram/i.g:52:2: c1= comentarios idTipo c2= comentarios ID c3= comentarios
@@ -1824,17 +1824,17 @@ public class iParser extends Parser {
 
 
             // AST REWRITE
-            // elements: ID, c3, c1, idTipo, c2
+            // elements: c2, idTipo, c3, c1, ID
             // token labels: 
-            // rule labels: c3, c1, retval, c2
+            // rule labels: retval, c1, c2, c3
             // token list labels: 
             // rule list labels: 
             // wildcard labels: 
             retval.tree = root_0;
-            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
-            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
 
             root_0 = (Tree)adaptor.nil();
             // 52:57: -> ^( Argumento ^( Comentarios ( $c1)? ) idTipo ^( Comentarios ( $c2)? ) ID ^( Comentarios ( $c3)? ) )
@@ -1948,12 +1948,12 @@ public class iParser extends Parser {
         Tree char_literal40_tree=null;
         Tree char_literal42_tree=null;
         RewriteRuleTokenStream stream_88=new RewriteRuleTokenStream(adaptor,"token 88");
-        RewriteRuleSubtreeStream stream_call=new RewriteRuleSubtreeStream(adaptor,"rule call");
-        RewriteRuleSubtreeStream stream_if_=new RewriteRuleSubtreeStream(adaptor,"rule if_");
-        RewriteRuleSubtreeStream stream_print_=new RewriteRuleSubtreeStream(adaptor,"rule print_");
-        RewriteRuleSubtreeStream stream_while_=new RewriteRuleSubtreeStream(adaptor,"rule while_");
         RewriteRuleSubtreeStream stream_for_=new RewriteRuleSubtreeStream(adaptor,"rule for_");
         RewriteRuleSubtreeStream stream_return_=new RewriteRuleSubtreeStream(adaptor,"rule return_");
+        RewriteRuleSubtreeStream stream_call=new RewriteRuleSubtreeStream(adaptor,"rule call");
+        RewriteRuleSubtreeStream stream_while_=new RewriteRuleSubtreeStream(adaptor,"rule while_");
+        RewriteRuleSubtreeStream stream_if_=new RewriteRuleSubtreeStream(adaptor,"rule if_");
+        RewriteRuleSubtreeStream stream_print_=new RewriteRuleSubtreeStream(adaptor,"rule print_");
         try {
             // gram/i.g:57:11: ( ( if_ -> if_ | for_ -> for_ | while_ -> while_ | return_ ';' -> return_ | call ';' -> ^( Exp call ) | print_ ';' -> print_ ) )
             // gram/i.g:58:2: ( if_ -> if_ | for_ -> for_ | while_ -> while_ | return_ ';' -> return_ | call ';' -> ^( Exp call ) | print_ ';' -> print_ )
@@ -2225,13 +2225,13 @@ public class iParser extends Parser {
         Tree string_literal43_tree=null;
         Tree char_literal44_tree=null;
         Tree char_literal46_tree=null;
-        RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
-        RewriteRuleTokenStream stream_92=new RewriteRuleTokenStream(adaptor,"token 92");
         RewriteRuleTokenStream stream_93=new RewriteRuleTokenStream(adaptor,"token 93");
-        RewriteRuleSubtreeStream stream_else_=new RewriteRuleSubtreeStream(adaptor,"rule else_");
-        RewriteRuleSubtreeStream stream_condicao=new RewriteRuleSubtreeStream(adaptor,"rule condicao");
+        RewriteRuleTokenStream stream_92=new RewriteRuleTokenStream(adaptor,"token 92");
+        RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
         RewriteRuleSubtreeStream stream_blocoCodigo=new RewriteRuleSubtreeStream(adaptor,"rule blocoCodigo");
+        RewriteRuleSubtreeStream stream_else_=new RewriteRuleSubtreeStream(adaptor,"rule else_");
         RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
+        RewriteRuleSubtreeStream stream_condicao=new RewriteRuleSubtreeStream(adaptor,"rule condicao");
         try {
             // gram/i.g:61:6: (c1= comentarios 'if' c2= comentarios '(' c3= comentarios condicao c4= comentarios ')' c5= comentarios blocoCodigo ( else_ -> ^( If ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) ^( Comentarios ( $c3)? ) condicao ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) blocoCodigo else_ ) | -> ^( If ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) ^( Comentarios ( $c3)? ) condicao ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) blocoCodigo ^( SeqInstrucao ) ) ) )
             // gram/i.g:62:2: c1= comentarios 'if' c2= comentarios '(' c3= comentarios condicao c4= comentarios ')' c5= comentarios blocoCodigo ( else_ -> ^( If ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) ^( Comentarios ( $c3)? ) condicao ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) blocoCodigo else_ ) | -> ^( If ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) ^( Comentarios ( $c3)? ) condicao ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) blocoCodigo ^( SeqInstrucao ) ) )
@@ -2316,19 +2316,19 @@ public class iParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: c3, c4, blocoCodigo, c1, c2, condicao, c5, else_
+                    // elements: c3, else_, c4, blocoCodigo, c2, c5, c1, condicao
                     // token labels: 
-                    // rule labels: c3, c4, c5, c1, retval, c2
+                    // rule labels: retval, c1, c2, c5, c4, c3
                     // token list labels: 
                     // rule list labels: 
                     // wildcard labels: 
                     retval.tree = root_0;
-                    RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
-                    RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
-                    RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
-                    RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+                    RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
                     RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+                    RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
+                    RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
+                    RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
 
                     root_0 = (Tree)adaptor.nil();
                     // 62:119: -> ^( If ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) ^( Comentarios ( $c3)? ) condicao ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) blocoCodigo else_ )
@@ -2425,19 +2425,19 @@ public class iParser extends Parser {
                     {
 
                     // AST REWRITE
-                    // elements: c5, blocoCodigo, c4, c3, c2, condicao, c1
+                    // elements: c5, condicao, blocoCodigo, c3, c1, c2, c4
                     // token labels: 
-                    // rule labels: c3, c4, c5, c1, retval, c2
+                    // rule labels: retval, c1, c2, c5, c4, c3
                     // token list labels: 
                     // rule list labels: 
                     // wildcard labels: 
                     retval.tree = root_0;
-                    RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
-                    RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
-                    RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
-                    RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+                    RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
                     RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+                    RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
+                    RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
+                    RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
 
                     root_0 = (Tree)adaptor.nil();
                     // 63:25: -> ^( If ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) ^( Comentarios ( $c3)? ) condicao ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) blocoCodigo ^( SeqInstrucao ) )
@@ -2580,8 +2580,8 @@ public class iParser extends Parser {
 
         Tree string_literal49_tree=null;
         RewriteRuleTokenStream stream_94=new RewriteRuleTokenStream(adaptor,"token 94");
-        RewriteRuleSubtreeStream stream_if_=new RewriteRuleSubtreeStream(adaptor,"rule if_");
         RewriteRuleSubtreeStream stream_blocoCodigo=new RewriteRuleSubtreeStream(adaptor,"rule blocoCodigo");
+        RewriteRuleSubtreeStream stream_if_=new RewriteRuleSubtreeStream(adaptor,"rule if_");
         try {
             // gram/i.g:67:7: ( 'else' ( blocoCodigo -> blocoCodigo | if_ -> if_ ) )
             // gram/i.g:68:2: 'else' ( blocoCodigo -> blocoCodigo | if_ -> if_ )
@@ -2740,15 +2740,15 @@ public class iParser extends Parser {
         Tree char_literal55_tree=null;
         Tree char_literal57_tree=null;
         Tree char_literal59_tree=null;
-        RewriteRuleTokenStream stream_88=new RewriteRuleTokenStream(adaptor,"token 88");
-        RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
-        RewriteRuleTokenStream stream_92=new RewriteRuleTokenStream(adaptor,"token 92");
         RewriteRuleTokenStream stream_95=new RewriteRuleTokenStream(adaptor,"token 95");
+        RewriteRuleTokenStream stream_92=new RewriteRuleTokenStream(adaptor,"token 92");
+        RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
+        RewriteRuleTokenStream stream_88=new RewriteRuleTokenStream(adaptor,"token 88");
+        RewriteRuleSubtreeStream stream_blocoCodigo=new RewriteRuleSubtreeStream(adaptor,"rule blocoCodigo");
+        RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
         RewriteRuleSubtreeStream stream_condicao=new RewriteRuleSubtreeStream(adaptor,"rule condicao");
         RewriteRuleSubtreeStream stream_for_declaracao=new RewriteRuleSubtreeStream(adaptor,"rule for_declaracao");
-        RewriteRuleSubtreeStream stream_blocoCodigo=new RewriteRuleSubtreeStream(adaptor,"rule blocoCodigo");
         RewriteRuleSubtreeStream stream_expressao=new RewriteRuleSubtreeStream(adaptor,"rule expressao");
-        RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
         try {
             // gram/i.g:71:6: (c1= comentarios 'for' c2= comentarios '(' for_declaracao ';' c3= comentarios condicao c4= comentarios ';' c5= comentarios expressao c6= comentarios ')' c7= comentarios blocoCodigo c8= comentarios -> ^( For ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) for_declaracao ^( Comentarios ( $c3)? ) condicao ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) expressao ^( Comentarios ( $c6)? ) ^( Comentarios ( $c7)? ) blocoCodigo ^( Comentarios ( $c8)? ) ) )
             // gram/i.g:72:2: c1= comentarios 'for' c2= comentarios '(' for_declaracao ';' c3= comentarios condicao c4= comentarios ';' c5= comentarios expressao c6= comentarios ')' c7= comentarios blocoCodigo c8= comentarios
@@ -2843,22 +2843,22 @@ public class iParser extends Parser {
 
 
             // AST REWRITE
-            // elements: c2, c6, c1, blocoCodigo, c3, condicao, c8, for_declaracao, c4, c5, expressao, c7
+            // elements: c4, blocoCodigo, c6, c8, c2, c1, c5, condicao, c7, expressao, c3, for_declaracao
             // token labels: 
-            // rule labels: c3, c4, c5, c6, c7, c8, c1, retval, c2
+            // rule labels: retval, c1, c2, c6, c5, c4, c3, c8, c7
             // token list labels: 
             // rule list labels: 
             // wildcard labels: 
             retval.tree = root_0;
-            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
-            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
-            RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
-            RewriteRuleSubtreeStream stream_c6=new RewriteRuleSubtreeStream(adaptor,"rule c6",c6!=null?c6.tree:null);
-            RewriteRuleSubtreeStream stream_c7=new RewriteRuleSubtreeStream(adaptor,"rule c7",c7!=null?c7.tree:null);
-            RewriteRuleSubtreeStream stream_c8=new RewriteRuleSubtreeStream(adaptor,"rule c8",c8!=null?c8.tree:null);
-            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            RewriteRuleSubtreeStream stream_c6=new RewriteRuleSubtreeStream(adaptor,"rule c6",c6!=null?c6.tree:null);
+            RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
+            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
+            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
+            RewriteRuleSubtreeStream stream_c8=new RewriteRuleSubtreeStream(adaptor,"rule c8",c8!=null?c8.tree:null);
+            RewriteRuleSubtreeStream stream_c7=new RewriteRuleSubtreeStream(adaptor,"rule c7",c7!=null?c7.tree:null);
 
             root_0 = (Tree)adaptor.nil();
             // 72:190: -> ^( For ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) for_declaracao ^( Comentarios ( $c3)? ) condicao ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) expressao ^( Comentarios ( $c6)? ) ^( Comentarios ( $c7)? ) blocoCodigo ^( Comentarios ( $c8)? ) )
@@ -3161,12 +3161,12 @@ public class iParser extends Parser {
         Tree string_literal63_tree=null;
         Tree char_literal64_tree=null;
         Tree char_literal66_tree=null;
-        RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
-        RewriteRuleTokenStream stream_92=new RewriteRuleTokenStream(adaptor,"token 92");
         RewriteRuleTokenStream stream_96=new RewriteRuleTokenStream(adaptor,"token 96");
-        RewriteRuleSubtreeStream stream_condicao=new RewriteRuleSubtreeStream(adaptor,"rule condicao");
+        RewriteRuleTokenStream stream_92=new RewriteRuleTokenStream(adaptor,"token 92");
+        RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
         RewriteRuleSubtreeStream stream_blocoCodigo=new RewriteRuleSubtreeStream(adaptor,"rule blocoCodigo");
         RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
+        RewriteRuleSubtreeStream stream_condicao=new RewriteRuleSubtreeStream(adaptor,"rule condicao");
         try {
             // gram/i.g:81:8: (c1= comentarios 'while' c2= comentarios '(' c3= comentarios condicao c4= comentarios ')' c5= comentarios blocoCodigo c6= comentarios -> ^( While ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) ^( Comentarios ( $c3)? ) condicao ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) blocoCodigo ^( Comentarios ( $c6)? ) ) )
             // gram/i.g:82:2: c1= comentarios 'while' c2= comentarios '(' c3= comentarios condicao c4= comentarios ')' c5= comentarios blocoCodigo c6= comentarios
@@ -3231,20 +3231,20 @@ public class iParser extends Parser {
 
 
             // AST REWRITE
-            // elements: blocoCodigo, c4, c5, condicao, c2, c6, c3, c1
+            // elements: c2, c5, c6, c1, condicao, c3, blocoCodigo, c4
             // token labels: 
-            // rule labels: c3, c4, c5, c6, c1, retval, c2
+            // rule labels: retval, c1, c2, c6, c5, c4, c3
             // token list labels: 
             // rule list labels: 
             // wildcard labels: 
             retval.tree = root_0;
-            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
-            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
-            RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
-            RewriteRuleSubtreeStream stream_c6=new RewriteRuleSubtreeStream(adaptor,"rule c6",c6!=null?c6.tree:null);
-            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            RewriteRuleSubtreeStream stream_c6=new RewriteRuleSubtreeStream(adaptor,"rule c6",c6!=null?c6.tree:null);
+            RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
+            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
+            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
 
             root_0 = (Tree)adaptor.nil();
             // 82:129: -> ^( While ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) ^( Comentarios ( $c3)? ) condicao ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) blocoCodigo ^( Comentarios ( $c6)? ) )
@@ -3392,8 +3392,8 @@ public class iParser extends Parser {
 
         Tree string_literal68_tree=null;
         RewriteRuleTokenStream stream_97=new RewriteRuleTokenStream(adaptor,"token 97");
-        RewriteRuleSubtreeStream stream_expressao=new RewriteRuleSubtreeStream(adaptor,"rule expressao");
         RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
+        RewriteRuleSubtreeStream stream_expressao=new RewriteRuleSubtreeStream(adaptor,"rule expressao");
         try {
             // gram/i.g:85:10: (c1= comentarios 'return' c2= comentarios expressao c3= comentarios -> ^( Return ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) expressao ^( Comentarios ( $c3)? ) ) )
             // gram/i.g:86:2: c1= comentarios 'return' c2= comentarios expressao c3= comentarios
@@ -3430,15 +3430,15 @@ public class iParser extends Parser {
             // AST REWRITE
             // elements: c3, expressao, c2, c1
             // token labels: 
-            // rule labels: c3, c1, retval, c2
+            // rule labels: retval, c1, c2, c3
             // token list labels: 
             // rule list labels: 
             // wildcard labels: 
             retval.tree = root_0;
-            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
-            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
 
             root_0 = (Tree)adaptor.nil();
             // 86:66: -> ^( Return ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) expressao ^( Comentarios ( $c3)? ) )
@@ -3550,11 +3550,11 @@ public class iParser extends Parser {
         Tree ID70_tree=null;
         Tree char_literal71_tree=null;
         Tree char_literal73_tree=null;
-        RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
         RewriteRuleTokenStream stream_92=new RewriteRuleTokenStream(adaptor,"token 92");
+        RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
-        RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
         RewriteRuleSubtreeStream stream_parametros=new RewriteRuleSubtreeStream(adaptor,"rule parametros");
+        RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
         try {
             // gram/i.g:89:6: (c1= comentarios ID c2= comentarios '(' c3= comentarios ( parametros )? c4= comentarios ')' c5= comentarios -> ^( Call ^( Comentarios ( $c1)? ) ID ^( Comentarios ( $c2)? ) ^( Comentarios ( $c3)? ) ^( ListaParametros ( parametros )? ) ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) ) )
             // gram/i.g:90:2: c1= comentarios ID c2= comentarios '(' c3= comentarios ( parametros )? c4= comentarios ')' c5= comentarios
@@ -3620,19 +3620,19 @@ public class iParser extends Parser {
 
 
             // AST REWRITE
-            // elements: ID, c3, c4, c5, c2, parametros, c1
+            // elements: c5, c1, parametros, c3, c4, c2, ID
             // token labels: 
-            // rule labels: c3, c4, c5, c1, retval, c2
+            // rule labels: retval, c1, c2, c5, c4, c3
             // token list labels: 
             // rule list labels: 
             // wildcard labels: 
             retval.tree = root_0;
-            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
-            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
-            RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
-            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
+            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
+            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
 
             root_0 = (Tree)adaptor.nil();
             // 90:101: -> ^( Call ^( Comentarios ( $c1)? ) ID ^( Comentarios ( $c2)? ) ^( Comentarios ( $c3)? ) ^( ListaParametros ( parametros )? ) ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) )
@@ -3786,11 +3786,11 @@ public class iParser extends Parser {
         Tree string_literal74_tree=null;
         Tree char_literal75_tree=null;
         Tree char_literal77_tree=null;
-        RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
-        RewriteRuleTokenStream stream_92=new RewriteRuleTokenStream(adaptor,"token 92");
         RewriteRuleTokenStream stream_98=new RewriteRuleTokenStream(adaptor,"token 98");
-        RewriteRuleSubtreeStream stream_expressao=new RewriteRuleSubtreeStream(adaptor,"rule expressao");
+        RewriteRuleTokenStream stream_92=new RewriteRuleTokenStream(adaptor,"token 92");
+        RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
         RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
+        RewriteRuleSubtreeStream stream_expressao=new RewriteRuleSubtreeStream(adaptor,"rule expressao");
         try {
             // gram/i.g:93:8: (c1= comentarios 'print' c2= comentarios '(' c3= comentarios expressao c4= comentarios ')' c5= comentarios -> ^( Exp ^( Print ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) ^( Comentarios ( $c3)? ) expressao ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) ) ) )
             // gram/i.g:94:2: c1= comentarios 'print' c2= comentarios '(' c3= comentarios expressao c4= comentarios ')' c5= comentarios
@@ -3843,19 +3843,19 @@ public class iParser extends Parser {
 
 
             // AST REWRITE
-            // elements: expressao, c3, c5, c1, c4, c2
+            // elements: c3, c2, c1, expressao, c4, c5
             // token labels: 
-            // rule labels: c3, c4, c5, c1, retval, c2
+            // rule labels: retval, c1, c2, c5, c4, c3
             // token list labels: 
             // rule list labels: 
             // wildcard labels: 
             retval.tree = root_0;
-            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
-            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
-            RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
-            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
+            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
+            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
 
             root_0 = (Tree)adaptor.nil();
             // 94:103: -> ^( Exp ^( Print ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) ^( Comentarios ( $c3)? ) expressao ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) ) )
@@ -4003,11 +4003,11 @@ public class iParser extends Parser {
         Tree string_literal78_tree=null;
         Tree char_literal79_tree=null;
         Tree char_literal81_tree=null;
-        RewriteRuleTokenStream stream_99=new RewriteRuleTokenStream(adaptor,"token 99");
-        RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
         RewriteRuleTokenStream stream_92=new RewriteRuleTokenStream(adaptor,"token 92");
-        RewriteRuleSubtreeStream stream_idTipo=new RewriteRuleSubtreeStream(adaptor,"rule idTipo");
+        RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
+        RewriteRuleTokenStream stream_99=new RewriteRuleTokenStream(adaptor,"token 99");
         RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
+        RewriteRuleSubtreeStream stream_idTipo=new RewriteRuleSubtreeStream(adaptor,"rule idTipo");
         try {
             // gram/i.g:97:8: (c1= comentarios 'input' c2= comentarios '(' c3= comentarios idTipo c4= comentarios ')' c5= comentarios -> ^( Input ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) ^( Comentarios ( $c3)? ) idTipo ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) ) )
             // gram/i.g:98:2: c1= comentarios 'input' c2= comentarios '(' c3= comentarios idTipo c4= comentarios ')' c5= comentarios
@@ -4060,19 +4060,19 @@ public class iParser extends Parser {
 
 
             // AST REWRITE
-            // elements: idTipo, c5, c3, c2, c1, c4
+            // elements: c1, c5, c3, c4, c2, idTipo
             // token labels: 
-            // rule labels: c3, c4, c5, c1, retval, c2
+            // rule labels: retval, c1, c2, c5, c4, c3
             // token list labels: 
             // rule list labels: 
             // wildcard labels: 
             retval.tree = root_0;
-            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
-            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
-            RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
-            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            RewriteRuleSubtreeStream stream_c5=new RewriteRuleSubtreeStream(adaptor,"rule c5",c5!=null?c5.tree:null);
+            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
+            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
 
             root_0 = (Tree)adaptor.nil();
             // 98:100: -> ^( Input ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) ^( Comentarios ( $c3)? ) idTipo ^( Comentarios ( $c4)? ) ^( Comentarios ( $c5)? ) )
@@ -4312,8 +4312,8 @@ public class iParser extends Parser {
         iParser.expressao_return expressao85 = null;
 
 
-        RewriteRuleSubtreeStream stream_expressao=new RewriteRuleSubtreeStream(adaptor,"rule expressao");
         RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
+        RewriteRuleSubtreeStream stream_expressao=new RewriteRuleSubtreeStream(adaptor,"rule expressao");
         try {
             // gram/i.g:105:11: (c1= comentarios expressao c2= comentarios -> ^( Parametro ^( Comentarios ( $c1)? ) expressao ^( Comentarios ( $c2)? ) ) )
             // gram/i.g:106:2: c1= comentarios expressao c2= comentarios
@@ -4339,15 +4339,15 @@ public class iParser extends Parser {
 
 
             // AST REWRITE
-            // elements: c1, expressao, c2
+            // elements: expressao, c1, c2
             // token labels: 
-            // rule labels: c1, retval, c2
+            // rule labels: retval, c1, c2
             // token list labels: 
             // rule list labels: 
             // wildcard labels: 
             retval.tree = root_0;
-            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
 
             root_0 = (Tree)adaptor.nil();
@@ -4434,8 +4434,8 @@ public class iParser extends Parser {
 
         Tree char_literal86_tree=null;
         Tree char_literal88_tree=null;
-        RewriteRuleTokenStream stream_100=new RewriteRuleTokenStream(adaptor,"token 100");
         RewriteRuleTokenStream stream_101=new RewriteRuleTokenStream(adaptor,"token 101");
+        RewriteRuleTokenStream stream_100=new RewriteRuleTokenStream(adaptor,"token 100");
         RewriteRuleSubtreeStream stream_codigo=new RewriteRuleSubtreeStream(adaptor,"rule codigo");
         try {
             // gram/i.g:109:13: ( '{' ( codigo )* '}' -> ^( SeqInstrucao ( codigo )* ) )
@@ -4721,12 +4721,12 @@ public class iParser extends Parser {
 
         Tree char_literal95_tree=null;
         Tree char_literal97_tree=null;
-        RewriteRuleTokenStream stream_102=new RewriteRuleTokenStream(adaptor,"token 102");
         RewriteRuleTokenStream stream_103=new RewriteRuleTokenStream(adaptor,"token 103");
+        RewriteRuleTokenStream stream_102=new RewriteRuleTokenStream(adaptor,"token 102");
         RewriteRuleSubtreeStream stream_condicao_ou=new RewriteRuleSubtreeStream(adaptor,"rule condicao_ou");
+        RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
         RewriteRuleSubtreeStream stream_condicao=new RewriteRuleSubtreeStream(adaptor,"rule condicao");
         RewriteRuleSubtreeStream stream_expressao=new RewriteRuleSubtreeStream(adaptor,"rule expressao");
-        RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
         try {
             // gram/i.g:123:11: ( condicao_ou (c1= comentarios '?' c2= comentarios expressao c3= comentarios ':' c4= comentarios condicao -> ^( Condicional condicao_ou ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) expressao ^( Comentarios ( $c3)? ) ^( Comentarios ( $c4)? ) condicao ) | -> condicao_ou ) )
             // gram/i.g:124:2: condicao_ou (c1= comentarios '?' c2= comentarios expressao c3= comentarios ':' c4= comentarios condicao -> ^( Condicional condicao_ou ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) expressao ^( Comentarios ( $c3)? ) ^( Comentarios ( $c4)? ) condicao ) | -> condicao_ou )
@@ -4789,18 +4789,18 @@ public class iParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: expressao, c2, condicao, c3, condicao_ou, c1, c4
+                    // elements: condicao, expressao, c1, condicao_ou, c4, c2, c3
                     // token labels: 
-                    // rule labels: c3, c4, c1, retval, c2
+                    // rule labels: retval, c1, c2, c4, c3
                     // token list labels: 
                     // rule list labels: 
                     // wildcard labels: 
                     retval.tree = root_0;
-                    RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
-                    RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
-                    RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+                    RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
                     RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+                    RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
+                    RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
 
                     root_0 = (Tree)adaptor.nil();
                     // 124:103: -> ^( Condicional condicao_ou ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) expressao ^( Comentarios ( $c3)? ) ^( Comentarios ( $c4)? ) condicao )
@@ -5021,17 +5021,17 @@ public class iParser extends Parser {
 
 
             	    // AST REWRITE
-            	    // elements: c, c1, condicao_ou, c2
+            	    // elements: c1, condicao_ou, c, c2
             	    // token labels: 
-            	    // rule labels: c, c1, retval, c2
+            	    // rule labels: retval, c1, c2, c
             	    // token list labels: 
             	    // rule list labels: 
             	    // wildcard labels: 
             	    retval.tree = root_0;
-            	    RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.tree:null);
-            	    RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            	    RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	    RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            	    RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.tree:null);
 
             	    root_0 = (Tree)adaptor.nil();
             	    // 130:79: -> ^( Ou $condicao_ou ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) $c)
@@ -5132,8 +5132,8 @@ public class iParser extends Parser {
 
         Tree string_literal102_tree=null;
         RewriteRuleTokenStream stream_105=new RewriteRuleTokenStream(adaptor,"token 105");
-        RewriteRuleSubtreeStream stream_condicao_comparacao=new RewriteRuleSubtreeStream(adaptor,"rule condicao_comparacao");
         RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
+        RewriteRuleSubtreeStream stream_condicao_comparacao=new RewriteRuleSubtreeStream(adaptor,"rule condicao_comparacao");
         try {
             // gram/i.g:133:12: ( ( condicao_comparacao -> condicao_comparacao ) (c1= comentarios '&&' c2= comentarios c= condicao_comparacao -> ^( E $condicao_e ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) $c) )* )
             // gram/i.g:134:2: ( condicao_comparacao -> condicao_comparacao ) (c1= comentarios '&&' c2= comentarios c= condicao_comparacao -> ^( E $condicao_e ^( Comentarios ( $c1)? ) ^( Comentarios ( $c2)? ) $c) )*
@@ -5202,16 +5202,16 @@ public class iParser extends Parser {
 
 
             	    // AST REWRITE
-            	    // elements: c1, c, condicao_e, c2
+            	    // elements: c2, c1, c, condicao_e
             	    // token labels: 
-            	    // rule labels: c, c1, retval, c2
+            	    // rule labels: retval, c1, c, c2
             	    // token list labels: 
             	    // rule list labels: 
             	    // wildcard labels: 
             	    retval.tree = root_0;
-            	    RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.tree:null);
-            	    RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            	    RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
+            	    RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.tree:null);
             	    RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
 
             	    root_0 = (Tree)adaptor.nil();
@@ -5318,10 +5318,10 @@ public class iParser extends Parser {
         Tree char_literal105_tree=null;
         Tree string_literal106_tree=null;
         Tree string_literal107_tree=null;
-        RewriteRuleTokenStream stream_106=new RewriteRuleTokenStream(adaptor,"token 106");
-        RewriteRuleTokenStream stream_107=new RewriteRuleTokenStream(adaptor,"token 107");
-        RewriteRuleTokenStream stream_108=new RewriteRuleTokenStream(adaptor,"token 108");
         RewriteRuleTokenStream stream_109=new RewriteRuleTokenStream(adaptor,"token 109");
+        RewriteRuleTokenStream stream_108=new RewriteRuleTokenStream(adaptor,"token 108");
+        RewriteRuleTokenStream stream_107=new RewriteRuleTokenStream(adaptor,"token 107");
+        RewriteRuleTokenStream stream_106=new RewriteRuleTokenStream(adaptor,"token 106");
         RewriteRuleSubtreeStream stream_condicao_igualdade=new RewriteRuleSubtreeStream(adaptor,"rule condicao_igualdade");
         RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
         try {
@@ -5426,17 +5426,17 @@ public class iParser extends Parser {
 
 
             	            // AST REWRITE
-            	            // elements: c2, c1, c, condicao_comparacao
+            	            // elements: condicao_comparacao, c1, c, c2
             	            // token labels: 
-            	            // rule labels: c, c1, retval, c2
+            	            // rule labels: retval, c1, c2, c
             	            // token list labels: 
             	            // rule list labels: 
             	            // wildcard labels: 
             	            retval.tree = root_0;
-            	            RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.tree:null);
-            	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	            RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            	            RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.tree:null);
 
             	            root_0 = (Tree)adaptor.nil();
             	            // 138:105: -> ^( Comp $condicao_comparacao ^( Comentarios ( $c1)? ) ^( Maior ) ^( Comentarios ( $c2)? ) $c)
@@ -5513,17 +5513,17 @@ public class iParser extends Parser {
 
 
             	            // AST REWRITE
-            	            // elements: c, condicao_comparacao, c1, c2
+            	            // elements: condicao_comparacao, c, c2, c1
             	            // token labels: 
-            	            // rule labels: c, c1, retval, c2
+            	            // rule labels: retval, c1, c2, c
             	            // token list labels: 
             	            // rule list labels: 
             	            // wildcard labels: 
             	            retval.tree = root_0;
-            	            RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.tree:null);
-            	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	            RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            	            RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.tree:null);
 
             	            root_0 = (Tree)adaptor.nil();
             	            // 139:60: -> ^( Comp $condicao_comparacao ^( Comentarios ( $c1)? ) ^( Menor ) ^( Comentarios ( $c2)? ) $c)
@@ -5600,16 +5600,16 @@ public class iParser extends Parser {
 
 
             	            // AST REWRITE
-            	            // elements: c, c1, c2, condicao_comparacao
+            	            // elements: c2, condicao_comparacao, c1, c
             	            // token labels: 
-            	            // rule labels: c, c1, retval, c2
+            	            // rule labels: retval, c1, c, c2
             	            // token list labels: 
             	            // rule list labels: 
             	            // wildcard labels: 
             	            retval.tree = root_0;
-            	            RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.tree:null);
-            	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
+            	            RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.tree:null);
             	            RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
 
             	            root_0 = (Tree)adaptor.nil();
@@ -5687,17 +5687,17 @@ public class iParser extends Parser {
 
 
             	            // AST REWRITE
-            	            // elements: c2, c1, c, condicao_comparacao
+            	            // elements: c, c2, condicao_comparacao, c1
             	            // token labels: 
-            	            // rule labels: c, c1, retval, c2
+            	            // rule labels: retval, c1, c2, c
             	            // token list labels: 
             	            // rule list labels: 
             	            // wildcard labels: 
             	            retval.tree = root_0;
-            	            RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.tree:null);
-            	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	            RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            	            RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.tree:null);
 
             	            root_0 = (Tree)adaptor.nil();
             	            // 141:61: -> ^( Comp $condicao_comparacao ^( Comentarios ( $c1)? ) ^( MenorQ ) ^( Comentarios ( $c2)? ) $c)
@@ -5814,8 +5814,8 @@ public class iParser extends Parser {
         Tree string_literal110_tree=null;
         RewriteRuleTokenStream stream_110=new RewriteRuleTokenStream(adaptor,"token 110");
         RewriteRuleTokenStream stream_111=new RewriteRuleTokenStream(adaptor,"token 111");
-        RewriteRuleSubtreeStream stream_expressao=new RewriteRuleSubtreeStream(adaptor,"rule expressao");
         RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
+        RewriteRuleSubtreeStream stream_expressao=new RewriteRuleSubtreeStream(adaptor,"rule expressao");
         try {
             // gram/i.g:146:20: ( ( expressao -> expressao ) (c1= comentarios ( '!=' c2= comentarios e= expressao -> ^( Comp $condicao_igualdade ^( Comentarios ( $c1)? ) ^( Dif ) ^( Comentarios ( $c2)? ) $e) | '==' c2= comentarios e= expressao -> ^( Comp $condicao_igualdade ^( Comentarios ( $c2)? ) ^( Igual ) ^( Comentarios ( $c2)? ) $e) ) )* )
             // gram/i.g:147:2: ( expressao -> expressao ) (c1= comentarios ( '!=' c2= comentarios e= expressao -> ^( Comp $condicao_igualdade ^( Comentarios ( $c1)? ) ^( Dif ) ^( Comentarios ( $c2)? ) $e) | '==' c2= comentarios e= expressao -> ^( Comp $condicao_igualdade ^( Comentarios ( $c2)? ) ^( Igual ) ^( Comentarios ( $c2)? ) $e) ) )*
@@ -5904,16 +5904,16 @@ public class iParser extends Parser {
 
 
             	            // AST REWRITE
-            	            // elements: condicao_igualdade, c2, c1, e
+            	            // elements: c1, e, c2, condicao_igualdade
             	            // token labels: 
-            	            // rule labels: e, c1, retval, c2
+            	            // rule labels: retval, e, c1, c2
             	            // token list labels: 
             	            // rule list labels: 
             	            // wildcard labels: 
             	            retval.tree = root_0;
+            	            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
             	            RewriteRuleSubtreeStream stream_e=new RewriteRuleSubtreeStream(adaptor,"rule e",e!=null?e.tree:null);
             	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
-            	            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
             	            RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
 
             	            root_0 = (Tree)adaptor.nil();
@@ -5991,15 +5991,15 @@ public class iParser extends Parser {
 
 
             	            // AST REWRITE
-            	            // elements: condicao_igualdade, e, c2, c2
+            	            // elements: e, condicao_igualdade, c2, c2
             	            // token labels: 
-            	            // rule labels: e, retval, c2
+            	            // rule labels: retval, e, c2
             	            // token list labels: 
             	            // rule list labels: 
             	            // wildcard labels: 
             	            retval.tree = root_0;
-            	            RewriteRuleSubtreeStream stream_e=new RewriteRuleSubtreeStream(adaptor,"rule e",e!=null?e.tree:null);
             	            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            	            RewriteRuleSubtreeStream stream_e=new RewriteRuleSubtreeStream(adaptor,"rule e",e!=null?e.tree:null);
             	            RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
 
             	            root_0 = (Tree)adaptor.nil();
@@ -6118,9 +6118,9 @@ public class iParser extends Parser {
 
         Tree ID111_tree=null;
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
+        RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
         RewriteRuleSubtreeStream stream_condicao=new RewriteRuleSubtreeStream(adaptor,"rule condicao");
         RewriteRuleSubtreeStream stream_opAtribuicao=new RewriteRuleSubtreeStream(adaptor,"rule opAtribuicao");
-        RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
         try {
             // gram/i.g:155:12: (c1= comentarios ID c2= comentarios opAtribuicao c3= comentarios condicao c4= comentarios -> ^( Atribuicao ^( Comentarios ( $c1)? ) ID ^( Comentarios ( $c2)? ) opAtribuicao ^( Comentarios ( $c3)? ) condicao ^( Comentarios ( $c4)? ) ) )
             // gram/i.g:156:2: c1= comentarios ID c2= comentarios opAtribuicao c3= comentarios condicao c4= comentarios
@@ -6167,18 +6167,18 @@ public class iParser extends Parser {
 
 
             // AST REWRITE
-            // elements: c2, condicao, opAtribuicao, c3, ID, c1, c4
+            // elements: c2, condicao, ID, opAtribuicao, c3, c4, c1
             // token labels: 
-            // rule labels: c3, c4, c1, retval, c2
+            // rule labels: retval, c1, c2, c4, c3
             // token list labels: 
             // rule list labels: 
             // wildcard labels: 
             retval.tree = root_0;
-            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
-            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
-            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            RewriteRuleSubtreeStream stream_c4=new RewriteRuleSubtreeStream(adaptor,"rule c4",c4!=null?c4.tree:null);
+            RewriteRuleSubtreeStream stream_c3=new RewriteRuleSubtreeStream(adaptor,"rule c3",c3!=null?c3.tree:null);
 
             root_0 = (Tree)adaptor.nil();
             // 156:87: -> ^( Atribuicao ^( Comentarios ( $c1)? ) ID ^( Comentarios ( $c2)? ) opAtribuicao ^( Comentarios ( $c3)? ) condicao ^( Comentarios ( $c4)? ) )
@@ -6298,10 +6298,10 @@ public class iParser extends Parser {
         Tree string_literal116_tree=null;
         Tree string_literal117_tree=null;
         Tree string_literal118_tree=null;
-        RewriteRuleTokenStream stream_112=new RewriteRuleTokenStream(adaptor,"token 112");
-        RewriteRuleTokenStream stream_113=new RewriteRuleTokenStream(adaptor,"token 113");
         RewriteRuleTokenStream stream_114=new RewriteRuleTokenStream(adaptor,"token 114");
         RewriteRuleTokenStream stream_115=new RewriteRuleTokenStream(adaptor,"token 115");
+        RewriteRuleTokenStream stream_112=new RewriteRuleTokenStream(adaptor,"token 112");
+        RewriteRuleTokenStream stream_113=new RewriteRuleTokenStream(adaptor,"token 113");
         RewriteRuleTokenStream stream_90=new RewriteRuleTokenStream(adaptor,"token 90");
 
         try {
@@ -6566,8 +6566,8 @@ public class iParser extends Parser {
         Tree char_literal121_tree=null;
         RewriteRuleTokenStream stream_116=new RewriteRuleTokenStream(adaptor,"token 116");
         RewriteRuleTokenStream stream_117=new RewriteRuleTokenStream(adaptor,"token 117");
-        RewriteRuleSubtreeStream stream_expressaoNum=new RewriteRuleSubtreeStream(adaptor,"rule expressaoNum");
         RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
+        RewriteRuleSubtreeStream stream_expressaoNum=new RewriteRuleSubtreeStream(adaptor,"rule expressaoNum");
         try {
             // gram/i.g:170:11: ( ( expressaoNum -> expressaoNum ) (c1= comentarios ( '+' c2= comentarios e= expressaoNum -> ^( ExpNum $expressao ^( Comentarios ( $c1)? ) ^( Mais ) ^( Comentarios ( $c2)? ) $e) | '-' c2= comentarios e= expressaoNum -> ^( ExpNum $expressao ^( Comentarios ( $c1)? ) ^( Menos ) ^( Comentarios ( $c2)? ) $e) ) )* )
             // gram/i.g:171:2: ( expressaoNum -> expressaoNum ) (c1= comentarios ( '+' c2= comentarios e= expressaoNum -> ^( ExpNum $expressao ^( Comentarios ( $c1)? ) ^( Mais ) ^( Comentarios ( $c2)? ) $e) | '-' c2= comentarios e= expressaoNum -> ^( ExpNum $expressao ^( Comentarios ( $c1)? ) ^( Menos ) ^( Comentarios ( $c2)? ) $e) ) )*
@@ -6656,16 +6656,16 @@ public class iParser extends Parser {
 
 
             	            // AST REWRITE
-            	            // elements: c2, e, expressao, c1
+            	            // elements: e, c2, c1, expressao
             	            // token labels: 
-            	            // rule labels: e, c1, retval, c2
+            	            // rule labels: retval, e, c1, c2
             	            // token list labels: 
             	            // rule list labels: 
             	            // wildcard labels: 
             	            retval.tree = root_0;
+            	            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
             	            RewriteRuleSubtreeStream stream_e=new RewriteRuleSubtreeStream(adaptor,"rule e",e!=null?e.tree:null);
             	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
-            	            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
             	            RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
 
             	            root_0 = (Tree)adaptor.nil();
@@ -6743,16 +6743,16 @@ public class iParser extends Parser {
 
 
             	            // AST REWRITE
-            	            // elements: c1, expressao, c2, e
+            	            // elements: e, c1, c2, expressao
             	            // token labels: 
-            	            // rule labels: e, c1, retval, c2
+            	            // rule labels: retval, e, c1, c2
             	            // token list labels: 
             	            // rule list labels: 
             	            // wildcard labels: 
             	            retval.tree = root_0;
+            	            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
             	            RewriteRuleSubtreeStream stream_e=new RewriteRuleSubtreeStream(adaptor,"rule e",e!=null?e.tree:null);
             	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
-            	            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
             	            RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
 
             	            root_0 = (Tree)adaptor.nil();
@@ -6870,9 +6870,9 @@ public class iParser extends Parser {
         Tree char_literal123_tree=null;
         Tree char_literal124_tree=null;
         Tree char_literal125_tree=null;
+        RewriteRuleTokenStream stream_120=new RewriteRuleTokenStream(adaptor,"token 120");
         RewriteRuleTokenStream stream_118=new RewriteRuleTokenStream(adaptor,"token 118");
         RewriteRuleTokenStream stream_119=new RewriteRuleTokenStream(adaptor,"token 119");
-        RewriteRuleTokenStream stream_120=new RewriteRuleTokenStream(adaptor,"token 120");
         RewriteRuleSubtreeStream stream_oper=new RewriteRuleSubtreeStream(adaptor,"rule oper");
         RewriteRuleSubtreeStream stream_comentarios=new RewriteRuleSubtreeStream(adaptor,"rule comentarios");
         try {
@@ -6972,17 +6972,17 @@ public class iParser extends Parser {
 
 
             	            // AST REWRITE
-            	            // elements: c1, o, c2, expressaoNum
+            	            // elements: c2, o, c1, expressaoNum
             	            // token labels: 
-            	            // rule labels: c1, retval, o, c2
+            	            // rule labels: retval, c1, c2, o
             	            // token list labels: 
             	            // rule list labels: 
             	            // wildcard labels: 
             	            retval.tree = root_0;
-            	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
-            	            RewriteRuleSubtreeStream stream_o=new RewriteRuleSubtreeStream(adaptor,"rule o",o!=null?o.tree:null);
+            	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	            RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            	            RewriteRuleSubtreeStream stream_o=new RewriteRuleSubtreeStream(adaptor,"rule o",o!=null?o.tree:null);
 
             	            root_0 = (Tree)adaptor.nil();
             	            // 178:62: -> ^( ExpNum $expressaoNum ^( Comentarios ( $c1)? ) ^( Vezes ) ^( Comentarios ( $c2)? ) $o)
@@ -7059,17 +7059,17 @@ public class iParser extends Parser {
 
 
             	            // AST REWRITE
-            	            // elements: expressaoNum, o, c2, c1
+            	            // elements: c1, o, c2, expressaoNum
             	            // token labels: 
-            	            // rule labels: c1, retval, o, c2
+            	            // rule labels: retval, c1, c2, o
             	            // token list labels: 
             	            // rule list labels: 
             	            // wildcard labels: 
             	            retval.tree = root_0;
-            	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
-            	            RewriteRuleSubtreeStream stream_o=new RewriteRuleSubtreeStream(adaptor,"rule o",o!=null?o.tree:null);
+            	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	            RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            	            RewriteRuleSubtreeStream stream_o=new RewriteRuleSubtreeStream(adaptor,"rule o",o!=null?o.tree:null);
 
             	            root_0 = (Tree)adaptor.nil();
             	            // 179:38: -> ^( ExpNum $expressaoNum ^( Comentarios ( $c1)? ) ^( Divide ) ^( Comentarios ( $c2)? ) $o)
@@ -7146,17 +7146,17 @@ public class iParser extends Parser {
 
 
             	            // AST REWRITE
-            	            // elements: c1, o, expressaoNum, c2
+            	            // elements: c1, c2, o, expressaoNum
             	            // token labels: 
-            	            // rule labels: c1, retval, o, c2
+            	            // rule labels: retval, c1, c2, o
             	            // token list labels: 
             	            // rule list labels: 
             	            // wildcard labels: 
             	            retval.tree = root_0;
-            	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
-            	            RewriteRuleSubtreeStream stream_o=new RewriteRuleSubtreeStream(adaptor,"rule o",o!=null?o.tree:null);
+            	            RewriteRuleSubtreeStream stream_c1=new RewriteRuleSubtreeStream(adaptor,"rule c1",c1!=null?c1.tree:null);
             	            RewriteRuleSubtreeStream stream_c2=new RewriteRuleSubtreeStream(adaptor,"rule c2",c2!=null?c2.tree:null);
+            	            RewriteRuleSubtreeStream stream_o=new RewriteRuleSubtreeStream(adaptor,"rule o",o!=null?o.tree:null);
 
             	            root_0 = (Tree)adaptor.nil();
             	            // 180:38: -> ^( ExpNum $expressaoNum ^( Comentarios ( $c1)? ) ^( Mod ) ^( Comentarios ( $c2)? ) $o)
@@ -7284,10 +7284,10 @@ public class iParser extends Parser {
         Tree ID133_tree=null;
         Tree ID134_tree=null;
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
-        RewriteRuleSubtreeStream stream_call=new RewriteRuleSubtreeStream(adaptor,"rule call");
-        RewriteRuleSubtreeStream stream_tipo=new RewriteRuleSubtreeStream(adaptor,"rule tipo");
-        RewriteRuleSubtreeStream stream_incOp=new RewriteRuleSubtreeStream(adaptor,"rule incOp");
         RewriteRuleSubtreeStream stream_opUnario=new RewriteRuleSubtreeStream(adaptor,"rule opUnario");
+        RewriteRuleSubtreeStream stream_call=new RewriteRuleSubtreeStream(adaptor,"rule call");
+        RewriteRuleSubtreeStream stream_incOp=new RewriteRuleSubtreeStream(adaptor,"rule incOp");
+        RewriteRuleSubtreeStream stream_tipo=new RewriteRuleSubtreeStream(adaptor,"rule tipo");
         RewriteRuleSubtreeStream stream_input_=new RewriteRuleSubtreeStream(adaptor,"rule input_");
         try {
             // gram/i.g:185:6: ( ( opUnario ID -> ^( opUnario ^( Id ID ) ) | opUnario tipo -> ^( opUnario tipo ) | tipo -> tipo | ID -> ^( Id ID ) | incOp ID -> ^( IncAntes incOp ID ) | ID incOp -> ^( IncDepois incOp ID ) | call -> call | input_ -> input_ ) )
@@ -7312,7 +7312,7 @@ public class iParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: opUnario, ID
+                    // elements: ID, opUnario
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -7365,7 +7365,7 @@ public class iParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: opUnario, tipo
+                    // elements: tipo, opUnario
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -7474,7 +7474,7 @@ public class iParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: incOp, ID
+                    // elements: ID, incOp
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -7517,7 +7517,7 @@ public class iParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: ID, incOp
+                    // elements: incOp, ID
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -7785,9 +7785,9 @@ public class iParser extends Parser {
         Tree char_literal140_tree=null;
         Tree char_literal141_tree=null;
         Tree char_literal142_tree=null;
-        RewriteRuleTokenStream stream_123=new RewriteRuleTokenStream(adaptor,"token 123");
         RewriteRuleTokenStream stream_116=new RewriteRuleTokenStream(adaptor,"token 116");
         RewriteRuleTokenStream stream_117=new RewriteRuleTokenStream(adaptor,"token 117");
+        RewriteRuleTokenStream stream_123=new RewriteRuleTokenStream(adaptor,"token 123");
 
         try {
             // gram/i.g:201:10: ( ( '+' -> ^( Pos ) | '-' -> ^( Neg ) | '!' -> ^( Nao ) ) )
@@ -7963,8 +7963,8 @@ public class iParser extends Parser {
 
         Tree string_literal143_tree=null;
         Tree string_literal144_tree=null;
-        RewriteRuleTokenStream stream_124=new RewriteRuleTokenStream(adaptor,"token 124");
         RewriteRuleTokenStream stream_125=new RewriteRuleTokenStream(adaptor,"token 125");
+        RewriteRuleTokenStream stream_124=new RewriteRuleTokenStream(adaptor,"token 124");
 
         try {
             // gram/i.g:208:10: ( ( 'true' -> ^( True ) | 'false' -> ^( False ) ) )
@@ -8202,8 +8202,8 @@ public class iParser extends Parser {
 
         Tree COMENTARIO_LINHA146_tree=null;
         Tree COMENTARIO_LINHAS147_tree=null;
-        RewriteRuleTokenStream stream_COMENTARIO_LINHAS=new RewriteRuleTokenStream(adaptor,"token COMENTARIO_LINHAS");
         RewriteRuleTokenStream stream_COMENTARIO_LINHA=new RewriteRuleTokenStream(adaptor,"token COMENTARIO_LINHA");
+        RewriteRuleTokenStream stream_COMENTARIO_LINHAS=new RewriteRuleTokenStream(adaptor,"token COMENTARIO_LINHAS");
 
         try {
             // gram/i.g:218:12: ( ( COMENTARIO_LINHA -> ^( Comentario COMENTARIO_LINHA ) | COMENTARIO_LINHAS -> ^( Comentario COMENTARIO_LINHAS ) ) )
@@ -8349,7 +8349,7 @@ public class iParser extends Parser {
     static final String DFA4_maxS =
         "\3\127\7\116\3\133\2\uffff";
     static final String DFA4_acceptS =
-        "\15\uffff\1\1\1\2";
+        "\15\uffff\1\2\1\1";
     static final String DFA4_specialS =
         "\17\uffff}>";
     static final String[] DFA4_transitionS = {
@@ -8363,9 +8363,9 @@ public class iParser extends Parser {
             "\1\12\1\10\1\11",
             "\1\12\1\10\1\11",
             "\1\12\1\10\1\11",
-            "\1\13\1\14\11\uffff\3\15\1\16",
-            "\1\13\1\14\11\uffff\3\15\1\16",
-            "\1\13\1\14\11\uffff\3\15\1\16",
+            "\1\13\1\14\11\uffff\3\16\1\15",
+            "\1\13\1\14\11\uffff\3\16\1\15",
+            "\1\13\1\14\11\uffff\3\16\1\15",
             "",
             ""
     };

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 gram/i.g 2015-12-01 23:28:20
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 gram/i.g 2015-12-01 23:39:26
  package gram; 
 
 import org.antlr.runtime.*;
@@ -7,123 +7,123 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class iLexer extends Lexer {
-    public static final int Funcao=17;
-    public static final int Ou=40;
-    public static final int False=42;
-    public static final int Comp=38;
-    public static final int Print=36;
-    public static final int Atrib=59;
-    public static final int COMENTARIO_LINHA=77;
-    public static final int ID=76;
-    public static final int DVoid=27;
-    public static final int Sub=55;
-    public static final int LETRA=81;
-    public static final int DInt=31;
-    public static final int Argumento=10;
-    public static final int ListaDecl=13;
-    public static final int Float=41;
-    public static final int Pos=52;
-    public static final int Soma=56;
-    public static final int Id=53;
-    public static final int If=21;
-    public static final int T__125=125;
-    public static final int E=39;
+    public static final int Soma=29;
+    public static final int Decl=20;
     public static final int CHAR=75;
-    public static final int Char=44;
-    public static final int Igual=60;
-    public static final int ListaParametros=72;
-    public static final int IntWrap=14;
-    public static final int Dif=61;
-    public static final int Call=49;
-    public static final int DChar=30;
-    public static final int IncAntes=48;
-    public static final int DFloat=28;
-    public static final int MenorQ=62;
-    public static final int Div=57;
-    public static final int Neg=51;
-    public static final int Mult=58;
-    public static final int Menor=64;
-    public static final int Menos=67;
-    public static final int Declaracao=22;
-    public static final int T__91=91;
-    public static final int T__100=100;
-    public static final int T__92=92;
+    public static final int Empty=33;
+    public static final int DChar=71;
+    public static final int DVoid=68;
+    public static final int Neg=50;
+    public static final int EOF=-1;
+    public static final int Int=44;
     public static final int T__93=93;
-    public static final int T__102=102;
     public static final int T__94=94;
-    public static final int T__101=101;
+    public static final int T__91=91;
+    public static final int T__92=92;
     public static final int T__90=90;
-    public static final int True=43;
-    public static final int Comentarios=26;
-    public static final int Divide=68;
-    public static final int Vezes=69;
-    public static final int Input=37;
-    public static final int MaiorQ=63;
+    public static final int Parametro=24;
+    public static final int Char=43;
+    public static final int Comentario=61;
+    public static final int MaiorQ=57;
+    public static final int MenorQ=56;
+    public static final int Vazio=60;
     public static final int T__99=99;
-    public static final int Vazio=24;
-    public static final int T__95=95;
-    public static final int T__96=96;
-    public static final int T__97=97;
     public static final int T__98=98;
-    public static final int DBoolean=29;
-    public static final int For=19;
-    public static final int Maior=65;
-    public static final int Condicional=46;
-    public static final int Inc=33;
-    public static final int Expressoes=35;
+    public static final int T__97=97;
+    public static final int T__96=96;
+    public static final int T__95=95;
+    public static final int E=38;
+    public static final int Mod=63;
+    public static final int ListaDecl=21;
+    public static final int T__83=83;
+    public static final int DFloat=69;
+    public static final int Maior=59;
+    public static final int ListaArgumentos=23;
+    public static final int Atribuicao=19;
+    public static final int INT=73;
+    public static final int T__85=85;
+    public static final int T__84=84;
+    public static final int T__87=87;
+    public static final int Dec=26;
+    public static final int T__86=86;
+    public static final int T__89=89;
+    public static final int Menor=58;
+    public static final int T__88=88;
+    public static final int Menos=64;
+    public static final int DBoolean=70;
+    public static final int Float=40;
+    public static final int T__125=125;
+    public static final int Input=36;
+    public static final int WS=82;
+    public static final int SeqInstrucao=11;
+    public static final int Inc=27;
+    public static final int SufixoFloat=80;
+    public static final int Condicional=45;
+    public static final int Funcao=13;
+    public static final int ExpNum=53;
+    public static final int Comp=37;
+    public static final int Nao=49;
+    public static final int DIGITO=79;
+    public static final int T__118=118;
+    public static final int T__119=119;
+    public static final int T__116=116;
+    public static final int COMENTARIO_LINHAS=78;
+    public static final int T__117=117;
+    public static final int T__114=114;
+    public static final int False=41;
+    public static final int T__115=115;
+    public static final int T__124=124;
+    public static final int T__123=123;
     public static final int T__122=122;
     public static final int T__121=121;
-    public static final int T__124=124;
     public static final int FLOAT=74;
-    public static final int T__123=123;
-    public static final int ExpNum=54;
     public static final int T__120=120;
-    public static final int DIGITO=79;
-    public static final int Int=45;
-    public static final int INT=73;
-    public static final int COMENTARIO_LINHAS=78;
-    public static final int Empty=34;
-    public static final int IncDepois=47;
-    public static final int T__119=119;
-    public static final int T__118=118;
-    public static final int Atribuicao=23;
-    public static final int T__115=115;
-    public static final int WS=82;
-    public static final int EOF=-1;
-    public static final int T__114=114;
-    public static final int Comentario=25;
-    public static final int T__117=117;
-    public static final int T__116=116;
+    public static final int While=16;
+    public static final int ID=76;
+    public static final int Atrib=32;
+    public static final int IncDepois=46;
+    public static final int Expressoes=34;
+    public static final int COMENTARIO_LINHA=77;
+    public static final int Call=48;
+    public static final int Argumento=22;
+    public static final int T__107=107;
+    public static final int T__108=108;
+    public static final int T__109=109;
+    public static final int ListaParametros=25;
+    public static final int T__103=103;
+    public static final int T__104=104;
+    public static final int Print=35;
+    public static final int Dif=55;
+    public static final int T__105=105;
+    public static final int T__106=106;
+    public static final int DInt=72;
     public static final int T__111=111;
     public static final int T__110=110;
+    public static final int Ou=39;
     public static final int T__113=113;
-    public static final int Dec=32;
-    public static final int Mod=66;
-    public static final int Return=18;
-    public static final int T__83=83;
     public static final int T__112=112;
-    public static final int Parametro=71;
-    public static final int Decl=12;
-    public static final int While=20;
-    public static final int ListaArgumentos=11;
-    public static final int SeqInstrucao=15;
-    public static final int T__88=88;
-    public static final int T__108=108;
-    public static final int T__89=89;
-    public static final int T__107=107;
-    public static final int SufixoFloat=80;
-    public static final int Mais=70;
-    public static final int T__109=109;
-    public static final int Exp=16;
-    public static final int T__84=84;
-    public static final int T__104=104;
-    public static final int Nao=50;
-    public static final int T__85=85;
-    public static final int T__103=103;
-    public static final int T__86=86;
-    public static final int T__106=106;
-    public static final int T__87=87;
-    public static final int T__105=105;
+    public static final int Comentarios=62;
+    public static final int Return=14;
+    public static final int True=42;
+    public static final int Id=52;
+    public static final int If=17;
+    public static final int Div=30;
+    public static final int Igual=54;
+    public static final int Exp=12;
+    public static final int T__102=102;
+    public static final int T__101=101;
+    public static final int Mais=67;
+    public static final int T__100=100;
+    public static final int For=15;
+    public static final int Divide=65;
+    public static final int Sub=28;
+    public static final int Declaracao=18;
+    public static final int Mult=31;
+    public static final int Vezes=66;
+    public static final int IntWrap=10;
+    public static final int Pos=51;
+    public static final int IncAntes=47;
+    public static final int LETRA=81;
 
     // delegates
     // delegators
@@ -2040,17 +2040,17 @@ public class iLexer extends Lexer {
     static final String DFA10_maxS =
         "\1\71\1\72\1\uffff\1\72\2\uffff\1\72";
     static final String DFA10_acceptS =
-        "\2\uffff\1\2\1\uffff\1\3\1\1\1\uffff";
+        "\2\uffff\1\2\1\uffff\1\1\1\3\1\uffff";
     static final String DFA10_specialS =
         "\7\uffff}>";
     static final String[] DFA10_transitionS = {
             "\1\2\1\uffff\1\1\11\3",
-            "\1\5\1\uffff\12\5\1\4",
+            "\1\4\1\uffff\12\4\1\5",
             "",
-            "\1\5\1\uffff\12\6\1\4",
+            "\1\4\1\uffff\12\6\1\5",
             "",
             "",
-            "\1\5\1\uffff\12\6\1\4"
+            "\1\4\1\uffff\12\6\1\5"
     };
 
     static final short[] DFA10_eot = DFA.unpackEncodedString(DFA10_eotS);
