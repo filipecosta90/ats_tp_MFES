@@ -96,20 +96,21 @@ public class Main {
       catch (IOException e){
         System.out.println("ERROR in dot file"); 
       }
-
+      
+      main.numberFunctions = main.functionSignatures.size();
 try{
-         File file = new File("Hello1.txt");
+         File file = new File("metrics.txt");
       // creates the file
       file.createNewFile();
       // creates a FileWriter Object
       FileWriter writer = new FileWriter(file); 
       // Writes the content to the file
-      writer.write("Number of fuctions:\n" + main.functionSignatures.size() ); 
+      writer.write("Number of fuctions: " + main.numberFunctions); 
       writer.flush();
       writer.close();
       }
       catch (IOException e){
-        System.out.println("ERROR in dot file"); 
+        System.out.println("ERROR in metrics file"); 
       }
 
       /*Export code generated to .txt file*/

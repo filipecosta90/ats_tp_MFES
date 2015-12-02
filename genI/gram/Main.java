@@ -26,7 +26,13 @@ public class Main {
   private boolean callReturnNeeded;
   private int memAdress;
   StringBuilder functionsDeclarations;
-      Integer numberFunctions = 0;
+  
+  //Metrics Variables    
+  Integer numberFunctions = 0;
+  HashMap <String,Integer> functionsNumberParameters;
+  HashMap <String,Integer> cyclomaticComplexityMap;
+  HashMap <String,Integer> LongMap;
+  Integer totalLinesOfCode;
 
   public static void main(String[] args) {
     try {
@@ -90,20 +96,21 @@ public class Main {
       catch (IOException e){
         System.out.println("ERROR in dot file"); 
       }
-
+      
+      main.numberFunctions = main.functionSignatures.size();
 try{
-         File file = new File("Hello1.txt");
+         File file = new File("metrics.txt");
       // creates the file
       file.createNewFile();
       // creates a FileWriter Object
       FileWriter writer = new FileWriter(file); 
       // Writes the content to the file
-      writer.write("Number of fuctions:\n" + main.functionSignatures.size() ); 
+      writer.write("Number of fuctions: " + main.numberFunctions); 
       writer.flush();
       writer.close();
       }
       catch (IOException e){
-        System.out.println("ERROR in dot file"); 
+        System.out.println("ERROR in metrics file"); 
       }
 
       /*Export code generated to .txt file*/
