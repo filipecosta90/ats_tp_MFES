@@ -22,9 +22,11 @@ public class Main {
 
   private String actualFunctionName;
   HashMap<String, Argumentos> functionSignatures;
+  HashMap<String, Argumentos> functionMap;
   private boolean callReturnNeeded;
   private int memAdress;
   StringBuilder functionsDeclarations;
+      Integer numberFunctions = 0;
 
   public static void main(String[] args) {
     try {
@@ -35,13 +37,12 @@ public class Main {
       Tree b = (Tree) parser.prog().getTree();
       //System.out.println("Result = " + iAdaptor.getTerm(b)); // name of the Gom module + Adaptor
       Instrucao p = (Instrucao) iAdaptor.getTerm(b);
-
       Main main = new Main();
 
       try {
         ArrayList<Integer> numInstrucao = new ArrayList<Integer>();
         numInstrucao.add(1);
-        `TopDown(CollectFuncsSignature(main.functionSignatures)).visit(p);
+        `TopDown(CollectFuncsSignature(main.functionSignatures,main.numberFunctions)).visit(p);
         //Instrucao p2 = `BottomUp(stratPrintAnnotations(numInstrucao)).visit(p);
         Instrucao p2 = p;
         int numInst = numInstrucao.get(0)-1;
@@ -90,6 +91,21 @@ public class Main {
         System.out.println("ERROR in dot file"); 
       }
 
+try{
+         File file = new File("Hello1.txt");
+      // creates the file
+      file.createNewFile();
+      // creates a FileWriter Object
+      FileWriter writer = new FileWriter(file); 
+      // Writes the content to the file
+      writer.write("Number of fuctions:\n" + main.functionSignatures.size() ); 
+      writer.flush();
+      writer.close();
+      }
+      catch (IOException e){
+        System.out.println("ERROR in dot file"); 
+      }
+
       /*Export code generated to .txt file*/
     } catch(Exception e) {
       e.printStackTrace();
@@ -121,18 +137,17 @@ public class Main {
   }
 
   /** Tentativa definir uma métrica para contar o número de funções ***/
-  /*
-     %strategy visitFuncoes(func:HashMap) extends Identity() {
-     visit Instrucao {
-     Funcao(type,name,args,inst) -> {
-  //usar hashmap para guardar as funcoes e o seu conjunto de instrucoes
-  func.put(`name, `inst);
+  
+     %strategy CollectNumberFuncs(func:HashMap) extends Identity() {
+ visit Instrucao {
+      Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
+        func.put(`nome, `argumentos);
+      }
+    }
   }
-  }
-  ... fazer size do hasmap para retornar o numero de funcoes
-  }
-   */
+   
   /********************************************************************/
+
 
   %strategy stratBadSmells() extends Identity() {
     visit Instrucao {
@@ -167,10 +182,11 @@ public class Main {
     }
   }
 
-  %strategy CollectFuncsSignature(signatures:HashMap) extends Identity() {
+  %strategy CollectFuncsSignature(signatures:HashMap,numberFunctions:int) extends Identity() {
     visit Instrucao {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
         signatures.put(`nome, `argumentos);
+        numberFunctions=numberFunctions+1;
       }
     }
   }
