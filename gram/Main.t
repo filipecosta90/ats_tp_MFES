@@ -107,8 +107,8 @@ public class Main {
         // Writes the content to the file
         writer.write("Number of fuctions: " + main.numberFunctions +"\n");
         for (Argumentos a : main.functionSignatures.values()){
-       int occurence = StringUtils.countMatches(a, "Argumento(");
-       writer.write(" : " + occurence + "\n");
+       //int occurence = StringUtils.countMatches(a, "Argumento(");
+       writer.write(" : " + a.toString() + "\n");
         
         }
         writer.flush();
