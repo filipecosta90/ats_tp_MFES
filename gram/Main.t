@@ -26,7 +26,13 @@ public class Main {
   private boolean callReturnNeeded;
   private int memAdress;
   StringBuilder functionsDeclarations;
-      Integer numberFunctions = 0;
+  
+  //Metrics Variables    
+  Integer numberFunctions = 0;
+  HashMap <String,Integer> functionsNumberParameters;
+  HashMap <String,Integer> cyclomaticComplexityMap;
+  HashMap <String,Integer> LongMap;
+  Integer totalLinesOfCode;
 
   public static void main(String[] args) {
     try {
