@@ -26,6 +26,7 @@ public class Main {
 	private int memAdress;
 	StringBuilder functionsDeclarations;
 
+
 	public static void main(String[] args) {
 		try {
 			iLexer lexer = new iLexer(new ANTLRInputStream(System.in));
@@ -81,15 +82,15 @@ public class Main {
 			}
 
 			/* Export this representation to .dot file*/
-			/*
+			
 			try{
-				FileWriter out=new FileWriter(args[1]);
+				FileWriter out=new FileWriter("grafo.dot");
 				Viewer.toDot(p,out);
 			}
 			catch (IOException e){
 				System.out.println("ERROR in dot file"); 
 			}
-			*/
+			
 			/*Export code generated to .txt file*/
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -119,6 +120,20 @@ public class Main {
 		}
 		return args;
 	}
+
+	/** Tentativa definir uma métrica para contar o número de funções ***/
+	/*
+	%strategy visitFuncoes(func:HashMap) extends Identity() {
+      		visit Instrucao {
+			Funcao(type,name,args,inst) -> {
+				//usar hashmap para guardar as funcoes e o seu conjunto de instrucoes
+		       		func.put(`name, `inst);
+			}
+		}
+		... fazer size do hasmap para retornar o numero de funcoes
+	}
+	*/
+	/********************************************************************/
 
     %strategy stratBadSmells() extends Identity() {
     	visit Instrucao {
