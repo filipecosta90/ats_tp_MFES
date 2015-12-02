@@ -905,7 +905,6 @@ public class Main {
             }
 
             /* Export this representation to .dot file*/
-            /*
                try{
                FileWriter out=new FileWriter(args[1]);
                Viewer.toDot(p,out);
@@ -913,7 +912,6 @@ public class Main {
                catch (IOException e){
                System.out.println("ERROR in dot file");
                }
-               */
             /*Export code generated to .txt file*/
         } catch(Exception e) {
             e.printStackTrace();
