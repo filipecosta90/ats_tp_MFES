@@ -48,7 +48,7 @@ public class Main {
       try {
         ArrayList<Integer> numInstrucao = new ArrayList<Integer>();
         numInstrucao.add(1);
-        `TopDown(CollectFuncsSignature(main.functionSignatures,main.numberFunctions)).visit(p);
+        `TopDown(CollectFuncsSignature(main.functionSignatures)).visit(p);
         //Instrucao p2 = `BottomUp(stratPrintAnnotations(numInstrucao)).visit(p);
         Instrucao p2 = p;
         int numInst = numInstrucao.get(0)-1;
@@ -105,7 +105,12 @@ public class Main {
         // creates a FileWriter Object
         FileWriter writer = new FileWriter(file); 
         // Writes the content to the file
-        writer.write("Number of fuctions: " + main.numberFunctions); 
+        writer.write("Number of fuctions: " + main.numberFunctions +"\n");
+        for (Argumentos a : main.functionSignatures.values()){
+       int occurence = StringUtils.countMatches(a, "Argumento(");
+       writer.write(" : " + occurence + "\n");
+        
+        }
         writer.flush();
         writer.close();
       }
@@ -196,11 +201,10 @@ public class Main {
     }
   }
 
-  %strategy CollectFuncsSignature(signatures:HashMap,numberFunctions:int) extends Identity() {
+  %strategy CollectFuncsSignature(signatures:HashMap) extends Identity() {
     visit Instrucao {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
         signatures.put(`nome, `argumentos);
-        numberFunctions=numberFunctions+1;
       }
     }
   }
