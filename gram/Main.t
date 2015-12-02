@@ -26,9 +26,9 @@ public class Main {
   private boolean callReturnNeeded;
   private int memAdress;
   StringBuilder functionsDeclarations;
-  
+
   //Metrics Variables    
-  Integer numberFunctions = 0;
+  Integer numberFunctions;
   HashMap <String,Integer> functionsNumberParameters;
   HashMap <String,Integer> cyclomaticComplexityMap;
   HashMap <String,Integer> LongMap;
@@ -96,18 +96,18 @@ public class Main {
       catch (IOException e){
         System.out.println("ERROR in dot file"); 
       }
-      
+
       main.numberFunctions = main.functionSignatures.size();
-try{
-         File file = new File("metrics.txt");
-      // creates the file
-      file.createNewFile();
-      // creates a FileWriter Object
-      FileWriter writer = new FileWriter(file); 
-      // Writes the content to the file
-      writer.write("Number of fuctions: " + main.numberFunctions); 
-      writer.flush();
-      writer.close();
+      try{
+        File file = new File("metrics.txt");
+        // creates the file
+        file.createNewFile();
+        // creates a FileWriter Object
+        FileWriter writer = new FileWriter(file); 
+        // Writes the content to the file
+        writer.write("Number of fuctions: " + main.numberFunctions); 
+        writer.flush();
+        writer.close();
       }
       catch (IOException e){
         System.out.println("ERROR in metrics file"); 
@@ -125,6 +125,13 @@ try{
     callReturnNeeded = true;
     functionsDeclarations = new StringBuilder();
     memAdress = 0;
+
+    Integer numberFunctions = 0;
+    HashMap <String,Integer> functionsNumberParameters = new HashMap<String,Integer>();
+    HashMap <String,Integer> cyclomaticComplexityMap = new HashMap<String,Integer>();
+    HashMap <String,Integer> LongMap = new HashMap<String,Integer>();
+    Integer totalLinesOfCode = 0;
+
   }
 
   public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<String> idsUtilizados) {
@@ -144,15 +151,15 @@ try{
   }
 
   /** Tentativa definir uma métrica para contar o número de funções ***/
-  
-     %strategy CollectNumberFuncs(func:HashMap) extends Identity() {
- visit Instrucao {
+
+  %strategy CollectNumberFuncs(func:HashMap) extends Identity() {
+    visit Instrucao {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
         func.put(`nome, `argumentos);
       }
     }
   }
-   
+
   /********************************************************************/
 
 
