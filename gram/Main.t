@@ -106,9 +106,12 @@ public class Main {
         FileWriter writer = new FileWriter(file); 
         // Writes the content to the file
         writer.write("Number of fuctions: " + main.numberFunctions +"\n");
-        for (Argumentos a : main.functionSignatures.values()){
+
+        writer.write("Number of Arguments per function:\n");
+        for (String funcao : main.functionSignatures.keySet()){
+          Argumentos a = main.functionSignatures.get(funcao);
           int occurence = StringUtils.countMatches(a.toString(), "Argumento(");
-          writer.write(" : " + occurence + "\n");
+          writer.write("\t" + funcao +  " : " + occurence + "\n");
 
         }
         writer.flush();
