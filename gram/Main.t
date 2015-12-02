@@ -10,7 +10,7 @@ import tom.library.sl.*;
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-
+import org.apache.commons.lang.StringUtils;
 
 public class Main {
   %include{sl.tom}
@@ -107,9 +107,9 @@ public class Main {
         // Writes the content to the file
         writer.write("Number of fuctions: " + main.numberFunctions +"\n");
         for (Argumentos a : main.functionSignatures.values()){
-       //int occurence = StringUtils.countMatches(a, "Argumento(");
-       writer.write(" : " + a.toString() + "\n");
-        
+          int occurence = StringUtils.countMatches(a.toString(), "Argumento(");
+          writer.write(" : " + occurence + "\n");
+
         }
         writer.flush();
         writer.close();

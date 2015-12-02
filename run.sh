@@ -9,10 +9,11 @@ cd genI
 javac gram/Main.java
 echo "ended compiling"
 java gram/Main < $EXAMPLE_FILE > $RES_FILE
-echo "eded running java gram/Main"
+echo "ended running java gram/Main"
 cp $RES_FILE ../genMaqV
 cd ../genMaqV
 javac maqv/Main.java
 echo "ended compiling maqv/Main"
+echo "maqvMain:\n"
 java maqv/Main $RES_FILE
-echo "ended java maqvMain"
+
