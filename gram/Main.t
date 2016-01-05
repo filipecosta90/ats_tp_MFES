@@ -98,17 +98,17 @@ public class Main {
       }
 
 	/** 1) Metric to count number of functions **/
-      main.numberFunctions = main.functionSignatures.size();
-      try{
-        File file = new File("metrics.txt");
-        // creates the file
-        file.createNewFile();
-        // creates a FileWriter Object
-        FileWriter writer = new FileWriter(file); 
-        // Writes the content to the file
-        writer.write("Number of fuctions: " + main.numberFunctions +"\n");
+      	main.numberFunctions = main.functionSignatures.size();
+      	try{
+		File file = new File("metrics.txt");
+		// creates the file
+		file.createNewFile();
+		// creates a FileWriter Object
+		FileWriter writer = new FileWriter(file); 
+		// Writes the content to the file
+		writer.write("Number of fuctions: " + main.numberFunctions +"\n");
 
-      	/** 2) Metric to count the number of functions **/
+      	/** 2) Metric to count the number of arguments per function **/
       	writer.write("Number of Arguments per function:\n");
         for (String funcao : main.functionSignatures.keySet()){
           Argumentos a = main.functionSignatures.get(funcao);
@@ -132,7 +132,19 @@ public class Main {
 
 
 	/** 5) Calculate functions length ***/
+<<<<<<< HEAD
 	    writer.write("Functions Length:\n");
+||||||| merged common ancestors
+	
+	
+
+
+=======
+		
+	
+
+
+>>>>>>> dcd59765a3f22dfcea57a26ea059ee2096cdae9d
 
       for (String funcao : main.functionSignatures.keySet()){
         Argumentos a = main.functionSignatures.get(funcao);
