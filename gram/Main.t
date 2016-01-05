@@ -127,16 +127,18 @@ public class Main {
 	* Blank lines should not be counted
 	* Comments should not be counted
 	**/
-	writer.write("Total lines of Code (LOC):\n");
+	    writer.write("Total lines of Code (LOC):\n");
 
 
 
 	/** 5) Calculate functions length ***/
-	
-	
+	    writer.write("Functions Length:\n");
 
-
-
+      for (String funcao : main.functionSignatures.keySet()){
+        Argumentos a = main.functionSignatures.get(funcao);
+        int occurence1 = StringUtils.countMatches(a.toString(), "SeqInstrucao");
+        writer.write("\t"+funcao+" : "+occurence1+"\n");
+      }
         writer.flush();
         writer.close();
       }
