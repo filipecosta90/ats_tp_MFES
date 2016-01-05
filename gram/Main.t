@@ -97,6 +97,7 @@ public class Main {
         System.out.println("ERROR in dot file"); 
       }
 
+	/** 1) Metric to count number of functions **/
       main.numberFunctions = main.functionSignatures.size();
       try{
         File file = new File("metrics.txt");
@@ -107,16 +108,42 @@ public class Main {
         // Writes the content to the file
         writer.write("Number of fuctions: " + main.numberFunctions +"\n");
 
-        writer.write("Number of Arguments per function:\n");
+      	/** 2) Metric to count the number of functions **/
+      	writer.write("Number of Arguments per function:\n");
         for (String funcao : main.functionSignatures.keySet()){
           Argumentos a = main.functionSignatures.get(funcao);
           int occurence = StringUtils.countMatches(a.toString(), "Argumento(");
           writer.write("\t" + funcao +  " : " + occurence + "\n");
 
         }
+
+	/** 3) Metric to compute Cyclomatic Complexity **/
+	writer.write("Calculated Ciclomatic Complexity:\n");
+	//(...)
+
+
+
+	/** 4) Metric for counting number of lines of code (Total lines of code - LOC) 
+	* Blank lines should not be counted
+	* Comments should not be counted
+	**/
+	writer.write("Total lines of Code (LOC):\n");
+
+
+
+	/** 5) Calculate functions length ***/
+	
+	
+
+
+
         writer.flush();
         writer.close();
       }
+
+
+
+
       catch (IOException e){
         System.out.println("ERROR in metrics file"); 
       }
