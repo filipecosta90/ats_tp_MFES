@@ -133,7 +133,6 @@ public class Main {
 
 	/** 5) Calculate functions length ***/
 	    writer.write("Functions Length:\n");
-
       for (String funcao : main.functionSignatures.keySet()){
         Argumentos a = main.functionSignatures.get(funcao);
         int occurence1 = StringUtils.countMatches(a.toString(), "SeqInstrucao");
