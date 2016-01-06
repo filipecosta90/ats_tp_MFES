@@ -132,19 +132,8 @@ public class Main {
 
 
 	/** 5) Calculate functions length ***/
-<<<<<<< HEAD
 	    writer.write("Functions Length:\n");
-||||||| merged common ancestors
-	
-	
 
-
-=======
-		
-	
-
-
->>>>>>> dcd59765a3f22dfcea57a26ea059ee2096cdae9d
 
       for (String funcao : main.functionSignatures.keySet()){
         Argumentos a = main.functionSignatures.get(funcao);
