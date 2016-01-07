@@ -12,15 +12,29 @@ void main() {
   res2 = max3numbers( a,b,c );
   print(';');
   print(res2);
+  if (a == b){
+      a = a;
+  }
 }
 
 int max(int a, int b){
   int res;
   if (a > b) {
-    res = a;
+    if (a > b ){
+      res = a;
+    }
   }
   else {
     res = b;
+  }
+  if (a == b) {
+    if (a == b) {
+      if (a == b) {
+        if (a == b) {
+          a = a;
+        }
+      }
+    }
   }
   return res;
 }
@@ -28,7 +42,9 @@ int max(int a, int b){
 int max3numbers (int a, int b, int c){
   int res;
   if (a>b){
-    res = a;
+    if (a>b){
+      res = a;
+    }
   }
   else {
     res = b;
