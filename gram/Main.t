@@ -23,7 +23,8 @@ public class Main {
   private String actualFunctionName;
   HashMap<String, Argumentos> functionSignatures;
   HashMap<String, Argumentos> functionMap;
-  private boolean callReturnNeeded;
+HashMap<String, Integer> functionComments;
+private boolean callReturnNeeded;
   private int memAdress;
   StringBuilder functionsDeclarations;
 
@@ -47,6 +48,7 @@ public class Main {
     cyclomaticComplexityMap = new HashMap<String,Integer>();
     LongMap = new HashMap<String,Integer>();
     Integer totalLinesOfCode = 0;
+    this.functionComments = new HashMap<String,Integer>();
     this.cyclomaticComplexityMap = new HashMap <String, Integer>();
   }
 
@@ -64,7 +66,7 @@ public class Main {
       try {
         ArrayList<Integer> numInstrucao = new ArrayList<Integer>();
         numInstrucao.add(1);
-        `TopDown(CollectNumberFuncs(main.functionSignatures,main.cyclomaticComplexityMap)).visit(p);
+        `TopDown(CollectNumberFuncs(main.functionSignatures,main.cyclomaticComplexityMap, main.functionComments)).visit(p);
         //Instrucao p2 = `BottomUp(stratPrintAnnotations(numInstrucao)).visit(p);
         Instrucao p2 = p;
         int numInst = numInstrucao.get(0)-1;
@@ -144,8 +146,16 @@ public class Main {
         writer.write("\t" + funcao + " : " + main.cyclomaticComplexityMap.get(funcao)+"\n" );
       }
 
-
-
+        // Writes the number of comments per function
+        int number_comments = 0;  
+        for ( String funcao : main.functionSignatures.keySet() ){
+          int comments =  main.functionComments.get(funcao); 
+            number_comments += comments;
+          }
+      writer.write("Total comments present on file:" +  number_comments + "\n");
+   for ( String funcao : main.functionSignatures.keySet()){
+        writer.write("\t" + funcao + " : " + main.functionComments.get(funcao)+"\n" );
+      }
 
 
       /** 4) Metric for counting number of lines of code (Total lines of code - LOC) 
@@ -153,8 +163,6 @@ public class Main {
        * Comments should not be counted
        **/
       writer.write("Total lines of Code (LOC):\n");
-
-
 
       /** 5) Calculate functions length ***/
       writer.write("Functions Length:\n");
@@ -166,9 +174,6 @@ public class Main {
       writer.flush();
       writer.close();
     }
-
-
-
 
     catch (IOException e){
       System.out.println("ERROR in metrics file"); 
@@ -224,8 +229,6 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
   }
 }
 
-
-
 %strategy startCollectCyclomatic(HashMap complexidade, String funcao) extends Identity() {
   visit Instrucao {
     For(_,_,_,_,_,_,_,_,_,_,inst,_) -> {
@@ -254,20 +257,34 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
 }
 
 
-/** Tentativa definir uma métrica para contar o número de funções ***/
-%strategy CollectNumberFuncs(func:HashMap,complex_c:HashMap) extends Identity() {
-  visit Instrucao {
-    Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
-      func.put(`nome, `argumentos);
-      complex_c.put(`nome,0);
-      `TopDown(startCollectCyclomatic(complex_c,nome)).visit(`inst);
+%strategy startCollectComments(HashMap comments, String funcao) extends Identity() {
+  visit LComentarios {
+    Comentario(Vazio) -> {
+      int num_comentarios = (int) comments.get(funcao);
+      num_comentarios++;
+	comments.put(funcao, num_comentarios);
+}
+    Comentarios(lcom) -> {
+      `TopDown(startCollectComments(comments,funcao)).visit(`lcom);
     }
   }
 }
 
+
+/** métrica para contar o número de funções ***/
+%strategy CollectNumberFuncs(func:HashMap,complex_c:HashMap, comments:HashMap) extends Identity() {
+  visit Instrucao {
+    Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
+      func.put(`nome, `argumentos);
+      complex_c.put(`nome,0);
+      comments.put(`nome, 0);
+      `TopDown(startCollectCyclomatic(complex_c,nome)).visit(`inst);
+      `TopDown(startCollectComments(comments,nome)).visit(`inst);
+}
+  }
+}
+
 /********************************************************************/
-
-
 %strategy stratBadSmells() extends Identity() {
   visit Instrucao {
     If(c1,c2,c3,Nao(condicao),c4,c5,inst1,inst2) -> {

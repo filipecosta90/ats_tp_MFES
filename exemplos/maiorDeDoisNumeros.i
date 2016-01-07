@@ -19,6 +19,7 @@ void main() {
 
 int max(int a, int b){
   int res;
+  //teste comentario 
   if (a > b) {
     if (a > b ){
       res = a;
@@ -27,6 +28,7 @@ int max(int a, int b){
   else {
     res = b;
   }
+  // teste comentario 3
   if (a == b) {
     if (a == b) {
       if (a == b) {
