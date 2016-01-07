@@ -34,6 +34,22 @@ public class Main {
   HashMap <String,Integer> LongMap;
   Integer totalLinesOfCode;
 
+
+  public Main() {
+    actualFunctionName = "";
+    functionSignatures = new HashMap<String, Argumentos>();
+    callReturnNeeded = true;
+    functionsDeclarations = new StringBuilder();
+    memAdress = 0;
+
+    Integer numberFunctions = 0;
+    functionsNumberParameters = new HashMap<String,Integer>();
+    cyclomaticComplexityMap = new HashMap<String,Integer>();
+    LongMap = new HashMap<String,Integer>();
+    Integer totalLinesOfCode = 0;
+    this.cyclomaticComplexityMap = new HashMap <String, Integer>();
+  }
+
   public static void main(String[] args) {
     try {
       iLexer lexer = new iLexer(new ANTLRInputStream(System.in));
@@ -48,7 +64,7 @@ public class Main {
       try {
         ArrayList<Integer> numInstrucao = new ArrayList<Integer>();
         numInstrucao.add(1);
-        `TopDown(CollectFuncsSignature(main.functionSignatures)).visit(p);
+        `TopDown(CollectNumberFuncs(main.functionSignatures,main.cyclomaticComplexityMap)).visit(p);
         //Instrucao p2 = `BottomUp(stratPrintAnnotations(numInstrucao)).visit(p);
         Instrucao p2 = p;
         int numInst = numInstrucao.get(0)-1;
@@ -97,47 +113,47 @@ public class Main {
         System.out.println("ERROR in dot file"); 
       }
 
-	/** 1) Metric to count number of functions **/
-      	main.numberFunctions = main.functionSignatures.size();
-      	try{
-		File file = new File("metrics.txt");
-		// creates the file
-		file.createNewFile();
-		// creates a FileWriter Object
-		FileWriter writer = new FileWriter(file); 
-		// Writes the content to the file
-		writer.write("Number of fuctions: " + main.numberFunctions +"\n");
+      /** 1) Metric to count number of functions **/
+      main.numberFunctions = main.functionSignatures.size();
+      try{
+        File file = new File("metrics.txt");
+        // creates the file
+        file.createNewFile();
+        // creates a FileWriter Object
+        FileWriter writer = new FileWriter(file); 
+        // Writes the content to the file
+        writer.write("Number of fuctions: " + main.numberFunctions +"\n");
 
-      	/** 2) Metric to count the number of arguments per function **/
-      	writer.write("Number of Arguments per function:\n");
+        /** 2) Metric to count the number of arguments per function **/
+        writer.write("Number of Arguments per function:\n");
         for (String funcao : main.functionSignatures.keySet()){
           Argumentos a = main.functionSignatures.get(funcao);
           int occurence = StringUtils.countMatches(a.toString(), "Argumento(");
           writer.write("\t" + funcao +  " : " + occurence + "\n");
-
+          writer.write("\t number for's:" + main.cyclomaticComplexityMap.get(funcao)+"\n" );
         }
 
-	/** 3) Metric to compute Cyclomatic Complexity **/
-	writer.write("Calculated Ciclomatic Complexity:\n");
-	//(...)
+        /** 3) Metric to compute Cyclomatic Complexity **/
+        writer.write("Calculated Ciclomatic Complexity:\n");
+        //(...)
 
 
 
-	/** 4) Metric for counting number of lines of code (Total lines of code - LOC) 
-	* Blank lines should not be counted
-	* Comments should not be counted
-	**/
-	    writer.write("Total lines of Code (LOC):\n");
+        /** 4) Metric for counting number of lines of code (Total lines of code - LOC) 
+         * Blank lines should not be counted
+         * Comments should not be counted
+         **/
+        writer.write("Total lines of Code (LOC):\n");
 
 
 
-	/** 5) Calculate functions length ***/
-	    writer.write("Functions Length:\n");
-      for (String funcao : main.functionSignatures.keySet()){
-        Argumentos a = main.functionSignatures.get(funcao);
-        int occurence1 = StringUtils.countMatches(a.toString(), "SeqInstrucao");
-        writer.write("\t"+funcao+" : "+occurence1+"\n");
-      }
+        /** 5) Calculate functions length ***/
+        writer.write("Functions Length:\n");
+        for (String funcao : main.functionSignatures.keySet()){
+          Argumentos a = main.functionSignatures.get(funcao);
+          int occurence1 = StringUtils.countMatches(a.toString(), "SeqInstrucao");
+          writer.write("\t"+funcao+" : "+occurence1+"\n");
+        }
         writer.flush();
         writer.close();
       }
@@ -154,22 +170,6 @@ public class Main {
       e.printStackTrace();
     }
   }
-
-  public Main() {
-    actualFunctionName = "";
-    functionSignatures = new HashMap<String, Argumentos>();
-    callReturnNeeded = true;
-    functionsDeclarations = new StringBuilder();
-    memAdress = 0;
-
-    Integer numberFunctions = 0;
-    HashMap <String,Integer> functionsNumberParameters = new HashMap<String,Integer>();
-    HashMap <String,Integer> cyclomaticComplexityMap = new HashMap<String,Integer>();
-    HashMap <String,Integer> LongMap = new HashMap<String,Integer>();
-    Integer totalLinesOfCode = 0;
-
-  }
-
   public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<String> idsUtilizados) {
     %match(args) {
       ListaArgumentos(arg1,tailArg*) -> {
@@ -186,12 +186,56 @@ public class Main {
     return args;
   }
 
-  /** Tentativa definir uma métrica para contar o número de funções ***/
+  %strategy startCollectCyclomaticInside( complexidade:HashMap, maximo_medido:int ) extends Identity() {
+    visit Instrucao {
+      For(_,_,_,_,_,_,_,_,_,_,inst,_) -> {
+        maximo_medido++;
+        `TopDown(startCollectCyclomaticInside(complex_c,maximo_medido)).visit(`inst);
+      }
+      If(_,_,_,_,_,_,inst,_) -> {
+        maximo_medido++;
+        `TopDown(startCollectCyclomaticInside(complex_c,maximo_medido)).visit(`inst);
+      }
+      While(_,_,_,_,_,_,inst,_) -> {
+        maximo_medido++;
+        `TopDown(startCollectCyclomaticInside(complex_c,maximo_medido)).visit(`inst);
+      }
+    }
+  }
 
-  %strategy CollectNumberFuncs(func:HashMap) extends Identity() {
+
+
+  %strategy startCollectCyclomatic(HashMap complexidade, String funcao) extends Identity() {
+    visit Instrucao {
+      For(_,_,_,_,_,_,_,_,_,_,inst,_) -> {
+        Integer   n_complexidade = (int) complexidade.get(funcao);
+        Integer maximoComplexidade = 1;
+        `TopDown(startCollectCyclomaticInside(complex_c,maximoComplexidade)).visit(`inst);
+        if(maximoComplexidade > n_complexidade ){
+          complexidade.put(funcao,maximoComplexidade);
+        }
+      }
+      If(_,_,_,_,_,_,inst,_) -> {
+        Integer   n_complexidade = (int) complexidade.get(funcao);
+        n_complexidade++;
+        complexidade.put(funcao,n_complexidade);
+      }
+      While(_,_,_,_,_,_,inst,_) -> {
+        Integer   n_complexidade = (int) complexidade.get(funcao);
+        n_complexidade++;
+        complexidade.put(funcao,n_complexidade);
+      }
+    }
+  }
+
+
+  /** Tentativa definir uma métrica para contar o número de funções ***/
+  %strategy CollectNumberFuncs(func:HashMap,complex_c:HashMap) extends Identity() {
     visit Instrucao {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
         func.put(`nome, `argumentos);
+        complex_c.put(`nome,0);
+        `TopDown(startCollectCyclomatic(complex_c,nome)).visit(`inst);
       }
     }
   }
