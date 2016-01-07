@@ -32,6 +32,7 @@ public class Main {
   HashMap <String,Integer> functionsNumberParameters;
   HashMap <String,Integer> cyclomaticComplexityMap;
   HashMap <String,Integer> LongMap;
+  HashMap <String,Integer> nOperationsMap;
   Integer totalLinesOfCode;
 
 
@@ -47,6 +48,7 @@ public class Main {
     cyclomaticComplexityMap = new HashMap<String,Integer>();
     LongMap = new HashMap<String,Integer>();
     Integer totalLinesOfCode = 0;
+    this.nOperationsMap = new HashMap <String,Integer>();
     this.cyclomaticComplexityMap = new HashMap <String, Integer>();
   }
 
@@ -144,7 +146,10 @@ public class Main {
         writer.write("\t" + funcao + " : " + main.cyclomaticComplexityMap.get(funcao)+"\n" );
       }
 
-
+      writer.write("Number operations per function:\n");
+      for ( String funcao : main.functionSignatures.keySet()){
+        writer.write("\t" + funcao + " : " + main.nOperationsMap.get(funcao)+"\n" );
+      }
 
 
 
@@ -253,6 +258,16 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
   }
 }
 
+
+%strategy startCollectNumOperations(HashMap numberOperations, String funcao) extends Identity() {
+  visit OpNum {
+    Mais()  -> {
+      int valor_mapa = (int) numberOperations.get(funcao);
+      valor_mapa++;
+      numberOperations.put(funcao, valor_mapa);
+   }
+   }
+}
 
 /** Tentativa definir uma métrica para contar o número de funções ***/
 %strategy CollectNumberFuncs(func:HashMap,complex_c:HashMap) extends Identity() {
