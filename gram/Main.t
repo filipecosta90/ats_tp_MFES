@@ -35,6 +35,7 @@ private boolean callReturnNeeded;
   HashMap <String,Integer> LongMap;
   HashMap <String,Integer> nOperationsMap;
   HashMap <String,Integer> nOperationsComparisonsMap;
+  HashMap <String,Integer> opAtribMap;
   HashMap <String,Integer> nIncrDecrOpMap;
   Integer totalLinesOfCode;
 
@@ -54,6 +55,7 @@ private boolean callReturnNeeded;
     this.nOperationsMap = new HashMap <String,Integer>();
     this.nOperationsComparisonsMap = new HashMap <String,Integer>();
     this.nIncrDecrOpMap = new HashMap <String,Integer>();
+    this.opAtribMap = new HashMap <String,Integer>();
     this.functionComments = new HashMap<String,Integer>();
     this.cyclomaticComplexityMap = new HashMap <String, Integer>();
   }
@@ -72,7 +74,7 @@ private boolean callReturnNeeded;
       try {
         ArrayList<Integer> numInstrucao = new ArrayList<Integer>();
         numInstrucao.add(1);
-        `TopDown(CollectNumberFuncs(main.functionSignatures,main.cyclomaticComplexityMap, main.functionComments , main.nOperationsMap, main.nOperationsComparisonsMap, main.nIncrDecrOpMap)).visit(p);
+        `TopDown(CollectNumberFuncs(main.functionSignatures,main.cyclomaticComplexityMap, main.functionComments , main.nOperationsMap, main.nOperationsComparisonsMap, main.nIncrDecrOpMap, main.opAtribMap)).visit(p);
         //Instrucao p2 = `BottomUp(stratPrintAnnotations(numInstrucao)).visit(p);
         Instrucao p2 = p;
         int numInst = numInstrucao.get(0)-1;
@@ -140,6 +142,8 @@ private boolean callReturnNeeded;
         }
        
       writer.write("Calculated Cyclomatic Complexity: "+ maximo_complexidade +"\n");
+      
+      
       /** 2) Metric to count the number of arguments per function **/
       writer.write("Number of Arguments per function:\n");
       for (String funcao : main.functionSignatures.keySet()){
@@ -299,7 +303,7 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
    }
 }
 
-/** Metric to compute number of comparisons operations number **/
+/** Metric to compute *** Number of comparisons operations *** **/
 %strategy startCollectNumOperationsComparisons(HashMap numComp, String funcao) extends Identity() {
 	visit OpComp {
 	
@@ -337,7 +341,7 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
 	}
 }
 
-/** Metric to compute number of increments (Increment and "Decrement" operations included)**/
+/** Metric to compute *** Number of increments/decrements *** (Increment and "Decrement" operations included)**/
 %strategy startCollectNumOfIncrementsAndDecrements(HashMap incrNum, String funcao) extends Identity() {
 	visit OpInc {
 	
@@ -352,6 +356,39 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
 		valor_mapa++;
 		incrNum.put(funcao, valor_mapa);
 	   }
+	}
+}
+
+
+/** Metric to compute *** Number of Atrib/Mult/Div/Soma/Sub operations **/
+%strategy startCollectOpAtribOperations(HashMap numOpAtrib, String funcao) extends Identity() {
+	visit OpAtribuicao {
+	
+		Atrib() -> {
+			int valor_mapa = (int) numOpAtrib.get(funcao);
+			valor_mapa++;
+			numOpAtrib.put(funcao, valor_mapa);
+		}
+		Mult() -> {
+			int valor_mapa = (int) numOpAtrib.get(funcao);
+			valor_mapa++;
+			numOpAtrib.put(funcao, valor_mapa);
+		}
+		Div() -> {
+			int valor_mapa = (int) numOpAtrib.get(funcao);
+			valor_mapa++;
+			numOpAtrib.put(funcao, valor_mapa);
+		}
+		Soma()  -> {
+			int valor_mapa = (int) numOpAtrib.get(funcao);
+			valor_mapa++;
+			numOpAtrib.put(funcao, valor_mapa);
+		}
+		Sub()  -> {
+			int valor_mapa = (int) numOpAtrib.get(funcao);
+			valor_mapa++;
+			numOpAtrib.put(funcao, valor_mapa);
+		}
 	}
 }
 
@@ -371,7 +408,7 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
 
 
 /** métrica para contar o número de funções ***/
-%strategy CollectNumberFuncs(func:HashMap, complex_c:HashMap, comments:HashMap, operations:HashMap, operationsNumComp:HashMap, incrDecrOp:HashMap) extends Identity() {
+%strategy CollectNumberFuncs(func:HashMap, complex_c:HashMap, comments:HashMap, operations:HashMap, operationsNumComp:HashMap, incrDecrOp:HashMap, opAtribMap:HashMap) extends Identity() {
   visit Instrucao {
     Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
       func.put(`nome, `argumentos);
@@ -379,11 +416,15 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
       comments.put(`nome, 0);
       operations.put(`nome,0);
       operationsNumComp.put(`nome,0);
+      incrDecrOp.put(`nome,0);
+      opAtribMap.put(`nome,0);
+
     `TopDown(startCollectCyclomatic(complex_c,nome)).visit(`inst);
+    `TopDown(startCollectComments(comments,nome)).visit(`inst);
     `TopDown(startCollectNumOperations(operations,nome)).visit(`inst);
     `TopDown(startCollectNumOperationsComparisons(operationsNumComp,nome)).visit(`inst);
     `TopDown(startCollectNumOfIncrementsAndDecrements(incrDecrOp,nome)).visit(`inst);
-    `TopDown(startCollectComments(comments,nome)).visit(`inst);
+    `TopDown(startCollectOpAtribOperations(opAtribMap,nome)).visit(`inst);
 }
   }
 }
