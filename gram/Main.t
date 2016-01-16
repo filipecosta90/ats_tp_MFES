@@ -132,7 +132,7 @@ private boolean callReturnNeeded;
       try {
         ArrayList<Integer> numInstrucao = new ArrayList<Integer>();
         numInstrucao.add(1);
-        `TopDown(CollectNumberFuncs(main.functionSignatures,main.cyclomaticComplexityMap, main.functionComments , main.nOperationsMap, main.nOperationsComparisonsMap, main.nIncrDecrOpMap, main.opAtribMap)).visit(p);
+        `TopDown(CollectNumberFuncs(main.functionSignatures, main.cyclomaticComplexityMap, main.functionComments , main.nOperationsMap, main.nOperationsComparisonsMap, main.nIncrDecrOpMap, main.opAtribMap)).visit(p);
         //Instrucao p2 = `BottomUp(stratPrintAnnotations(numInstrucao)).visit(p);
         Instrucao p2 = p;
         int numInst = numInstrucao.get(0)-1;
@@ -181,6 +181,10 @@ private boolean callReturnNeeded;
         System.out.println("ERROR in dot file"); 
       }
 
+
+      /*************************************************** PRINTING METRICS VALUES ***********************************************************/
+
+
       /** 1) Metric to count number of functions **/
       main.numberFunctions = main.functionSignatures.size();
       try{
@@ -209,45 +213,79 @@ private boolean callReturnNeeded;
         int occurence = StringUtils.countMatches(a.toString(), "Argumento(");
         writer.write("\t" + funcao +  " : " + occurence + "\n");
       }
+
+
+      /** 3) Metric to count Cyclomatic Complexity Per Function **/
       writer.write("Cyclomatic Complexity per function:\n");
       for ( String funcao : main.functionSignatures.keySet()){
         writer.write("\t" + funcao + " : " + main.cyclomaticComplexityMap.get(funcao)+"\n" );
       }
 
-      writer.write("Number operations per function:\n");
+
+      /** 4) Metric to count Number Of Operations Per Function **/
+      writer.write("Number Operations per function:\n");
       for ( String funcao : main.functionSignatures.keySet()){
         writer.write("\t" + funcao + " : " + main.nOperationsMap.get(funcao)+"\n" );
       }
 
 
-        // Writes the number of comments per function
-        int number_comments = 0;  
-        for ( String funcao : main.functionSignatures.keySet() ){
-          int comments =  main.functionComments.get(funcao); 
-            number_comments += comments;
-          }
+      /** 5) Metric to count the Number Of Comments Per Function **/
+      int number_comments = 0;  
+      for ( String funcao : main.functionSignatures.keySet() ){
+        int comments =  main.functionComments.get(funcao); 
+        number_comments += comments;
+      }
       writer.write("Total comments present on file:" +  number_comments + "\n");
-   for ( String funcao : main.functionSignatures.keySet()){
+      for ( String funcao : main.functionSignatures.keySet()){
         writer.write("\t" + funcao + " : " + main.functionComments.get(funcao)+"\n" );
       }
 
 
-      /** 4) Metric for counting number of lines of code (Total lines of code - LOC) 
+      /** 6) Metric for counting number of lines of code (Total lines of code - LOC) 
        * Blank lines should not be counted
        * Comments should not be counted
        **/
       writer.write("Total lines of Code (LOC):\n");
+	
+	/// !!!!!! FALTA !!!!!!
+	
 
-      /** 5) Calculate functions length ***/
+      /** 7) Metric to calculate Functions Length ***/
       writer.write("Functions Length:\n");
       for (String funcao : main.functionSignatures.keySet()){
         Argumentos a = main.functionSignatures.get(funcao);
         int occurence1 = StringUtils.countMatches(a.toString(), "SeqInstrucao");
         writer.write("\t"+funcao+" : "+occurence1+"\n");
       }
+
+
+      /** 8) Metric to count Number of Operations Comparisons **/
+      writer.write("Total Number of Operations Comparisons:\n");
+      for ( String funcao : main.functionSignatures.keySet()){
+        writer.write("\t" + funcao + " : " + main.nOperationsComparisonsMap.get(funcao)+"\n" );
+      }    
+
+      /** 9) Metric to count Number of Increment/Decrement Operations **/
+      writer.write("Total Number of Increment/Decrement Operations:\n");
+      for ( String funcao : main.functionSignatures.keySet()){
+        writer.write("\t" + funcao + " : " + main.nIncrDecrOpMap.get(funcao)+"\n" );
+      }     
+
+      /** 10) Metric to count Number of Atribuicao Operations **/
+      writer.write("Total Number of Atrib/Mult/Div/Soma/Sub:\n");
+      for ( String funcao : main.functionSignatures.keySet()){
+        writer.write("\t" + funcao + " : " + main.opAtribMap.get(funcao)+"\n" );
+      }
+     
+     /******* Printing Separated Metrics ********/
+
+	// (....)
+
       writer.flush();
       writer.close();
-    }
+      /**************************************************************************************************************/
+
+}
 
     catch (IOException e){
       System.out.println("ERROR in metrics file"); 
@@ -367,7 +405,7 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
    }
 }
 
-/** Metric to compute *** Number of comparisons operations *** **/
+/** Metric to compute *** Number Of Comparisons Operations *** **/
 %strategy startCollectNumOperationsComparisons(HashMap numComp, String funcao) extends Identity() {
    visit OpComp {
 	
