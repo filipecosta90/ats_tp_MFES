@@ -35,6 +35,7 @@ private boolean callReturnNeeded;
   HashMap <String,Integer> LongMap;
   HashMap <String,Integer> nOperationsMap;
   HashMap <String,Integer> nOperationsComparisonsMap;
+  HashMap <String,Integer> nIncrDecrOpMap;
   Integer totalLinesOfCode;
 
 
@@ -52,6 +53,7 @@ private boolean callReturnNeeded;
     Integer totalLinesOfCode = 0;
     this.nOperationsMap = new HashMap <String,Integer>();
     this.nOperationsComparisonsMap = new HashMap <String,Integer>();
+    this.nIncrDecrOpMap = new HashMap <String,Integer>();
     this.functionComments = new HashMap<String,Integer>();
     this.cyclomaticComplexityMap = new HashMap <String, Integer>();
   }
@@ -70,7 +72,7 @@ private boolean callReturnNeeded;
       try {
         ArrayList<Integer> numInstrucao = new ArrayList<Integer>();
         numInstrucao.add(1);
-        `TopDown(CollectNumberFuncs(main.functionSignatures,main.cyclomaticComplexityMap, main.functionComments , main.nOperationsMap, main.nOperationsComparisonsMap)).visit(p);
+        `TopDown(CollectNumberFuncs(main.functionSignatures,main.cyclomaticComplexityMap, main.functionComments , main.nOperationsMap, main.nOperationsComparisonsMap, main.nIncrDecrOpMap)).visit(p);
         //Instrucao p2 = `BottomUp(stratPrintAnnotations(numInstrucao)).visit(p);
         Instrucao p2 = p;
         int numInst = numInstrucao.get(0)-1;
@@ -297,7 +299,7 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
    }
 }
 
-/** Metric to compute comparisons number **/
+/** Metric to compute number of comparisons operations number **/
 %strategy startCollectNumOperationsComparisons(HashMap numComp, String funcao) extends Identity() {
 	visit OpComp {
 	
@@ -335,6 +337,25 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
 	}
 }
 
+/** Metric to compute number of increments (Increment and "Decrement" operations included)**/
+%strategy startCollectNumOfIncrementsAndDecrements(HashMap incrNum, String funcao) extends Identity() {
+	visit OpInc {
+	
+	   Inc() -> {
+		int valor_mapa = (int) incrNum.get(funcao);
+		valor_mapa++;
+		incrNum.put(funcao, valor_mapa);
+	   }
+
+	   Dec() -> {
+		int valor_mapa = (int) incrNum.get(funcao);
+		valor_mapa++;
+		incrNum.put(funcao, valor_mapa);
+	   }
+	}
+}
+
+
 %strategy startCollectComments(HashMap comments, String funcao) extends Identity() {
   visit LComentarios {
     Comentario(Vazio) -> {
@@ -350,7 +371,7 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
 
 
 /** métrica para contar o número de funções ***/
-%strategy CollectNumberFuncs(func:HashMap, complex_c:HashMap, comments:HashMap, operations:HashMap, operationsNumComp:HashMap) extends Identity() {
+%strategy CollectNumberFuncs(func:HashMap, complex_c:HashMap, comments:HashMap, operations:HashMap, operationsNumComp:HashMap, incrDecrOp:HashMap) extends Identity() {
   visit Instrucao {
     Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
       func.put(`nome, `argumentos);
@@ -361,7 +382,8 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
     `TopDown(startCollectCyclomatic(complex_c,nome)).visit(`inst);
     `TopDown(startCollectNumOperations(operations,nome)).visit(`inst);
     `TopDown(startCollectNumOperationsComparisons(operationsNumComp,nome)).visit(`inst);
-      `TopDown(startCollectComments(comments,nome)).visit(`inst);
+    `TopDown(startCollectNumOfIncrementsAndDecrements(incrDecrOp,nome)).visit(`inst);
+    `TopDown(startCollectComments(comments,nome)).visit(`inst);
 }
   }
 }
