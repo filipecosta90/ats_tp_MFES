@@ -39,6 +39,33 @@ private boolean callReturnNeeded;
   HashMap <String,Integer> nIncrDecrOpMap;
   Integer totalLinesOfCode;
 
+  /*** Separated Metrics ***/
+	/** OpNum **/
+	private static int nrMais;
+	private static int nrVezes;
+	private static int nrDivide;
+	private static int nrMenos;
+	private static int nrMod;
+
+	/** OpComp **/
+	private static int nrMaior;
+	private static int nrMenor;
+	private static int nrMaiorQ;
+	private static int nrMenorQ;
+	private static int nrDif;
+	private static int nrIgual;
+
+	/** OpInc **/
+	private static int nrInc;
+	private static int nrDec;
+
+	/** OpAtribuicao **/
+	private static int nrOpAtribAtrib;
+	private static int nrOpAtribMult;
+	private static int nrOpAtribDiv;
+	private static int nrOpAtribSoma;
+	private static int nrOpAtribSub;
+
 
   public Main() {
     actualFunctionName = "";
@@ -58,7 +85,38 @@ private boolean callReturnNeeded;
     this.opAtribMap = new HashMap <String,Integer>();
     this.functionComments = new HashMap<String,Integer>();
     this.cyclomaticComplexityMap = new HashMap <String, Integer>();
-  }
+ 
+    /****** Separated Metrics Counters Inicialization ******/
+    
+    /** OpNum Inicialization **/
+    this.nrMais = 0;
+    this.nrVezes = 0;
+    this.nrDivide = 0;
+    this.nrMenos = 0;
+    this.nrMod = 0;
+    
+    /** OpComp Inicialization **/
+    this.nrMaior = 0;
+    this.nrMenor = 0;
+    this.nrMaiorQ = 0;
+    this.nrMenorQ = 0;
+    this.nrDif = 0;
+    this.nrIgual = 0;
+
+    /** OpInc Inicialization **/
+    this.nrInc = 0;
+    this.nrDec = 0;
+
+    /** OpAtribuicao **/
+    this.nrOpAtribAtrib = 0;
+    this.nrOpAtribMult = 0;
+    this.nrOpAtribDiv = 0;
+    this.nrOpAtribSoma = 0;
+    this.nrOpAtribSub = 0;
+
+    /****************************************************/
+ }
+
 
   public static void main(String[] args) {
     try {
@@ -273,123 +331,138 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
   }
 }
 
+/** Metric to compute *** Number of Operations *** **/
 %strategy startCollectNumOperations(HashMap numberOperations, String funcao) extends Identity() {
   visit OpNum {
     Mais()  -> {
       int valor_mapa = (int) numberOperations.get(funcao);
       valor_mapa++;
       numberOperations.put(funcao, valor_mapa);
+      nrMais++;
    }
     Vezes()  -> {
       int valor_mapa = (int) numberOperations.get(funcao);
       valor_mapa++;
       numberOperations.put(funcao, valor_mapa);
+      nrVezes++;
    }
     Divide()  -> {
       int valor_mapa = (int) numberOperations.get(funcao);
       valor_mapa++;
       numberOperations.put(funcao, valor_mapa);
+      nrDivide++;
    }
     Menos()  -> {
       int valor_mapa = (int) numberOperations.get(funcao);
       valor_mapa++;
       numberOperations.put(funcao, valor_mapa);
+      nrMenos++;
    }
     Mod()  -> {
       int valor_mapa = (int) numberOperations.get(funcao);
       valor_mapa++;
       numberOperations.put(funcao, valor_mapa);
+      nrMod++;
    }
    }
 }
 
 /** Metric to compute *** Number of comparisons operations *** **/
 %strategy startCollectNumOperationsComparisons(HashMap numComp, String funcao) extends Identity() {
-	visit OpComp {
+   visit OpComp {
 	
-		Maior() -> {
-			int valor_mapa = (int) numComp.get(funcao);
-			valor_mapa++;
-			numComp.put(funcao, valor_mapa);
-		}
-		Menor() -> {
-			int valor_mapa = (int) numComp.get(funcao);
-			valor_mapa++;
-			numComp.put(funcao, valor_mapa);
-		}
-		MaiorQ() -> {
-			int valor_mapa = (int) numComp.get(funcao);
-			valor_mapa++;
-			numComp.put(funcao, valor_mapa);
-		}
-		MenorQ()  -> {
-			int valor_mapa = (int) numComp.get(funcao);
-			valor_mapa++;
-			numComp.put(funcao, valor_mapa);
-		}
-		Dif()  -> {
-			int valor_mapa = (int) numComp.get(funcao);
-			valor_mapa++;
-			numComp.put(funcao, valor_mapa);
-		}
-		Igual()  -> {
-			int valor_mapa = (int) numComp.get(funcao);
-			valor_mapa++;
-			numComp.put(funcao, valor_mapa);
-		}
-	
-	}
+   Maior() -> {
+	int valor_mapa = (int) numComp.get(funcao);
+	valor_mapa++;
+	numComp.put(funcao, valor_mapa);
+	nrMaior++;
+   }
+   Menor() -> {
+	int valor_mapa = (int) numComp.get(funcao);
+	valor_mapa++;
+	numComp.put(funcao, valor_mapa);
+	nrMenor++;
+   }
+   MaiorQ() -> {
+	int valor_mapa = (int) numComp.get(funcao);
+	valor_mapa++;
+	numComp.put(funcao, valor_mapa);
+	nrMaiorQ++;
+   }
+   MenorQ()  -> {
+	int valor_mapa = (int) numComp.get(funcao);
+	valor_mapa++;
+	numComp.put(funcao, valor_mapa);
+	nrMenorQ++;
+   }
+   Dif()  -> {
+	int valor_mapa = (int) numComp.get(funcao);
+	valor_mapa++;
+	numComp.put(funcao, valor_mapa);
+	nrDif++;
+   }
+   Igual()  -> {
+	int valor_mapa = (int) numComp.get(funcao);
+	valor_mapa++;
+	numComp.put(funcao, valor_mapa);
+	nrIgual++;
+   }
+  }
 }
 
 /** Metric to compute *** Number of increments/decrements *** (Increment and "Decrement" operations included)**/
 %strategy startCollectNumOfIncrementsAndDecrements(HashMap incrNum, String funcao) extends Identity() {
-	visit OpInc {
-	
-	   Inc() -> {
+   visit OpInc {
+	Inc() -> {
 		int valor_mapa = (int) incrNum.get(funcao);
 		valor_mapa++;
 		incrNum.put(funcao, valor_mapa);
-	   }
-
-	   Dec() -> {
-		int valor_mapa = (int) incrNum.get(funcao);
-		valor_mapa++;
-		incrNum.put(funcao, valor_mapa);
-	   }
+		nrInc++;
 	}
+	Dec() -> {
+		int valor_mapa = (int) incrNum.get(funcao);
+		valor_mapa++;
+		incrNum.put(funcao, valor_mapa);
+		nrDec++;
+	}
+   }
 }
 
 
 /** Metric to compute *** Number of Atrib/Mult/Div/Soma/Sub operations **/
 %strategy startCollectOpAtribOperations(HashMap numOpAtrib, String funcao) extends Identity() {
-	visit OpAtribuicao {
-	
-		Atrib() -> {
-			int valor_mapa = (int) numOpAtrib.get(funcao);
-			valor_mapa++;
-			numOpAtrib.put(funcao, valor_mapa);
-		}
-		Mult() -> {
-			int valor_mapa = (int) numOpAtrib.get(funcao);
-			valor_mapa++;
-			numOpAtrib.put(funcao, valor_mapa);
-		}
-		Div() -> {
-			int valor_mapa = (int) numOpAtrib.get(funcao);
-			valor_mapa++;
-			numOpAtrib.put(funcao, valor_mapa);
-		}
-		Soma()  -> {
-			int valor_mapa = (int) numOpAtrib.get(funcao);
-			valor_mapa++;
-			numOpAtrib.put(funcao, valor_mapa);
-		}
-		Sub()  -> {
-			int valor_mapa = (int) numOpAtrib.get(funcao);
-			valor_mapa++;
-			numOpAtrib.put(funcao, valor_mapa);
-		}
+   visit OpAtribuicao {
+	Atrib() -> {
+		int valor_mapa = (int) numOpAtrib.get(funcao);
+		valor_mapa++;
+		numOpAtrib.put(funcao, valor_mapa);
+		nrOpAtribAtrib++;
 	}
+	Mult() -> {
+		int valor_mapa = (int) numOpAtrib.get(funcao);
+		valor_mapa++;
+		numOpAtrib.put(funcao, valor_mapa);
+		nrOpAtribMult++;
+	}
+	Div() -> {
+		int valor_mapa = (int) numOpAtrib.get(funcao);
+		valor_mapa++;
+		numOpAtrib.put(funcao, valor_mapa);
+		nrOpAtribDiv++;
+	}
+	Soma()  -> {
+		int valor_mapa = (int) numOpAtrib.get(funcao);
+		valor_mapa++;
+		numOpAtrib.put(funcao, valor_mapa);
+		nrOpAtribSoma++;
+	}
+	Sub()  -> {
+		int valor_mapa = (int) numOpAtrib.get(funcao);
+		valor_mapa++;
+		numOpAtrib.put(funcao, valor_mapa);
+		nrOpAtribSub++;
+	}
+   }
 }
 
 
