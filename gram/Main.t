@@ -34,6 +34,7 @@ private boolean callReturnNeeded;
   HashMap <String,Integer> cyclomaticComplexityMap;
   HashMap <String,Integer> LongMap;
   HashMap <String,Integer> nOperationsMap;
+  HashMap <String,Integer> nOperationsComparisonsMap;
   Integer totalLinesOfCode;
 
 
@@ -50,6 +51,7 @@ private boolean callReturnNeeded;
     LongMap = new HashMap<String,Integer>();
     Integer totalLinesOfCode = 0;
     this.nOperationsMap = new HashMap <String,Integer>();
+    this.nOperationsComparisonsMap = new HashMap <String,Integer>();
     this.functionComments = new HashMap<String,Integer>();
     this.cyclomaticComplexityMap = new HashMap <String, Integer>();
   }
@@ -68,7 +70,7 @@ private boolean callReturnNeeded;
       try {
         ArrayList<Integer> numInstrucao = new ArrayList<Integer>();
         numInstrucao.add(1);
-        `TopDown(CollectNumberFuncs(main.functionSignatures,main.cyclomaticComplexityMap, main.functionComments , main.nOperationsMap )).visit(p);
+        `TopDown(CollectNumberFuncs(main.functionSignatures,main.cyclomaticComplexityMap, main.functionComments , main.nOperationsMap, main.nOperationsComparisonsMap)).visit(p);
         //Instrucao p2 = `BottomUp(stratPrintAnnotations(numInstrucao)).visit(p);
         Instrucao p2 = p;
         int numInst = numInstrucao.get(0)-1;
@@ -295,6 +297,44 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
    }
 }
 
+/** Metric to compute comparisons number **/
+%strategy startCollectNumOperationsComparisons(HashMap numComp, String funcao) extends Identity() {
+	visit OpComp {
+	
+		Maior() -> {
+			int valor_mapa = (int) numComp.get(funcao);
+			valor_mapa++;
+			numComp.put(funcao, valor_mapa);
+		}
+		Menor() -> {
+			int valor_mapa = (int) numComp.get(funcao);
+			valor_mapa++;
+			numComp.put(funcao, valor_mapa);
+		}
+		MaiorQ() -> {
+			int valor_mapa = (int) numComp.get(funcao);
+			valor_mapa++;
+			numComp.put(funcao, valor_mapa);
+		}
+		MenorQ()  -> {
+			int valor_mapa = (int) numComp.get(funcao);
+			valor_mapa++;
+			numComp.put(funcao, valor_mapa);
+		}
+		Dif()  -> {
+			int valor_mapa = (int) numComp.get(funcao);
+			valor_mapa++;
+			numComp.put(funcao, valor_mapa);
+		}
+		Igual()  -> {
+			int valor_mapa = (int) numComp.get(funcao);
+			valor_mapa++;
+			numComp.put(funcao, valor_mapa);
+		}
+	
+	}
+}
+
 %strategy startCollectComments(HashMap comments, String funcao) extends Identity() {
   visit LComentarios {
     Comentario(Vazio) -> {
@@ -310,19 +350,22 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
 
 
 /** métrica para contar o número de funções ***/
-%strategy CollectNumberFuncs(func:HashMap,complex_c:HashMap, comments:HashMap, operations:HashMap) extends Identity() {
+%strategy CollectNumberFuncs(func:HashMap, complex_c:HashMap, comments:HashMap, operations:HashMap, operationsNumComp:HashMap) extends Identity() {
   visit Instrucao {
     Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
       func.put(`nome, `argumentos);
       complex_c.put(`nome,0);
       comments.put(`nome, 0);
       operations.put(`nome,0);
+      operationsNumComp.put(`nome,0);
     `TopDown(startCollectCyclomatic(complex_c,nome)).visit(`inst);
     `TopDown(startCollectNumOperations(operations,nome)).visit(`inst);
+    `TopDown(startCollectNumOperationsComparisons(operationsNumComp,nome)).visit(`inst);
       `TopDown(startCollectComments(comments,nome)).visit(`inst);
 }
   }
 }
+
 
 /********************************************************************/
 %strategy stratBadSmells() extends Identity() {
