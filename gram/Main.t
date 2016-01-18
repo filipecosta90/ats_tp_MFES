@@ -26,7 +26,7 @@ public class Main {
   %include{util/types/Set.tom}
   %include{../genI/gram/i/i.tom}
   %include{util/TreeSet.tom}
-  
+
   private String actualFunctionName;
   HashMap<String, Argumentos> functionSignatures;
   HashMap<String, Argumentos> functionMap;
@@ -189,6 +189,8 @@ public class Main {
         `TopDown(CollectNumberFuncs(main.functionSignatures, main.argsMap,  main.cyclomaticComplexityMap, main.functionComments , main.nOperationsMap, main.nOperationsComparisonsMap, main.nIncrDecrOpMap, main.opAtribMap)).visit(p);
         `TopDown(collectLN(main.lnMap)).visit(p);
         `TopDown(collectIPL(main.iplMap)).visit(p);
+        `TopDown(collectUsedIdsMap(main.usedIdsMap)).visit(p);
+
         Instrucao p2 = p;
         int numInst = numInstrucao.get(0)-1;
         LComentarios c = `Vazio();
@@ -257,7 +259,6 @@ public class Main {
         }
 
         writer.write("Calculated Cyclomatic Complexity: "+ maximo_complexidade +"\n");
-
         /** 2) Metric to count the number of arguments per function **/
         writer.write("Number of Arguments per function:\n");
         for (String funcao : main.functionSignatures.keySet()){
@@ -315,6 +316,12 @@ public class Main {
         }     
 
         /** 10) Metric to count Number of Atribuicao Operations **/
+        writer.write("Total Number of Atrib/Mult/Div/Soma/Sub:\n");
+        for ( String funcao : main.functionSignatures.keySet()){
+          writer.write("\t" + funcao + " : " + main.opAtribMap.get(funcao)+"\n" );
+        }
+
+        /** 10) Metric to  **/
         writer.write("Total Number of Atrib/Mult/Div/Soma/Sub:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.opAtribMap.get(funcao)+"\n" );
