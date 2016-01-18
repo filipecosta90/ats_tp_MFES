@@ -25,6 +25,7 @@ public class Main {
   %include{util/types/Collection.tom}
   %include{util/types/Set.tom}
   %include{../genI/gram/i/i.tom}
+  %include{util/TreeSet.tom}
 
   private String actualFunctionName;
   HashMap<String, Argumentos> functionSignatures;
@@ -47,6 +48,8 @@ public class Main {
   HashMap <String,Integer> iplMap;
   HashMap <String,Integer> argsMap;
   Integer totalLinesOfCode;
+  HashMap <String, TreeSet<String> > usedIdsMap;
+  HashMap <String, TreeSet<String> > usedArgsMap;
 
   /*** Separated Metrics ***/
   /** OpNum **/
@@ -95,6 +98,8 @@ public class Main {
     this.cyclomaticComplexityMap = new HashMap <String, Integer>();
     this.lnMap = new HashMap <String,Integer>();
     this.argsMap = new HashMap <String, Integer>();
+    this.usedIdsMap = new HashMap <String, TreeSet<String> >();
+    this.usedArgsMap = new HashMap <String, TreeSet<String> >();
     this.iplMap = new HashMap <String,Integer>();
     /****** Separated Metrics Counters Inicialization ******/
 
@@ -189,6 +194,10 @@ public class Main {
         `TopDown(CollectNumOperationsIncrDecr(main.functionSignatures, main.nIncrDecrOpMap)).visit(p);
         `TopDown(CollectOpAtrib(main.functionSignatures, main.opAtribMap)).visit(p);
         `TopDown(collectIPL(main.iplMap)).visit(p);
+<<<<<<< HEAD
+=======
+        `TopDown(collectUsedIdsMap(main.usedIdsMap)).visit(p);
+>>>>>>> 05b65981f7a4ee112264628d17cc9611c95f1909
 
         Instrucao p2 = p;
         int numInst = numInstrucao.get(0)-1;
@@ -211,7 +220,7 @@ public class Main {
             } 
           }
           else if (args[0].equals("-bs")) {
-            Instrucao p3 = `TopDown(stratBadSmells()).visit(p);
+            Instrucao p3 = `TopDown(startBadSmells()).visit(p);
             instrucoes = main.compileAnnot(p3);
           }
           else {
@@ -258,7 +267,6 @@ public class Main {
         }
 
         writer.write("Calculated Cyclomatic Complexity: "+ maximo_complexidade +"\n");
-
         /** 2) Metric to count the number of arguments per function **/
         writer.write("Number of Arguments per function:\n");
         for (String funcao : main.functionSignatures.keySet()){
@@ -321,6 +329,12 @@ public class Main {
           writer.write("\t" + funcao + " : " + main.opAtribMap.get(funcao)+"\n" );
         }
 
+        /** 10) Metric to  **/
+        writer.write("Total Number of Atrib/Mult/Div/Soma/Sub:\n");
+        for ( String funcao : main.functionSignatures.keySet()){
+          writer.write("\t" + funcao + " : " + main.opAtribMap.get(funcao)+"\n" );
+        }
+
         /******* Printing Separated Metrics ********/
 
         writer.flush();
@@ -355,12 +369,11 @@ public class Main {
     return args;
   }
 
- /* Line number counting per function  */
+  /* Line number counting per function  */
   %strategy collectLNInside ( ln:HashMap, funcao:String ) extends Identity() {
     visit Instrucao {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
         ln.put(`nome, 2);
-        `TopDown( collectLNInside( ln , nome )).visit(`inst);
       }
       Atribuicao(_,_,_,_,_,_,_) -> {
         int valor_mapa = (int) ln.get(funcao);
@@ -381,20 +394,17 @@ public class Main {
           valor_mapa = (int) ln.get(funcao);
           valor_mapa+=2;
           ln.put(funcao, valor_mapa);
-          `TopDown( collectLNInside( ln , funcao )).visit(`inst2);
         }
       }
       While(_,_,_,condicao,_,_,inst,_) -> {
         int valor_mapa = (int) ln.get(funcao);
         valor_mapa+=2;
         ln.put(funcao, valor_mapa);
-        `TopDown( collectLNInside( ln , funcao )).visit(`inst);
       }
       For(_,_,decl,_,condicao,_,_,exp,_,_,inst,_) -> {
         int valor_mapa = (int) ln.get(funcao);
         valor_mapa+=2;
         ln.put(funcao, valor_mapa);
-        `TopDown( collectLNInside( ln , funcao )).visit(`inst);
       }
       Return(_,_,exp,_) -> {
         int valor_mapa = (int) ln.get(funcao);
@@ -414,12 +424,41 @@ public class Main {
     }
   }
 
-//Instruction Path lenght
+  %strategy collectUsedIdsInside ( idsUtilizados:TreeSet) extends Identity() {
+    visit Instrucao {
+      Atribuicao(_,id,_,opAtrib,_,exp,_) -> {
+        idsUtilizados.add(`id);
+      }
+    }
+    visit Expressao {
+      Id(id) -> { 
+        idsUtilizados.add(`id);
+      }
+      IncAntes(opInc,id) -> { 
+        idsUtilizados.add(`id);
+      }
+      IncDepois(opInc,id) -> { 
+        idsUtilizados.add(`id);
+      }
+    }
+  }
+
+  /*Line number counting*/
+  %strategy collectUsedIdsMap ( usedIdsMap:HashMap ) extends Identity() {
+    visit Instrucao {
+      Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
+        TreeSet <String> usedIds = new TreeSet <String> ();
+        `TopDown( collectUsedIdsInside( usedIds )).visit(`inst);
+        usedIdsMap.put(`nome, usedIds );
+      }
+    }
+  }
+
+  //Instruction Path lenght
   %strategy collectIPLInside ( ipl:HashMap, funcao:String ) extends Identity() {
     visit Instrucao {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
         ipl.put(`nome, 1);
-        `TopDown( collectIPLInside( ipl , nome )).visit(`inst);
       }
       Atribuicao(_,_,_,_,_,_,_) -> {
         int valor_mapa = (int) ipl.get(funcao);
@@ -435,25 +474,21 @@ public class Main {
         int valor_mapa = (int) ipl.get(funcao);
         valor_mapa+=1;
         ipl.put(funcao, valor_mapa);
-        `TopDown( collectIPLInside( ipl , funcao )).visit(`inst1);
         if (`inst2 != `Exp(Empty()) ){
           valor_mapa = (int) ipl.get(funcao);
           valor_mapa+=1;
           ipl.put(funcao, valor_mapa);
-          `TopDown( collectIPLInside( ipl , funcao )).visit(`inst2);
         }
       }
       While(_,_,_,condicao,_,_,inst,_) -> {
         int valor_mapa = (int) ipl.get(funcao);
         valor_mapa+=1;
         ipl.put(funcao, valor_mapa);
-        `TopDown( collectIPLInside( ipl , funcao )).visit(`inst);
       }
       For(_,_,decl,_,condicao,_,_,exp,_,_,inst,_) -> {
         int valor_mapa = (int) ipl.get(funcao);
         valor_mapa+=1;
         ipl.put(funcao, valor_mapa);
-        `TopDown( collectIPLInside( ipl , funcao )).visit(`inst);
       }
       Return(_,_,exp,_) -> {
         int valor_mapa = (int) ipl.get(funcao);
@@ -481,7 +516,6 @@ public class Main {
         if ( valor_mapa <= maximo_medido ){
           complexidade.put(funcao,maximo_medido);
         } 
-        `TopDown(startCollectCyclomaticInside(complexidade,funcao,maximo_medido)).visit(`inst);
       }
       If(_,_,_,_,_,_,inst,_) -> {
         maximo_medido++;
@@ -489,7 +523,6 @@ public class Main {
         if ( valor_mapa <= maximo_medido ){
           complexidade.put(funcao,maximo_medido);
         } 
-        `TopDown(startCollectCyclomaticInside(complexidade,funcao,maximo_medido)).visit(`inst);
       }
       While(_,_,_,_,_,_,inst,_) -> {
         maximo_medido++;
@@ -497,7 +530,6 @@ public class Main {
         if ( valor_mapa <= maximo_medido ){
           complexidade.put(funcao,maximo_medido);
         } 
-        `TopDown(startCollectCyclomaticInside(complexidade,funcao,maximo_medido)).visit(`inst);
       }
     }
   }
@@ -649,12 +681,6 @@ public class Main {
         num_comentarios++;
         comments.put(funcao, num_comentarios);
       }
-      Comentarios(lcom) -> {
-        int num_comentarios = (int) comments.get(funcao);
-        num_comentarios--;
-        comments.put(funcao, num_comentarios);
-      `TopDown(startCollectComments(comments,funcao)).visit(`lcom);
-      }
     }
   }
 
@@ -665,13 +691,6 @@ public class Main {
         mapArgs.remove(funcao);
         num_args+=1;
         mapArgs.put(funcao, num_args);
-      }
-      ListaArgumentos(largs) -> {
-        int num_args = (int) mapArgs.get(funcao);
-        mapArgs.remove(funcao);
-        num_args-=1;
-        mapArgs.put(funcao, num_args);
-        `TopDown(countArgsFunction(mapArgs,funcao)).visit(`largs);
       }
     }
   }
@@ -752,49 +771,30 @@ public class Main {
     }
   }
 
- /** %checkBadSmells( smellsMap:HashMap ) extends Identity(){
-  
+  /** %checkBadSmells( smellsMap:HashMap ) extends Identity(){
+
   //todo
 
-  
+
   }
 
   %RefactorBadSmells() extends Identity(){
-  
+
   }*/
 
   /********************************************************************/
-  %strategy stratBadSmells() extends Identity() {
+  %strategy startBadSmells() extends Identity() {
     visit Instrucao {
       If(c1,c2,c3,Nao(condicao),c4,c5,inst1,inst2) -> {
         return `If(c1,c2,c3,condicao,c4,c5,inst2,inst1);
       }
       Funcao(c1,tipo,c2,nome,c3,c4,argumentos,c5,c6,inst,c7) -> {
         TreeSet<String> idsUtilizados = new TreeSet<String>();
-        `TopDown(stratCollectIds(idsUtilizados)).visit(`inst);
+        `TopDown(collectUsedIdsInside(idsUtilizados)).visit(`inst);
         Argumentos args = removeArgumentosNaoUtilizados(`argumentos,idsUtilizados);
         return `Funcao(c1,tipo,c2,nome,c3,c4,args,c5,c6,inst,c7);
       }
     }
-
-  %strategy startCollectIds( idsUtilizados:HashMap, funcao:String) extends Identity() {
-    visit Instrucao {
-      Atribuicao(_,id,_,opAtrib,_,exp,_) -> {
-        idsUtilizados.add(`id);
-      }
-    }
-    visit Expressao {
-      Id(id) -> { 
-        idsUtilizados.add(`id);
-      }
-      IncAntes(opInc,id) -> { 
-        idsUtilizados.add(`id);
-      }
-      IncDepois(opInc,id) -> { 
-        idsUtilizados.add(`id);
-      }
-    }
-  }
 
   %strategy CollectFuncsSignature(signatures:HashMap) extends Identity() {
     visit Instrucao {
