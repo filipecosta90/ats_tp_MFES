@@ -181,9 +181,15 @@ public class Main {
       try {
         ArrayList<Integer> numInstrucao = new ArrayList<Integer>();
         numInstrucao.add(1);
-        `TopDown(CollectNumberFuncs(main.functionSignatures, main.argsMap,  main.cyclomaticComplexityMap, main.functionComments , main.nOperationsMap, main.nOperationsComparisonsMap, main.nIncrDecrOpMap, main.opAtribMap)).visit(p);
-        `TopDown(collectLN(main.lnMap)).visit(p);
+        `TopDown(CollectNumberFuncs(main.functionSignatures, main.argsMap)).visit(p);
+        `TopDown(CollectCiclomaticComplex(main.functionSignatures, main.cyclomaticComplexityMap)).visit(p);
+        `TopDown(CollectComments(main.functionSignatures, main.functionComments)).visit(p);
+        `TopDown(CollectNumOperations(main.functionSignatures, main.nOperationsMap)).visit(p);
+        `TopDown(CollectNumOperationsComparisons(main.functionSignatures, main.nOperationsComparisonsMap)).visit(p);
+        `TopDown(CollectNumOperationsIncrDecr(main.functionSignatures, main.nIncrDecrOpMap)).visit(p);
+        `TopDown(CollectOpAtrib(main.functionSignatures, main.opAtribMap)).visit(p);
         `TopDown(collectIPL(main.iplMap)).visit(p);
+
         Instrucao p2 = p;
         int numInst = numInstrucao.get(0)-1;
         LComentarios c = `Vazio();
@@ -671,28 +677,68 @@ public class Main {
   }
 
   /** métrica para contar o número de funções ***/
-  %strategy CollectNumberFuncs(func:HashMap, mapArgs:HashMap, complex_c:HashMap, comments:HashMap, operations:HashMap, operationsNumComp:HashMap, incrDecrOp:HashMap, opAtribMap:HashMap) extends Identity() {
+  %strategy CollectNumberFuncs(func:HashMap, mapArgs:HashMap) extends Identity() {
     visit Instrucao {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
         func.put(`nome, `argumentos);
         mapArgs.put(`nome, 0);
         `TopDown(countArgsFunction(mapArgs,nome)).visit(`argumentos);
 
-        complex_c.put(`nome,0);
-        comments.put(`nome, 0);
-        operations.put(`nome,0);
-        operationsNumComp.put(`nome,0);
-        incrDecrOp.put(`nome,0);
-        opAtribMap.put(`nome,0);
-        `TopDown(startCollectCyclomatic(complex_c,nome)).visit(`inst);
-        `TopDown(startCollectComments(comments,nome)).visit(`inst);
-        `TopDown(startCollectNumOperations(operations,nome)).visit(`inst);
-        `TopDown(startCollectNumOperationsComparisons(operationsNumComp,nome)).visit(`inst);
-        `TopDown(startCollectNumOfIncrementsAndDecrements(incrDecrOp,nome)).visit(`inst);
-        `TopDown(startCollectOpAtribOperations(opAtribMap,nome)).visit(`inst);
-      }
+              }
     }
   }
+
+
+%strategy CollectCiclomaticComplex(func:HasMap, complex_c:HashMap) extends Identity() {
+  	visit Instrucao {
+      Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
+        func.put(`nome, `argumentos);
+        complex_c.put(`nome,0);
+        `TopDown(startCollectCyclomatic(complex_c,nome)).visit(`inst);
+  }
+ 
+ %strategy CollectComments(func:HasMap, comments:HashMap) extends Identity() {
+  	visit Instrucao {
+      Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
+        func.put(`nome, `argumentos);
+        comments.put(`nome, 0);
+	`TopDown(startCollectComments(comments,nome)).visit(`inst);
+  }
+
+  %strategy CollectNumOperations(func:HasMap, operations:HashMap) extends Identity() {
+  	visit Instrucao {
+      Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
+        func.put(`nome, `argumentos);
+        operations.put(`nome,0);
+        `TopDown(startCollectNumOperations(operations,nome)).visit(`inst);
+  }
+
+%strategy CollectNumOperationsComparisons(func:HasMap, operationsNumComp:HashMap) extends Identity() {
+  	visit Instrucao {
+      Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
+        func.put(`nome, `argumentos);
+        operationsNumComp.put(`nome,0);
+        `TopDown(startCollectNumOperationsComparisons(operationsNumComp,nome)).visit(`inst);
+  }
+
+%strategy CollectNumOperationsIncrDecr(func:HasMap, incrDecrOp:HashMap) extends Identity() {
+  	visit Instrucao {
+      Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
+        func.put(`nome, `argumentos);
+        incrDecrOp.put(`nome,0);
+        `TopDown(startCollectNumOfIncrementsAndDecrements(incrDecrOp,nome)).visit(`inst);
+  }
+
+%strategy CollectOpAtrib(func:HasMap, opAtribMap:HashMap) extends Identity() {
+  	visit Instrucao {
+      Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
+        func.put(`nome, `argumentos);
+        opAtribMap.put(`nome,0);
+        `TopDown(startCollectOpAtribOperations(opAtribMap,nome)).visit(`inst);
+  }
+
+
+
 
   %strategy RefactorNegIf() extends Identity() {
     visit Instrucao {
@@ -730,7 +776,6 @@ public class Main {
         return `Funcao(c1,tipo,c2,nome,c3,c4,args,c5,c6,inst,c7);
       }
     }
-  }
 
   %strategy startCollectIds( idsUtilizados:HashMap, funcao:String) extends Identity() {
     visit Instrucao {
