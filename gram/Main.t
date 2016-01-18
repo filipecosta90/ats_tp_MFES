@@ -342,6 +342,7 @@ public class Main {
     return args;
   }
 
+ /* Line number counting per function  */
   %strategy collectLNInside ( ln:HashMap, funcao:String ) extends Identity() {
     visit Instrucao {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
@@ -390,6 +391,7 @@ public class Main {
     }
   }
 
+  /*Line number counting*/
   %strategy collectLN ( ln:HashMap ) extends Identity() {
     visit Instrucao {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
@@ -576,7 +578,10 @@ public class Main {
         comments.put(funcao, num_comentarios);
       }
       Comentarios(lcom) -> {
-        `TopDown(startCollectComments(comments,funcao)).visit(`lcom);
+        int num_comentarios = (int) comments.get(funcao);
+        num_comentarios--;
+        comments.put(funcao, num_comentarios);
+      `TopDown(startCollectComments(comments,funcao)).visit(`lcom);
       }
     }
   }
@@ -629,6 +634,17 @@ public class Main {
     }
   }
 
+  %checkBadSmells( smellsMap:HashMap ) extends Identity(){
+  
+  //todo
+
+  
+  }
+
+  %RefactorBadSmells() extends Identity(){
+  
+  }
+
   /********************************************************************/
   %strategy stratBadSmells() extends Identity() {
     visit Instrucao {
@@ -644,7 +660,7 @@ public class Main {
     }
   }
 
-  %strategy stratCollectIds(Set idsUtilizados) extends Identity() {
+  %strategy startCollectIds( idsUtilizados:HashMap, funcao:String) extends Identity() {
     visit Instrucao {
       Atribuicao(_,id,_,opAtrib,_,exp,_) -> {
         idsUtilizados.add(`id);
