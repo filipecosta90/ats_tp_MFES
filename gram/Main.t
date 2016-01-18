@@ -46,7 +46,10 @@ public class Main {
   HashMap <String,Integer> lnMap;
   HashMap <String,Integer> argsMap;
   Integer totalLinesOfCode;
-
+  HashMap <String, Integer> argsMap;
+  HashMap <String, TreeSet<String> > usedIdsMap;
+  HashMap <String, TreeSet<String> > usedArgsMap;
+   
   /*** Separated Metrics ***/
   /** OpNum **/
   private static int nrMais;
@@ -94,7 +97,9 @@ public class Main {
     this.cyclomaticComplexityMap = new HashMap <String, Integer>();
     this.lnMap = new HashMap <String,Integer>();
     this.argsMap = new HashMap <String, Integer>();
-
+    this.usedIdsMap = new HashMap <String, TreeSet<String> >();
+    this.usedArgsMap = new HashMap <String, TreeSet<String> >();
+    
     /****** Separated Metrics Counters Inicialization ******/
 
     /** OpNum Inicialization **/
@@ -401,6 +406,37 @@ public class Main {
     }
   }
 
+
+  %strategy collectUsedIdsInside ( idsUtilizados:TreeSet) extends Identity() {
+    visit Instrucao {
+      Atribuicao(_,id,_,opAtrib,_,exp,_) -> {
+        idsUtilizados.add(`id);
+      }
+    }
+    visit Expressao {
+      Id(id) -> { 
+        idsUtilizados.add(`id);
+      }
+      IncAntes(opInc,id) -> { 
+        idsUtilizados.add(`id);
+      }
+      IncDepois(opInc,id) -> { 
+        idsUtilizados.add(`id);
+      }
+    }
+  }
+
+  /*Line number counting*/
+  %strategy collectUsedIdsMap ( usedIdsMap:HashMap ) extends Identity() {
+    visit Instrucao {
+      Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
+        TreeSet <String> usedIds = new TreeSet <String> ();
+        `TopDown( collectUsedIdsInside( usedIds )).visit(`inst);
+        usedIdsMap.put(`nome, usedIds );
+      }
+    }
+  }
+
   %strategy startCollectCyclomaticInside( complexidade:HashMap, funcao:String , maximo_medido:int ) extends Identity() {
     visit Instrucao {
       For(_,_,_,_,_,_,_,_,_,_,inst,_) -> {
@@ -660,26 +696,7 @@ public class Main {
     }
   }
 
-  %strategy startCollectIds( idsUtilizados:HashMap, funcao:String) extends Identity() {
-    visit Instrucao {
-      Atribuicao(_,id,_,opAtrib,_,exp,_) -> {
-        idsUtilizados.add(`id);
-      }
-    }
-    visit Expressao {
-      Id(id) -> { 
-        idsUtilizados.add(`id);
-      }
-      IncAntes(opInc,id) -> { 
-        idsUtilizados.add(`id);
-      }
-      IncDepois(opInc,id) -> { 
-        idsUtilizados.add(`id);
-      }
-    }
-  }
-
-  %strategy CollectFuncsSignature(signatures:HashMap) extends Identity() {
+%strategy CollectFuncsSignature(signatures:HashMap) extends Identity() {
     visit Instrucao {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
         signatures.put(`nome, `argumentos);
