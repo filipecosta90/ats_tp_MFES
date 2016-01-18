@@ -44,6 +44,7 @@ public class Main {
   HashMap <String,Integer> opAtribMap;
   HashMap <String,Integer> nIncrDecrOpMap;
   HashMap <String,Integer> lnMap;
+  HashMap <String,Integer> iplMap;
   HashMap <String,Integer> argsMap;
   Integer totalLinesOfCode;
 
@@ -94,7 +95,7 @@ public class Main {
     this.cyclomaticComplexityMap = new HashMap <String, Integer>();
     this.lnMap = new HashMap <String,Integer>();
     this.argsMap = new HashMap <String, Integer>();
-
+    this.iplMap = new HashMap <String,Integer>();
     /****** Separated Metrics Counters Inicialization ******/
 
     /** OpNum Inicialization **/
@@ -182,6 +183,7 @@ public class Main {
         numInstrucao.add(1);
         `TopDown(CollectNumberFuncs(main.functionSignatures, main.argsMap,  main.cyclomaticComplexityMap, main.functionComments , main.nOperationsMap, main.nOperationsComparisonsMap, main.nIncrDecrOpMap, main.opAtribMap)).visit(p);
         `TopDown(collectLN(main.lnMap)).visit(p);
+        `TopDown(collectIPL(main.iplMap)).visit(p);
         Instrucao p2 = p;
         int numInst = numInstrucao.get(0)-1;
         LComentarios c = `Vazio();
@@ -289,20 +291,25 @@ public class Main {
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.lnMap.get(funcao)+"\n" );
         }
+        /** 7) Metric to count number path length of instructions*/
+        writer.write("Instructions Path Lenght:\n");
+        for ( String funcao : main.functionSignatures.keySet()){
+          writer.write("\t" + funcao + " : " + main.iplMap.get(funcao)+"\n" );
+        }
 
-        /** 7) Metric to count Number of Operations Comparisons **/
+        /** 8) Metric to count Number of Operations Comparisons **/
         writer.write("Total Number of Operations Comparisons:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.nOperationsComparisonsMap.get(funcao)+"\n" );
         }    
 
-        /** 8) Metric to count Number of Increment/Decrement Operations **/
+        /** 9) Metric to count Number of Increment/Decrement Operations **/
         writer.write("Total Number of Increment/Decrement Operations:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.nIncrDecrOpMap.get(funcao)+"\n" );
         }     
 
-        /** 9) Metric to count Number of Atribuicao Operations **/
+        /** 10) Metric to count Number of Atribuicao Operations **/
         writer.write("Total Number of Atrib/Mult/Div/Soma/Sub:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.opAtribMap.get(funcao)+"\n" );
@@ -397,6 +404,65 @@ public class Main {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
         ln.put(`nome, 2);
         `TopDown( collectLNInside( ln , nome )).visit(`inst);
+      }
+    }
+  }
+
+//Instruction Path lenght
+  %strategy collectIPLInside ( ipl:HashMap, funcao:String ) extends Identity() {
+    visit Instrucao {
+      Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
+        ipl.put(`nome, 1);
+        `TopDown( collectIPLInside( ipl , nome )).visit(`inst);
+      }
+      Atribuicao(_,_,_,_,_,_,_) -> {
+        int valor_mapa = (int) ipl.get(funcao);
+        valor_mapa++;
+        ipl.put(funcao, valor_mapa);
+      }
+      Declaracao(_,_,_,_,_,_) -> {
+        int valor_mapa = (int) ipl.get(funcao);
+        valor_mapa++;
+        ipl.put(funcao, valor_mapa);
+      }
+      If(_,_,_,condicao,_,_,inst1,inst2) -> {
+        int valor_mapa = (int) ipl.get(funcao);
+        valor_mapa+=1;
+        ipl.put(funcao, valor_mapa);
+        `TopDown( collectIPLInside( ipl , funcao )).visit(`inst1);
+        if (`inst2 != `Exp(Empty()) ){
+          valor_mapa = (int) ipl.get(funcao);
+          valor_mapa+=1;
+          ipl.put(funcao, valor_mapa);
+          `TopDown( collectIPLInside( ipl , funcao )).visit(`inst2);
+        }
+      }
+      While(_,_,_,condicao,_,_,inst,_) -> {
+        int valor_mapa = (int) ipl.get(funcao);
+        valor_mapa+=1;
+        ipl.put(funcao, valor_mapa);
+        `TopDown( collectIPLInside( ipl , funcao )).visit(`inst);
+      }
+      For(_,_,decl,_,condicao,_,_,exp,_,_,inst,_) -> {
+        int valor_mapa = (int) ipl.get(funcao);
+        valor_mapa+=1;
+        ipl.put(funcao, valor_mapa);
+        `TopDown( collectIPLInside( ipl , funcao )).visit(`inst);
+      }
+      Return(_,_,exp,_) -> {
+        int valor_mapa = (int) ipl.get(funcao);
+        valor_mapa++;
+        ipl.put(funcao, valor_mapa);
+      }
+    }
+  }
+
+  /*Line number counting*/
+  %strategy collectIPL ( ipl:HashMap ) extends Identity() {
+    visit Instrucao {
+      Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
+        ipl.put(`nome, 1);
+        `TopDown( collectIPLInside( ipl , nome )).visit(`inst);
       }
     }
   }
@@ -634,7 +700,13 @@ public class Main {
     }
   }
 
-  %checkBadSmells( smellsMap:HashMap ) extends Identity(){
+  %strategy RefactorNegNeg() extends Identity() {
+    visit Expressao {
+      Nao(Nao(c1)) -> { return `c1; }
+    }
+  }
+
+ /** %checkBadSmells( smellsMap:HashMap ) extends Identity(){
   
   //todo
 
@@ -643,7 +715,7 @@ public class Main {
 
   %RefactorBadSmells() extends Identity(){
   
-  }
+  }*/
 
   /********************************************************************/
   %strategy stratBadSmells() extends Identity() {
