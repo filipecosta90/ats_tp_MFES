@@ -195,7 +195,8 @@ public class Main {
         `TopDown(CollectOpAtrib(main.functionSignatures, main.opAtribMap)).visit(p);
         `TopDown(collectIPL(main.iplMap)).visit(p);
         `TopDown(collectUsedIdsMap(main.usedIdsMap)).visit(p);
-
+        `TopDown(collectLN(main.lnMap)).visit(p);
+        
         Instrucao p2 = p;
         int numInst = numInstrucao.get(0)-1;
         LComentarios c = `Vazio();
@@ -302,6 +303,7 @@ public class Main {
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.lnMap.get(funcao)+"\n" );
         }
+
         /** 7) Metric to count number path length of instructions*/
         writer.write("Instructions Path Lenght:\n");
         for ( String funcao : main.functionSignatures.keySet()){
@@ -386,7 +388,6 @@ public class Main {
         int valor_mapa = (int) ln.get(funcao);
         valor_mapa+=2;
         ln.put(funcao, valor_mapa);
-        `TopDown( collectLNInside( ln , funcao )).visit(`inst1);
         if (`inst2 != `Exp(Empty()) ){
           valor_mapa = (int) ln.get(funcao);
           valor_mapa+=2;
