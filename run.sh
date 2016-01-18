@@ -2,7 +2,7 @@
 EXAMPLE_DIR=exemplos/
 EXAMPLE_FILE=maiorDeDoisNumeros.i
 RES_FILE=res.msp
-
+make clean
 make all
 cp $EXAMPLE_DIR$EXAMPLE_FILE genI
 cd genI

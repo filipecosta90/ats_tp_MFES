@@ -268,3 +268,4 @@ fragment LETRA
 	
 WS  :  (' '|'\r'|'\t'|'\u000C'|'\n') {$channel=HIDDEN;}
     ;
+

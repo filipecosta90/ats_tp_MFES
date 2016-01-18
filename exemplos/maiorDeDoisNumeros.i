@@ -22,24 +22,16 @@ int max(int a, int b){
   int res;
   //teste comentario 
   if (a > b) {
-    if (a > b ){
       res = a;
-    }
   }
   else {
     res = b;
   }
   // teste comentario 3
   if (a == b) {
-    if (a == b) {
-      if (a == b) {
-        if (a == b) {
           a = a + b;
           b = b + b;
           b = b * b;
-        }
-      }
-    }
   }
   return res;
 }
@@ -47,11 +39,9 @@ int max(int a, int b){
 int max3numbers (int a, int b, int c){
   int res;
   if (a>b){
-    if (a>b){
       res = a;
       a = b - a;
       b = b / a;
-    }
   }
   else {
     res = b;
