@@ -2,6 +2,7 @@ void main() {
   int a;
   int b;
   int c;
+  //teste comentario
   int res, res2;
   a = input(int);
   b = input(int);
@@ -37,6 +38,9 @@ int max(int a, int b){
 }
 
 int max3numbers (int a, int b, int c){
+  //teste comentario
+  //teste comentario
+  //teste comentario
   int res;
   if (a>b){
       res = a;
