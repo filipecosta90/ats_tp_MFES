@@ -297,10 +297,10 @@ public class Main {
           writer.write("\t" + funcao + " : " + main.functionComments.get(funcao)+"\n" );
         }
 
-        /** 6) Metric for counting number of lines of code (Total lines of code - LOC) 
+        /** 6) Metric for counting total number of lines per function 
          * Blank lines should not be counted
          * Comments should not be counted
-         **/
+         **/ 
         writer.write("Total lines of Code (LOC):\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.lnMap.get(funcao)+"\n" );
@@ -330,20 +330,14 @@ public class Main {
           writer.write("\t" + funcao + " : " + main.opAtribMap.get(funcao)+"\n" );
         }
 
-        /** 10) Metric to  **/
-        writer.write("Total Number of Atrib/Mult/Div/Soma/Sub:\n");
-        for ( String funcao : main.functionSignatures.keySet()){
-          writer.write("\t" + funcao + " : " + main.opAtribMap.get(funcao)+"\n" );
-        }
-
         /** 11) Used ids per function  **/
         writer.write("\nUsed ids per function:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " +"\n" );
           TreeSet arvoreIds = main.usedIdsMap.get(funcao);
-Iterator<Integer> iterator = arvoreIds.iterator();
-    // Displaying the Tree set data
-      while (iterator.hasNext()) {
+	  Iterator<Integer> iterator = arvoreIds.iterator();
+          // Displaying the Tree set data
+          while (iterator.hasNext()) {
           writer.write(iterator.next() + " ");
             }
           writer.write("\n" );
@@ -687,6 +681,7 @@ Iterator<Integer> iterator = arvoreIds.iterator();
     }
   }
 
+  /** Metric to compute total of Comments ***/ 
   %strategy startCollectComments(HashMap comments, String funcao) extends Identity() {
     visit LComentarios {
       Comentario(Vazio) -> {
@@ -697,6 +692,8 @@ Iterator<Integer> iterator = arvoreIds.iterator();
     }
   }
 
+
+  /** Metric to compute total of Arguments per Function ***/ 
   %strategy countArgsFunction(mapArgs:HashMap, funcao:String) extends Identity() {
     visit Argumentos {
       Argumento(_,_,_,id,_) -> {
@@ -708,7 +705,7 @@ Iterator<Integer> iterator = arvoreIds.iterator();
     }
   }
 
-  /** métrica para contar o número de funções ***/
+  /** Metric to compute total number of functions ***/
   %strategy CollectNumberFuncs(func:HashMap, mapArgs:HashMap) extends Identity() {
     visit Instrucao {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
