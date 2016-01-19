@@ -764,6 +764,12 @@ public class Main {
       }
     }
   }
+
+
+  /***************************
+  ** Refactoring Strategies **
+  ***************************/
+
   %strategy RefactorNegIf() extends Identity() {
     visit Instrucao {
       If(c1,c2,c3,Nao(condicao),c4,c5,i1,i2) -> { return `If(c1,c2,c3,condicao,c4,c5,i2,i1); }
@@ -775,6 +781,12 @@ public class Main {
       Nao(Nao(c1)) -> { return `c1; }
     }
   }
+
+
+
+ /***********************
+  **** Bad Smells *****
+  ***********************/
 
   /** %checkBadSmells( smellsMap:HashMap ) extends Identity(){
 
