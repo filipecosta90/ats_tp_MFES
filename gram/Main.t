@@ -374,21 +374,7 @@ difficulty = distinctOperators/2 * (totalOperands/distinctOperands);
 
 
 
-  public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<String> idsUtilizados) {
-    %match(args) {
-      ListaArgumentos(arg1,tailArg*) -> {
-        %match(arg1) {
-          a@Argumento(_,_,_,idArg,_) -> {
-            if (idsUtilizados.contains(`idArg))
-              return `ListaArgumentos(a,removeArgumentosNaoUtilizados(tailArg*,idsUtilizados));
-            else
-              return removeArgumentosNaoUtilizados(`tailArg*,idsUtilizados);
-          }
-        }
-      }
-    }
-    return args;
-  }
+  
 
 
 
@@ -1004,6 +990,23 @@ difficulty = distinctOperators/2 * (totalOperands/distinctOperands);
       Nao(Nao(c1)) -> { return `c1; }
     }
   }
+
+  public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<String> idsUtilizados) {
+    %match(args) {
+      ListaArgumentos(arg1,tailArg*) -> {
+        %match(arg1) {
+          a@Argumento(_,_,_,idArg,_) -> {
+            if (idsUtilizados.contains(`idArg))
+              return `ListaArgumentos(a,removeArgumentosNaoUtilizados(tailArg*,idsUtilizados));
+            else
+              return removeArgumentosNaoUtilizados(`tailArg*,idsUtilizados);
+          }
+        }
+      }
+    }
+    return args;
+  }
+
 
   /***********************
    **** Bad Smells *****
