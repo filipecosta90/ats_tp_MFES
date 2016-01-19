@@ -1,6 +1,6 @@
 #/bin/bash
 EXAMPLE_DIR=exemplos/
-EXAMPLE_FILE=armstrongNumber.i
+EXAMPLE_FILE=maiorDeDoisNumeros.i
 RES_FILE=res.msp
 make clean
 make all
