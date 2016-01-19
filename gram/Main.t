@@ -331,25 +331,18 @@ public class Main {
           writer.write("\t" + funcao + " : " + main.opAtribMap.get(funcao)+"\n" );
         }
 
-        /** 11) Used ids per function  **/
-        writer.write("\nUsed ids per function:\n");
+        /** 11) Unused arguments per function  **/
+        writer.write("Unused arguments per function:\n");
         for ( String funcao : main.functionSignatures.keySet()){
-          writer.write("\t" + funcao + " : " +"\n" );
-          TreeSet arvoreIds = main.usedIdsMap.get(funcao);
           TreeSet argsNaoUsados = main.unusedArgsMap.get(funcao);
-         Iterator<Integer> iterator = arvoreIds.iterator();
-         Iterator<Integer> iteratorArgs = argsNaoUsados.iterator();
-          // Displaying the Tree set data
-          while (iterator.hasNext()) {
-            writer.write(iterator.next() + " ");
-          }
-          writer.write("\nNon Used Arguments" );
-// Displaying the Tree set data
+          writer.write("\t" + funcao + " ( "+ argsNaoUsados.size() + " unused argument ): " );
+          Iterator<Integer> iteratorArgs = argsNaoUsados.iterator();
           while (iteratorArgs.hasNext()) {
             writer.write(iteratorArgs.next() + " ");
           }
           writer.write("\n" );
         }
+
         /******* Printing Separated Metrics ********/
         writer.flush();
         writer.close();
@@ -470,14 +463,14 @@ public class Main {
       }
     }
   }
-  
+
   /** Metric to compute total of Arguments per Function ***/ 
   %strategy getUnusedArgsFunction(unusedArgs:TreeSet, usedIds:TreeSet ) extends Identity() {
     visit Argumentos {
       Argumento(_,_,_,id,_) -> {
-            if ( ! (usedIds.contains( `id )) ){
-              unusedArgs.add( `id );
-            }
+        if ( ! (usedIds.contains( `id )) ){
+          unusedArgs.add( `id );
+        }
       }
     }
   }
