@@ -51,6 +51,7 @@ public class Main {
   HashMap <String, TreeSet<String> > usedIdsMap;
   HashMap <String, TreeSet<String> > usedArgsMap;
   HashMap <String, TreeSet<String> > unusedArgsMap;
+  HashMap <String, TreeSet <String> > operationsPerFunctionMap;
 
   /*** Separated Metrics ***/
   /** OpNum **/
@@ -92,6 +93,7 @@ public class Main {
     LongMap = new HashMap<String,Integer>();
     Integer totalLinesOfCode = 0;
     this.nOperationsMap = new HashMap <String,Integer>();
+    this.operationsPerFunctionMap = new HashMap <String, TreeSet <String> >();
     this.nOperationsComparisonsMap = new HashMap <String,Integer>();
     this.nIncrDecrOpMap = new HashMap <String,Integer>();
     this.opAtribMap = new HashMap <String,Integer>();
@@ -134,7 +136,6 @@ public class Main {
     /****************************************************/
   }
 
-
   /**
    * Halstead Measures (lifted from www.sei.cmu.edu)
    * =================
@@ -161,6 +162,7 @@ public class Main {
    * 
    * Effort E E= D * V
    */
+
   /* void computeHalstead()
      {
      programLength = totalOperands + totalOperators;
@@ -191,7 +193,7 @@ public class Main {
         `TopDown(CollectNumberFuncs(main.functionSignatures, main.argsMap)).visit(p);
         `TopDown(CollectCiclomaticComplex(main.functionSignatures, main.cyclomaticComplexityMap)).visit(p);
         `TopDown(CollectComments(main.functionSignatures, main.functionComments)).visit(p);
-        `TopDown(CollectNumOperations(main.functionSignatures, main.nOperationsMap)).visit(p);
+        `TopDown(CollectOperations(main.functionSignatures, main.nOperationsMap, main.operationsPerFunctionMap )).visit(p);
         `TopDown(CollectNumOperationsComparisons(main.functionSignatures, main.nOperationsComparisonsMap)).visit(p);
         `TopDown(CollectNumOperationsIncrDecr(main.functionSignatures, main.nIncrDecrOpMap)).visit(p);
         `TopDown(CollectOpAtrib(main.functionSignatures, main.opAtribMap)).visit(p);
@@ -287,7 +289,14 @@ public class Main {
           writer.write("\t" + funcao + " : " + main.nOperationsMap.get(funcao)+"\n" );
         }
 
-        /** 5) Metric to count the Number Of Comments Per Function **/
+        /** 5) Metric to count Number Of Distinct Operations Per Function **/
+        writer.write("Number Of Distinct Operations per function:\n");
+        for ( String funcao : main.functionSignatures.keySet()){
+           TreeSet distinctOpps =  main.operationsPerFunctionMap.get(funcao);
+          writer.write("\t" + funcao + " : "+ distinctOpps.size() + " distinct operations\n" );
+        }
+
+        /** 6) Metric to count the Number Of Comments Per Function **/
         int number_comments = 0;  
         for ( String funcao : main.functionSignatures.keySet() ){
           int comments =  main.functionComments.get(funcao); 
@@ -298,7 +307,7 @@ public class Main {
           writer.write("\t" + funcao + " : " + main.functionComments.get(funcao)+"\n" );
         }
 
-        /** 6) Metric for counting total number of lines per function 
+        /** 7) Metric for counting total number of lines per function 
          * Blank lines should not be counted
          * Comments should not be counted
          **/ 
@@ -307,31 +316,31 @@ public class Main {
           writer.write("\t" + funcao + " : " + main.lnMap.get(funcao)+"\n" );
         }
 
-        /** 7) Metric to count number path length of instructions*/
+        /** 8) Metric to count number path length of instructions*/
         writer.write("Instructions Path Lenght:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.iplMap.get(funcao)+"\n" );
         }
 
-        /** 8) Metric to count Number of Operations Comparisons **/
+        /** 9) Metric to count Number of Operations Comparisons **/
         writer.write("Total Number of Operations Comparisons:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.nOperationsComparisonsMap.get(funcao)+"\n" );
         }    
 
-        /** 9) Metric to count Number of Increment/Decrement Operations **/
+        /** 10) Metric to count Number of Increment/Decrement Operations **/
         writer.write("Total Number of Increment/Decrement Operations:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.nIncrDecrOpMap.get(funcao)+"\n" );
         }     
 
-        /** 10) Metric to count Number of Atribuicao Operations **/
+        /** 11) Metric to count Number of Atribuicao Operations **/
         writer.write("Total Number of Atrib/Mult/Div/Soma/Sub:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.opAtribMap.get(funcao)+"\n" );
         }
 
-        /** 11) Unused arguments per function  **/
+        /** 12) Unused arguments per function  **/
         writer.write("Unused arguments per function:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           TreeSet argsNaoUsados = main.unusedArgsMap.get(funcao);
@@ -595,31 +604,201 @@ public class Main {
 
   /** Metric to compute *** Number of Operations *** **/
   %strategy startCollectNumOperations(HashMap numberOperations, String funcao) extends Identity() {
+    visit OpAtribuicao {
+      Atrib()  -> {
+        int valor_mapa = (int) numberOperations.get(funcao);
+        valor_mapa++;
+        numberOperations.put(funcao, valor_mapa);
+
+      }
+      Mult()  -> {
+        int valor_mapa = (int) numberOperations.get(funcao);
+        valor_mapa++;
+        numberOperations.put(funcao, valor_mapa);
+
+      }
+      Div()  -> {
+        int valor_mapa = (int) numberOperations.get(funcao);
+        valor_mapa++;
+        numberOperations.put(funcao, valor_mapa);
+
+      }
+      Soma()  -> {
+        int valor_mapa = (int) numberOperations.get(funcao);
+        valor_mapa++;
+        numberOperations.put(funcao, valor_mapa);
+
+      }
+      Sub()  -> {
+        int valor_mapa = (int) numberOperations.get(funcao);
+        valor_mapa++;
+        numberOperations.put(funcao, valor_mapa);
+
+      }
+    }
     visit OpNum {
       Mais()  -> {
         int valor_mapa = (int) numberOperations.get(funcao);
         valor_mapa++;
         numberOperations.put(funcao, valor_mapa);
+
       }
       Vezes()  -> {
         int valor_mapa = (int) numberOperations.get(funcao);
         valor_mapa++;
         numberOperations.put(funcao, valor_mapa);
+
       }
       Divide()  -> {
         int valor_mapa = (int) numberOperations.get(funcao);
         valor_mapa++;
         numberOperations.put(funcao, valor_mapa);
+
       }
       Menos()  -> {
         int valor_mapa = (int) numberOperations.get(funcao);
         valor_mapa++;
         numberOperations.put(funcao, valor_mapa);
+
       }
       Mod()  -> {
         int valor_mapa = (int) numberOperations.get(funcao);
         valor_mapa++;
         numberOperations.put(funcao, valor_mapa);
+
+      }
+    }
+    visit OpComp {
+      Maior() -> {
+        int valor_mapa = (int) numberOperations.get(funcao);
+        valor_mapa++;
+        numberOperations.put(funcao, valor_mapa);
+
+      }
+      Menor()  -> {
+        int valor_mapa = (int) numberOperations.get(funcao);
+        valor_mapa++;
+        numberOperations.put(funcao, valor_mapa);
+
+      }
+      MaiorQ()  -> {
+        int valor_mapa = (int) numberOperations.get(funcao);
+        valor_mapa++;
+        numberOperations.put(funcao, valor_mapa);
+
+      }
+      MenorQ()  -> {
+        int valor_mapa = (int) numberOperations.get(funcao);
+        valor_mapa++;
+        numberOperations.put(funcao, valor_mapa);
+
+      }
+      Dif()   -> {
+        int valor_mapa = (int) numberOperations.get(funcao);
+        valor_mapa++;
+        numberOperations.put(funcao, valor_mapa);
+
+      }
+      Igual()   -> {
+        int valor_mapa = (int) numberOperations.get(funcao);
+        valor_mapa++;
+        numberOperations.put(funcao, valor_mapa);
+
+      }
+    }
+    visit OpInc {
+      Inc()  -> {
+        int valor_mapa = (int) numberOperations.get(funcao);
+        valor_mapa++;
+        numberOperations.put(funcao, valor_mapa);
+
+      }
+      Dec()  -> {
+        int valor_mapa = (int) numberOperations.get(funcao);
+        valor_mapa++;
+        numberOperations.put(funcao, valor_mapa);
+
+      }
+    }
+
+
+  }
+
+  /** Metric to compute *** Number of Operations *** **/
+  %strategy startCollectDistinctOperations(TreeSet distinctOperations ) extends Identity() {
+    visit OpAtribuicao {
+      Atrib()  -> {
+        distinctOperations.add("Atrib()");
+      }
+      Mult()  -> {
+        distinctOperations.add("Mult()");
+      }
+      Div()  -> {
+        distinctOperations.add("Div()");
+      }
+      Soma()  -> {
+        distinctOperations.add("Soma()");
+      }
+      Sub()  -> {
+        distinctOperations.add("Sub()");
+      }
+    }
+    visit OpNum {
+      Mais()  -> {
+        distinctOperations.add("Mais()");
+      }
+      Vezes()  -> {
+        distinctOperations.add("Vezes()");
+      }
+      Divide()  -> {
+        distinctOperations.add("Divide()");
+      }
+      Menos()  -> {
+        distinctOperations.add("Menos()");
+      }
+      Mod()  -> {
+        distinctOperations.add("Mod()");
+      }
+    }
+    visit OpComp {
+      Maior() -> {
+        distinctOperations.add("Maior()");
+      }
+      Menor()  -> {
+        distinctOperations.add("Menor()");
+      }
+      MaiorQ()  -> {
+        distinctOperations.add("MaiorQ()");
+      }
+      MenorQ()  -> {
+        distinctOperations.add("MenorQ()");
+      }
+      Dif()   -> {
+        distinctOperations.add("Dif()");
+      }
+      Igual()   -> {
+        distinctOperations.add("Igual()");
+      }
+    }
+    visit OpInc {
+      Inc()  -> {
+        distinctOperations.add("Inc()");
+      }
+      Dec()  -> {
+        distinctOperations.add("Dec()");
+      }
+    }
+  }
+
+  %strategy CollectOperations(func:HashMap, numberOperations:HashMap, distinctOperations:HashMap ) extends Identity() {
+    visit Instrucao {
+      Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
+        func.put(`nome, `argumentos);
+        numberOperations.put(`nome,0);
+        TreeSet distinctOpps = new TreeSet <String>();
+        `TopDown(startCollectNumOperations( numberOperations, nome )).visit(`inst);
+        `TopDown(startCollectDistinctOperations(distinctOpps)).visit(`inst);
+        distinctOperations.put(`nome,distinctOpps);
       }
     }
   }
@@ -760,16 +939,6 @@ public class Main {
         func.put(`nome, `argumentos);
         comments.put(`nome, 0);
         `TopDown(startCollectComments(comments,nome)).visit(`inst);
-      }
-    }
-  }
-
-  %strategy CollectNumOperations(func:HashMap, operations:HashMap) extends Identity() {
-    visit Instrucao {
-      Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
-        func.put(`nome, `argumentos);
-        operations.put(`nome,0);
-        `TopDown(startCollectNumOperations(operations,nome)).visit(`inst);
       }
     }
   }
