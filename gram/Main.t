@@ -26,8 +26,6 @@ public class Main {
   %include{util/types/Set.tom}
   %include{../genI/gram/i/i.tom}
   %include{util/TreeSet.tom}
-  //%include{util/Iterator.tom}
-
 
   private String actualFunctionName;
   HashMap<String, Argumentos> functionSignatures;
@@ -338,13 +336,6 @@ public class Main {
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " +"\n" );
           TreeSet arvoreIds = main.usedIdsMap.get(funcao);
-<<<<<<< HEAD
-	  Iterator<Integer> iterator = arvoreIds.iterator();
-          // Displaying the Tree set data
-          while (iterator.hasNext()) {
-          writer.write(iterator.next() + " ");
-            }
-=======
           TreeSet argsNaoUsados = main.unusedArgsMap.get(funcao);
          Iterator<Integer> iterator = arvoreIds.iterator();
          Iterator<Integer> iteratorArgs = argsNaoUsados.iterator();
@@ -357,11 +348,9 @@ public class Main {
           while (iteratorArgs.hasNext()) {
             writer.write(iteratorArgs.next() + " ");
           }
->>>>>>> 90264167797062520249929f019d4539ec3761cc
           writer.write("\n" );
         }
         /******* Printing Separated Metrics ********/
-
         writer.flush();
         writer.close();
         /**************************************************************************************************************/
