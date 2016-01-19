@@ -470,6 +470,17 @@ public class Main {
       }
     }
   }
+  
+  /** Metric to compute total of Arguments per Function ***/ 
+  %strategy getUnusedArgsFunction(unusedArgs:TreeSet, usedIds:TreeSet ) extends Identity() {
+    visit Argumentos {
+      Argumento(_,_,_,id,_) -> {
+            if ( ! (usedIds.contains( `id )) ){
+              unusedArgs.add( `id );
+            }
+      }
+    }
+  }
 
   /* Metric to collect unused arguments ids from each function */
   %strategy collectUnusedArguments ( unusedArgumentsMap:HashMap , usedIdsMap:HashMap ) extends Identity() {
@@ -477,13 +488,7 @@ public class Main {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
         TreeSet <String> unusedArgs = new TreeSet <String> ();
         TreeSet <String> usedIds = ( TreeSet <String> ) usedIdsMap.get(`nome);
-        %match(argumentos) {
-          a@Argumento(_,_,_,idArg,_) -> {
-            if ( usedIds.contains( `idArg ) ){
-              unusedArgs.add( `idArg );
-            }
-          }
-        }
+        `TopDown(getUnusedArgsFunction(unusedArgs,usedIds)).visit(`argumentos);
         unusedArgumentsMap.put(`nome, unusedArgs );
       }
     }
