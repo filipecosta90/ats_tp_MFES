@@ -19,6 +19,12 @@ import java.lang.*;
 import java.io.*;
 import java.lang.Math;
 
+//For metrics parse file
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Main {
   %include{sl.tom}
   %include{util/HashMap.tom}
@@ -27,7 +33,6 @@ public class Main {
   %include{util/types/Set.tom}
   %include{../genI/gram/i/i.tom}
   %include{util/TreeSet.tom}
-//  %include{lang/Math.tom}
 
   private String actualFunctionName;
   HashMap<String, Argumentos> functionSignatures;
@@ -37,7 +42,19 @@ public class Main {
   private int memAdress;
   StringBuilder functionsDeclarations;
 
-  //Metrics Variables    
+  //Main Metrics Variables 
+  String main_Description;
+  double main_CYCLO_PER_LOC;
+  double main_LOC_PER_OPERATION;
+  double main_NOM_PER_CLASS;
+  double main_NOC_PER_PACKAGE;
+  double main_CALLS_PER_OPERATION;
+  double main_FANOUT_PER_CALL;
+  double main_ANDC;
+  double main_AHH;
+  String metrics_STANDARDS;
+
+  // Map of Metrics Variables 
   Integer numberFunctions;
   HashMap <String,Integer> functionsNumberParameters;
   HashMap <String,Integer> cyclomaticComplexityMap;
@@ -84,12 +101,21 @@ public class Main {
   private static int nrOpAtribSub;
 
   public Main() {
+    this.main_Description = "global";
+    this.main_CYCLO_PER_LOC = 0.0;
+    this.main_LOC_PER_OPERATION = 0.0;
+    this.main_NOM_PER_CLASS = 0.0;
+    this.main_NOC_PER_PACKAGE = 0.0;
+    this.main_CALLS_PER_OPERATION = 0.0;
+    this.main_FANOUT_PER_CALL = 0.0;
+    this.main_ANDC = 0.0;
+    this.main_AHH = 0.0;
+    this.metrics_STANDARDS = "standards_c.txt";
     actualFunctionName = "";
     functionSignatures = new HashMap<String, Argumentos>();
     callReturnNeeded = true;
     functionsDeclarations = new StringBuilder();
     memAdress = 0;
-
     Integer numberFunctions = 0;
     functionsNumberParameters = new HashMap<String,Integer>();
     cyclomaticComplexityMap = new HashMap<String,Integer>();
@@ -283,11 +309,11 @@ public class Main {
           {
             volume = programLength * Math.log(vocabulary)/Math.log(2);
 
-/*The difficulty measure is related to the difficulty of 
-the program to write or understand, e.g. when doing code review. */
-difficulty = distinctOperators/2 * (totalOperands/distinctOperands); 
-           /**/
-           effort = difficulty * volume;
+            /*The difficulty measure is related to the difficulty of 
+              the program to write or understand, e.g. when doing code review. */
+            difficulty = distinctOperators/2 * (totalOperands/distinctOperands); 
+            /**/
+            effort = difficulty * volume;
             time_program = effort / 18;
             delivered_bugs = volume / 3000;
             writer.write("\t" + funcao + " : " + "\n" );
@@ -300,7 +326,7 @@ difficulty = distinctOperators/2 * (totalOperands/distinctOperands);
         }
 
         /** 9) Metric to count the Number Of Comments Per Function **/
-        int number_comments = 0;  
+        int number_comments = 0;
         for ( String funcao : main.functionSignatures.keySet() ){
           int comments =  main.functionComments.get(funcao); 
           number_comments += comments;
@@ -360,6 +386,28 @@ difficulty = distinctOperators/2 * (totalOperands/distinctOperands);
         writer.close();
         /**************************************************************************************************************/
 
+
+        String text = "Hello world";
+        BufferedWriter output = null;
+        try {
+          File fileParser = new File("metrics_to_gui.txt");
+          output = new BufferedWriter(new FileWriter(fileParser));
+    output.write ( main.main_Description +";" );
+     output.write ( String.format("%.2f",  main.main_CYCLO_PER_LOC) + ";" );
+      output.write ( String.format("%.2f", main.main_LOC_PER_OPERATION)  + ";" );
+     output.write ( String.format("%.2f", main.main_NOM_PER_CLASS ) + ";" );
+     output.write (  String.format("%.2f", main.main_NOC_PER_PACKAGE)  + ";" );
+      output.write ( String.format("%.2f", main.main_CALLS_PER_OPERATION)  + ";" );
+     output.write ( String.format("%.2f", main.main_FANOUT_PER_CALL ) + ";" );
+     output.write ( String.format("%.2f",  main.main_ANDC)  + ";" ) ;
+     output.write ( String.format("%.2f",  main.main_AHH ) + ";" );
+     output.write (  main.metrics_STANDARDS + "\n");
+
+} catch ( IOException e ) {
+          e.printStackTrace();
+        } finally {
+          if ( output != null ) output.close();
+        }
       }
 
       catch (IOException e){

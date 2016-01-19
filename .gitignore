@@ -4,3 +4,6 @@
 *.txt
 genI/*
 genMaqV/*
+/gram/atsVisualizer/nbproject/private/
+/gram/atsVisualizer/build/
+/gram/atsVisualizer/dist/

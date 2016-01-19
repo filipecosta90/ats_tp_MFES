@@ -5,6 +5,7 @@ RES_FILE=res.msp
 make clean
 make all
 cp $EXAMPLE_DIR$EXAMPLE_FILE genI
+cp gram/standards_c.txt genI
 cd genI
 javac gram/Main.java
 echo "ended compiling"
