@@ -1,16 +1,6 @@
 #/bin/bash
 EXAMPLE_DIR=exemplos/
-<<<<<<< HEAD
-EXAMPLE_FILE=printNnaturals.i
-||||||| merged common ancestors
 EXAMPLE_FILE=mult2num.i
-=======
-<<<<<<< HEAD
-EXAMPLE_FILE=convertASCII.i
-=======
-EXAMPLE_FILE=mult2num.i
->>>>>>> dd6a867dbf158694eb641c906854faa2e7b493bc
->>>>>>> da034f0011587e4cc80988a5374f44305e378ea3
 RES_FILE=res.msp
 make clean
 make all
