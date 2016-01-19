@@ -52,6 +52,7 @@ public class Main {
   Integer totalLinesOfCode;
   HashMap <String, TreeSet<String> > usedIdsMap;
   HashMap <String, TreeSet<String> > usedArgsMap;
+  HashMap <String, TreeSet<String> > unusedArgsMap;
 
   /*** Separated Metrics ***/
   /** OpNum **/
@@ -102,6 +103,7 @@ public class Main {
     this.argsMap = new HashMap <String, Integer>();
     this.usedIdsMap = new HashMap <String, TreeSet<String> >();
     this.usedArgsMap = new HashMap <String, TreeSet<String> >();
+    this.unusedArgsMap = new HashMap <String, TreeSet<String> >();
     this.iplMap = new HashMap <String,Integer>();
     /****** Separated Metrics Counters Inicialization ******/
 
@@ -197,6 +199,7 @@ public class Main {
         `TopDown(CollectOpAtrib(main.functionSignatures, main.opAtribMap)).visit(p);
         `TopDown(collectIPL(main.iplMap)).visit(p);
         `TopDown(collectUsedIdsMap(main.usedIdsMap)).visit(p);
+        `TopDown(collectUnusedArguments(  main.unusedArgsMap , main.usedIdsMap )).visit(p);
         `TopDown(collectLN(main.lnMap)).visit(p);
 
         Instrucao p2 = p;
@@ -341,14 +344,20 @@ public class Main {
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " +"\n" );
           TreeSet arvoreIds = main.usedIdsMap.get(funcao);
-          Iterator<Integer> iterator = arvoreIds.iterator();
+          TreeSet argsNaoUsados = main.unusedArgsMap.get(funcao);
+         Iterator<Integer> iterator = arvoreIds.iterator();
+         Iterator<Integer> iteratorArgs = argsNaoUsados.iterator();
           // Displaying the Tree set data
           while (iterator.hasNext()) {
             writer.write(iterator.next() + " ");
           }
+          writer.write("\nNon Used Arguments" );
+// Displaying the Tree set data
+          while (iteratorArgs.hasNext()) {
+            writer.write(iteratorArgs.next() + " ");
+          }
           writer.write("\n" );
         }
-
         /******* Printing Separated Metrics ********/
 
         writer.flush();
@@ -369,7 +378,7 @@ public class Main {
 
 
 
-public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<String> idsUtilizados) {
+  public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<String> idsUtilizados) {
     %match(args) {
       ListaArgumentos(arg1,tailArg*) -> {
         %match(arg1) {
@@ -470,24 +479,24 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
       }
     }
   }
-/*
+
+  /* Metric to collect unused arguments ids from each function */
   %strategy collectUnusedArguments ( unusedArgumentsMap:HashMap , usedIdsMap:HashMap ) extends Identity() {
     visit Instrucao {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
-        TreeSet <String> unsedArgs = new TreeSet <String> ();
+        TreeSet <String> unusedArgs = new TreeSet <String> ();
+        TreeSet <String> usedIds = ( TreeSet <String> ) usedIdsMap.get(`nome);
         %match(argumentos) {
-        a@Argumento(_,_,_,idArg,_) -> {
-        if ( usedIdsMap.contais( `idArg ) ){
-          unusedArgs.add( idArg );
+          a@Argumento(_,_,_,idArg,_) -> {
+            if ( usedIds.contains( `idArg ) ){
+              unusedArgs.add( `idArg );
+            }
+          }
         }
-        }
-        }
-      u
+        unusedArgumentsMap.put(`nome, unusedArgs );
       }
     }
   }
-
-*/
 
   //Instruction Path lenght
   %strategy collectIPLInside ( ipl:HashMap, funcao:String ) extends Identity() {
@@ -803,6 +812,10 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
     }
   }
 
+  /***************************
+   ** Refactoring Strategies **
+   ***************************/
+
   %strategy RefactorNegIf() extends Identity() {
     visit Instrucao {
       If(c1,c2,c3,Nao(condicao),c4,c5,i1,i2) -> { return `If(c1,c2,c3,condicao,c4,c5,i2,i1); }
@@ -814,6 +827,10 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
       Nao(Nao(c1)) -> { return `c1; }
     }
   }
+
+  /***********************
+   **** Bad Smells *****
+   ***********************/
 
   /** %checkBadSmells( smellsMap:HashMap ) extends Identity(){
 
@@ -827,6 +844,7 @@ public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<
   }*/
 
   /********************************************************************/
+
   %strategy startBadSmells() extends Identity() {
     visit Instrucao {
       If(c1,c2,c3,Nao(condicao),c4,c5,inst1,inst2) -> {
