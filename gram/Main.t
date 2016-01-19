@@ -49,6 +49,7 @@ public class Main {
   HashMap <String,Integer> argsMap;
   Integer totalLinesOfCode;
   HashMap <String, TreeSet<String> > usedIdsMap;
+  HashMap <String, Integer> numberIdsCallsMap;
   HashMap <String, TreeSet<String> > usedArgsMap;
   HashMap <String, TreeSet<String> > unusedArgsMap;
   HashMap <String, TreeSet <String> > operationsPerFunctionMap;
@@ -102,80 +103,11 @@ public class Main {
     this.lnMap = new HashMap <String,Integer>();
     this.argsMap = new HashMap <String, Integer>();
     this.usedIdsMap = new HashMap <String, TreeSet<String> >();
+    this.numberIdsCallsMap = new HashMap <String, Integer>();
     this.usedArgsMap = new HashMap <String, TreeSet<String> >();
     this.unusedArgsMap = new HashMap <String, TreeSet<String> >();
     this.iplMap = new HashMap <String,Integer>();
-    /****** Separated Metrics Counters Inicialization ******/
-
-    /** OpNum Inicialization **/
-    this.nrMais = 0;
-    this.nrVezes = 0;
-    this.nrDivide = 0;
-    this.nrMenos = 0;
-    this.nrMod = 0;
-
-    /** OpComp Inicialization **/
-    this.nrMaior = 0;
-    this.nrMenor = 0;
-    this.nrMaiorQ = 0;
-    this.nrMenorQ = 0;
-    this.nrDif = 0;
-    this.nrIgual = 0;
-
-    /** OpInc Inicialization **/
-    this.nrInc = 0;
-    this.nrDec = 0;
-
-    /** OpAtribuicao **/
-    this.nrOpAtribAtrib = 0;
-    this.nrOpAtribMult = 0;
-    this.nrOpAtribDiv = 0;
-    this.nrOpAtribSoma = 0;
-    this.nrOpAtribSub = 0;
-
-    /****************************************************/
   }
-
-  /**
-   * Halstead Measures (lifted from www.sei.cmu.edu)
-   * =================
-   * The Halstead measures are based on four scalar numbers derived directly
-   * from a program's source code:
-   * n1 = the number of distinct operators
-   * 
-   * n2 = the number of distinct operands
-   * 
-   * N1 = the total number of operators
-   * 
-   * N2 = the total number of operands
-   * 
-   * From these numbers, five measures are derived:
-   * Measure Symbol Formula
-   * 
-   * Program length N N= N1 + N2
-   * 
-   * Program vocabulary n n= n1 + n2
-   * 
-   * Volume V V= N * (LOG2 n)
-   * 
-   * Difficulty D D= (n1/2) * (N2/n2)
-   * 
-   * Effort E E= D * V
-   */
-
-  /* void computeHalstead()
-     {
-     programLength = totalOperands + totalOperators;
-     vocabulary = distinctOperators + distinctOperands;
-     if (distinctOperators > 0 && distinctOperands > 0)
-     {
-     volume = programLength * Math.log(vocabulary)/Math.log(2);
-     difficulty = distinctOperators/2 * (totalOperands/distinctOperands); 
-     effort = difficulty * volume;
-     }
-     return;
-     }
-   */
 
   public static void main(String[] args) {
     try {
@@ -190,15 +122,15 @@ public class Main {
       try {
         ArrayList<Integer> numInstrucao = new ArrayList<Integer>();
         numInstrucao.add(1);
-        `TopDown(CollectNumberFuncs(main.functionSignatures, main.argsMap)).visit(p);
-        `TopDown(CollectCiclomaticComplex(main.functionSignatures, main.cyclomaticComplexityMap)).visit(p);
-        `TopDown(CollectComments(main.functionSignatures, main.functionComments)).visit(p);
-        `TopDown(CollectOperations(main.functionSignatures, main.nOperationsMap, main.operationsPerFunctionMap )).visit(p);
-        `TopDown(CollectNumOperationsComparisons(main.functionSignatures, main.nOperationsComparisonsMap)).visit(p);
-        `TopDown(CollectNumOperationsIncrDecr(main.functionSignatures, main.nIncrDecrOpMap)).visit(p);
-        `TopDown(CollectOpAtrib(main.functionSignatures, main.opAtribMap)).visit(p);
-        `TopDown(collectIPL(main.iplMap)).visit(p);
-        `TopDown(collectUsedIdsMap(main.usedIdsMap)).visit(p);
+        `TopDown(CollectNumberFuncs( main.functionSignatures, main.argsMap )).visit(p);
+        `TopDown(CollectCiclomaticComplex( main.functionSignatures, main.cyclomaticComplexityMap )).visit(p);
+        `TopDown(CollectComments( main.functionSignatures, main.functionComments )).visit(p);
+        `TopDown(CollectOperations( main.functionSignatures, main.nOperationsMap, main.operationsPerFunctionMap )).visit(p);
+        `TopDown(CollectNumOperationsComparisons( main.functionSignatures, main.nOperationsComparisonsMap )).visit(p);
+        `TopDown(CollectNumOperationsIncrDecr( main.functionSignatures, main.nIncrDecrOpMap )).visit(p);
+        `TopDown(CollectOpAtrib( main.functionSignatures, main.opAtribMap )).visit(p);
+        `TopDown(collectIPL( main.iplMap )).visit(p);
+        `TopDown(collectUsedIdsMap( main.usedIdsMap, main.numberIdsCallsMap )).visit(p);
         `TopDown(collectUnusedArguments(  main.unusedArgsMap , main.usedIdsMap )).visit(p);
         `TopDown(collectLN(main.lnMap)).visit(p);
 
@@ -283,20 +215,79 @@ public class Main {
           writer.write("\t" + funcao + " : " + main.cyclomaticComplexityMap.get(funcao)+"\n" );
         }
 
-        /** 4) Metric to count Number Of Operations Per Function **/
-        writer.write("Number Operations per function:\n");
+        /** 4) Metric to count Number Of Operators Per Function **/
+        writer.write("Number Operators per function:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.nOperationsMap.get(funcao)+"\n" );
         }
 
-        /** 5) Metric to count Number Of Distinct Operations Per Function **/
-        writer.write("Number Of Distinct Operations per function:\n");
+        /** 5) Metric to count Number Of Unique Operators Per Function **/
+        writer.write("Number Of Unique Operators per function:\n");
         for ( String funcao : main.functionSignatures.keySet()){
-           TreeSet distinctOpps =  main.operationsPerFunctionMap.get(funcao);
-          writer.write("\t" + funcao + " : "+ distinctOpps.size() + " distinct operations\n" );
+          TreeSet distinctOpps =  main.operationsPerFunctionMap.get(funcao);
+          writer.write("\t" + funcao + " : "+ distinctOpps.size() + " \n" );
         }
 
-        /** 6) Metric to count the Number Of Comments Per Function **/
+
+        /** 6) Metric to count Number Of Operands Per Function **/
+        writer.write("Number Operands per function:\n");
+        for ( String funcao : main.functionSignatures.keySet()){
+          writer.write("\t" + funcao + " : " + main.numberIdsCallsMap.get(funcao)+"\n" );
+        }
+
+        /** 7) Metric to count Number Of Unique Operands Per Function **/
+        writer.write("Number Of Unique Operands per function:\n");
+        for ( String funcao : main.functionSignatures.keySet()){
+          TreeSet distinctOperands =  main.usedIdsMap.get(funcao);
+          writer.write("\t" + funcao + " : "+ distinctOperands.size() + " \n" );
+        }
+
+        /**
+         * Halstead Measures (lifted from www.sei.cmu.edu)
+         * =================
+         * The Halstead measures are based on four scalar numbers derived directly
+         * from a program's source code:
+         * n1 = the number of distinct operators
+         * n2 = the number of distinct operands
+         * N1 = the total number of operators
+         * N2 = the total number of operands
+         * From these numbers, five measures are derived:
+         * Measure Symbol Formula
+         * Program length N N= N1 + N2
+         * Program vocabulary n n= n1 + n2
+         * Volume V V= N * (LOG2 n)
+         * Difficulty D D= (n1/2) * (N2/n2)
+         * Effort E E= D * V
+         */
+
+        /** 8) Metric to Compute Halstead Measures Per Function **/
+        writer.write("Number Operands per function:\n");
+        for ( String funcao : main.functionSignatures.keySet()){
+
+          int totalOperands = main.numberIdsCallsMap.get(funcao);
+          int totalOperators =  main.nOperationsMap.get(funcao);
+          int programLength = totalOperands + totalOperators;
+
+          TreeSet distinctOperandsTree =  main.usedIdsMap.get(funcao);
+          int distinctOperands =  distinctOperandsTree.size(); 
+
+          TreeSet distinctOppsTree =  main.operationsPerFunctionMap.get(funcao);
+          int distinctOperators =    distinctOpps.size() ;
+
+          int  vocabulary = distinctOperators + distinctOperands;
+
+          float volume, difficulty, effort;
+          if (distinctOperators > 0 && distinctOperands > 0)
+          {
+            volume = programLength * Math.log(vocabulary)/Math.log(2);
+            difficulty = distinctOperators/2 * (totalOperands/distinctOperands); 
+            effort = difficulty * volume;
+
+            //            writer.write("\t" + funcao + " : " + "\n" );
+          }
+        }
+
+        /** 9) Metric to count the Number Of Comments Per Function **/
         int number_comments = 0;  
         for ( String funcao : main.functionSignatures.keySet() ){
           int comments =  main.functionComments.get(funcao); 
@@ -307,7 +298,7 @@ public class Main {
           writer.write("\t" + funcao + " : " + main.functionComments.get(funcao)+"\n" );
         }
 
-        /** 7) Metric for counting total number of lines per function 
+        /** 9) Metric for counting total number of lines per function 
          * Blank lines should not be counted
          * Comments should not be counted
          **/ 
@@ -316,31 +307,31 @@ public class Main {
           writer.write("\t" + funcao + " : " + main.lnMap.get(funcao)+"\n" );
         }
 
-        /** 8) Metric to count number path length of instructions*/
+        /** 10) Metric to count number path length of instructions*/
         writer.write("Instructions Path Lenght:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.iplMap.get(funcao)+"\n" );
         }
 
-        /** 9) Metric to count Number of Operations Comparisons **/
+        /** 11) Metric to count Number of Operations Comparisons **/
         writer.write("Total Number of Operations Comparisons:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.nOperationsComparisonsMap.get(funcao)+"\n" );
         }    
 
-        /** 10) Metric to count Number of Increment/Decrement Operations **/
+        /** 12) Metric to count Number of Increment/Decrement Operations **/
         writer.write("Total Number of Increment/Decrement Operations:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.nIncrDecrOpMap.get(funcao)+"\n" );
         }     
 
-        /** 11) Metric to count Number of Atribuicao Operations **/
+        /** 13) Metric to count Number of Atribuicao Operations **/
         writer.write("Total Number of Atrib/Mult/Div/Soma/Sub:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.opAtribMap.get(funcao)+"\n" );
         }
 
-        /** 12) Unused arguments per function  **/
+        /** 14) Unused arguments per function  **/
         writer.write("Unused arguments per function:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           TreeSet argsNaoUsados = main.unusedArgsMap.get(funcao);
@@ -443,31 +434,44 @@ public class Main {
     }
   }
 
-  %strategy collectUsedIdsInside ( idsUtilizados:TreeSet) extends Identity() {
+  %strategy collectUsedIdsInside ( idsUtilizados:TreeSet, numberIdsCallsMap:HashMap, funcao:String ) extends Identity() {
     visit Instrucao {
       Atribuicao(_,id,_,opAtrib,_,exp,_) -> {
         idsUtilizados.add(`id);
+        int valor_mapa = (int) numberIdsCallsMap.get(funcao);
+        valor_mapa++;
+        numberIdsCallsMap.put(funcao, valor_mapa);
       }
     }
     visit Expressao {
       Id(id) -> { 
         idsUtilizados.add(`id);
+        int valor_mapa = (int) numberIdsCallsMap.get(funcao);
+        valor_mapa++;
+        numberIdsCallsMap.put(funcao, valor_mapa);
       }
       IncAntes(opInc,id) -> { 
         idsUtilizados.add(`id);
+        int valor_mapa = (int) numberIdsCallsMap.get(funcao);
+        valor_mapa++;
+        numberIdsCallsMap.put(funcao, valor_mapa);
       }
       IncDepois(opInc,id) -> { 
         idsUtilizados.add(`id);
+        int valor_mapa = (int) numberIdsCallsMap.get(funcao);
+        valor_mapa++;
+        numberIdsCallsMap.put(funcao, valor_mapa);
       }
     }
   }
 
   /*Line number counting*/
-  %strategy collectUsedIdsMap ( usedIdsMap:HashMap ) extends Identity() {
+  %strategy collectUsedIdsMap ( usedIdsMap:HashMap , numberIdsCallsMap:HashMap ) extends Identity() {
     visit Instrucao {
       Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
         TreeSet <String> usedIds = new TreeSet <String> ();
-        `TopDown( collectUsedIdsInside( usedIds )).visit(`inst);
+        numberIdsCallsMap.put(`nome,0);
+        `TopDown( collectUsedIdsInside( usedIds, numberIdsCallsMap, nome )).visit(`inst);
         usedIdsMap.put(`nome, usedIds );
       }
     }
@@ -1013,7 +1017,7 @@ public class Main {
       }
       Funcao(c1,tipo,c2,nome,c3,c4,argumentos,c5,c6,inst,c7) -> {
         TreeSet<String> idsUtilizados = new TreeSet<String>();
-        `TopDown(collectUsedIdsInside(idsUtilizados)).visit(`inst);
+        // `TopDown(collectUsedIdsInside(idsUtilizados)).visit(`inst);
         Argumentos args = removeArgumentosNaoUtilizados(`argumentos,idsUtilizados);
         return `Funcao(c1,tipo,c2,nome,c3,c4,args,c5,c6,inst,c7);
       }
