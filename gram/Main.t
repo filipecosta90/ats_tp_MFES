@@ -422,21 +422,7 @@ public class Main {
 
 
 
-  public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<String> idsUtilizados) {
-    %match(args) {
-      ListaArgumentos(arg1,tailArg*) -> {
-        %match(arg1) {
-          a@Argumento(_,_,_,idArg,_) -> {
-            if (idsUtilizados.contains(`idArg))
-              return `ListaArgumentos(a,removeArgumentosNaoUtilizados(tailArg*,idsUtilizados));
-            else
-              return removeArgumentosNaoUtilizados(`tailArg*,idsUtilizados);
-          }
-        }
-      }
-    }
-    return args;
-  }
+  
 
 
 
@@ -1052,6 +1038,23 @@ public class Main {
       Nao(Nao(c1)) -> { return `c1; }
     }
   }
+
+  public static Argumentos removeArgumentosNaoUtilizados(Argumentos args, TreeSet<String> idsUtilizados) {
+    %match(args) {
+      ListaArgumentos(arg1,tailArg*) -> {
+        %match(arg1) {
+          a@Argumento(_,_,_,idArg,_) -> {
+            if (idsUtilizados.contains(`idArg))
+              return `ListaArgumentos(a,removeArgumentosNaoUtilizados(tailArg*,idsUtilizados));
+            else
+              return removeArgumentosNaoUtilizados(`tailArg*,idsUtilizados);
+          }
+        }
+      }
+    }
+    return args;
+  }
+
 
   /***********************
    **** Bad Smells *****
