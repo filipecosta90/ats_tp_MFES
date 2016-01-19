@@ -1,6 +1,10 @@
 #/bin/bash
 EXAMPLE_DIR=exemplos/
+<<<<<<< HEAD
 EXAMPLE_FILE=convertASCII.i
+=======
+EXAMPLE_FILE=mult2num.i
+>>>>>>> dd6a867dbf158694eb641c906854faa2e7b493bc
 RES_FILE=res.msp
 make clean
 make all
