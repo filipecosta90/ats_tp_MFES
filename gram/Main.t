@@ -17,6 +17,7 @@ import tom.library.sl.*;
 import java.util.*;
 import java.lang.*;
 import java.io.*;
+import java.lang.Math;
 
 public class Main {
   %include{sl.tom}
@@ -26,6 +27,7 @@ public class Main {
   %include{util/types/Set.tom}
   %include{../genI/gram/i/i.tom}
   %include{util/TreeSet.tom}
+//  %include{lang/Math.tom}
 
   private String actualFunctionName;
   HashMap<String, Argumentos> functionSignatures;
@@ -243,7 +245,7 @@ public class Main {
         }
 
         /**
-         * Halstead Measures (lifted from www.sei.cmu.edu)
+         * Halstead Measures (lifted from www.sei.cmu.edu and https://en.wikipedia.org/wiki/Halstead_complexity_measures)
          * =================
          * The Halstead measures are based on four scalar numbers derived directly
          * from a program's source code:
@@ -261,7 +263,7 @@ public class Main {
          */
 
         /** 8) Metric to Compute Halstead Measures Per Function **/
-        writer.write("Number Operands per function:\n");
+        writer.write("Halstead Measures per function:\n");
         for ( String funcao : main.functionSignatures.keySet()){
 
           int totalOperands = main.numberIdsCallsMap.get(funcao);
@@ -272,18 +274,28 @@ public class Main {
           int distinctOperands =  distinctOperandsTree.size(); 
 
           TreeSet distinctOppsTree =  main.operationsPerFunctionMap.get(funcao);
-          int distinctOperators =    distinctOpps.size() ;
+          int distinctOperators =    distinctOppsTree.size() ;
 
           int  vocabulary = distinctOperators + distinctOperands;
 
-          float volume, difficulty, effort;
+          double volume, difficulty, effort, time_program, delivered_bugs;
           if (distinctOperators > 0 && distinctOperands > 0)
           {
             volume = programLength * Math.log(vocabulary)/Math.log(2);
-            difficulty = distinctOperators/2 * (totalOperands/distinctOperands); 
-            effort = difficulty * volume;
 
-            //            writer.write("\t" + funcao + " : " + "\n" );
+/*The difficulty measure is related to the difficulty of 
+the program to write or understand, e.g. when doing code review. */
+difficulty = distinctOperators/2 * (totalOperands/distinctOperands); 
+           /**/
+           effort = difficulty * volume;
+            time_program = effort / 18;
+            delivered_bugs = volume / 3000;
+            writer.write("\t" + funcao + " : " + "\n" );
+            writer.write("\t\tVolume: " + volume + "\n" );
+            writer.write("\t\tDifficulty: " + difficulty + "\n" );
+            writer.write("\t\tEffort: " + effort + "\n" );
+            writer.write("\t\tTime required to program: " + time_program + "\n" );
+            writer.write("\t\tNumber of delivered bugs: " + delivered_bugs + "\n" );
           }
         }
 
