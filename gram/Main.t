@@ -293,7 +293,7 @@ public class Main {
           int comments =  main.functionComments.get(funcao); 
           number_comments += comments;
         }
-        writer.write("Total comments present on file:" +  number_comments + "\n");
+        writer.write("Total comments present on file: " +  number_comments + "\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.functionComments.get(funcao)+"\n" );
         }
