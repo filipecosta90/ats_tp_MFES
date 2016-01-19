@@ -26,6 +26,8 @@ public class Main {
   %include{util/types/Set.tom}
   %include{../genI/gram/i/i.tom}
   %include{util/TreeSet.tom}
+  //%include{util/Iterator.tom}
+
 
   private String actualFunctionName;
   HashMap<String, Argumentos> functionSignatures;
@@ -332,6 +334,19 @@ public class Main {
         writer.write("Total Number of Atrib/Mult/Div/Soma/Sub:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.opAtribMap.get(funcao)+"\n" );
+        }
+
+        /** 11) Used ids per function  **/
+        writer.write("\nUsed ids per function:\n");
+        for ( String funcao : main.functionSignatures.keySet()){
+          writer.write("\t" + funcao + " : " +"\n" );
+          TreeSet arvoreIds = main.usedIdsMap.get(funcao);
+Iterator<Integer> iterator = arvoreIds.iterator();
+    // Displaying the Tree set data
+      while (iterator.hasNext()) {
+          writer.write(iterator.next() + " ");
+            }
+          writer.write("\n" );
         }
 
         /******* Printing Separated Metrics ********/
