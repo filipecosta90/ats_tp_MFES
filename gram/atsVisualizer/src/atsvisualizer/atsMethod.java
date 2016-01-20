@@ -37,13 +37,22 @@ public class atsMethod {
     Metric EFFORT;
     Metric BUGS;
     Metric MAINTAIN_INDEX;
+    Metric NOCOM;
+   Metric IPL;
+   Metric UNARG;
+   Metric UNDEC;
+    Metric NEGNEG;
+    Metric NEGIF;
+    Metric NARGS;
                             
     public atsMethod ( String method_desc, double ats_CYCLO_PER_LOC, double ats_LOC_PER_OPERATION, 
     double ats_NOM_PER_CLASS, double ats_NOC_PER_PACKAGE, double ats_CALLS_PER_OPERATION,
     double ats_FANOUT_PER_CALL, double ats_ANDC, double ats_AHH , double ats_CYCLO, double ats_LOC, double ats_NOM, 
     double ats_NOC, double ats_NOP, double ats_FANOUT, double ats_CALLS, 
     double ats_VOLUME, double  ats_DIFFICULTY, double ats_EFFORT, double ats_BUGS, double ats_MAINTAIN, 
-    String valuesFileName ){   
+    double  ats_NOCOM , double ats_IPL , double   ats_UNARG , double  ats_UNDEC ,  double  ats_NEGNEG ,
+  double   ats_NEGIF , double ats_NARGS, String valuesFileName 
+    ){   
     this.methodDescription = method_desc;
     this.CYCLO_PER_LOC = new Metric ( "CYCLO_PER_LOC" , ats_CYCLO_PER_LOC );
     this.LOC_PER_OPERATION = new Metric ( "LOC_PER_OPERATION" , ats_LOC_PER_OPERATION );
@@ -65,12 +74,19 @@ public class atsMethod {
     this.EFFORT = new Metric ("EFFORT" , ats_EFFORT );
     this.BUGS = new Metric ("BUGS" , ats_BUGS );
     this.MAINTAIN_INDEX = new Metric ("MAINTAIN_INDEX" , ats_MAINTAIN );
+    this.NOCOM = new Metric ("NOCOM" , ats_NOCOM );
+   this.IPL = new Metric ("IPL" , ats_IPL );
+   this.UNARG = new Metric ("UNARG" , ats_UNARG );
+   this.UNDEC = new Metric ("UNDEC" , ats_UNDEC );
+    this.NEGNEG = new Metric ("NEGNEG" , ats_NEGNEG );
+    this.NEGIF = new Metric ("NEGIF" , ats_NEGIF );
+    this.NARGS = new Metric ("NARGS" , ats_NARGS );
     readProperties(valuesFileName);
     
     }
     
-    public int getNumberStars (){
-        int valor = 0;
+    public int getScore(){
+    int valor = 0;
         valor += CYCLO_PER_LOC.getRate();
      valor += LOC_PER_OPERATION.getRate();
      valor += NOM_PER_CLASS.getRate();
@@ -81,11 +97,23 @@ public class atsMethod {
      valor += AHH.getRate();
      valor += MAINTAIN_INDEX.getRate();
      valor += LOC.getRate();
-     if(valor > 20 ){
+     valor += UNARG.getRate();
+     valor += NARGS.getRate();
+     return valor;
+        
+    }
+    
+    public int getMaxScore(){
+     return 36;
+    }
+    
+    public int getNumberStars (){
+        int valor = this.getScore();
+     if(valor > 24 ){
          return 3;
      }
      else {
-         if ( valor > 10){
+         if ( valor > 12){
              return 2;
          }
      else {
@@ -149,6 +177,14 @@ public class atsMethod {
                 this.LOC.setLow(Double.parseDouble(prop.getProperty("LOC_LOW")));
                 this.LOC.setNormal(Double.parseDouble(prop.getProperty("LOC_AVERAGE")));
                 this.LOC.setHigh(Double.parseDouble(prop.getProperty("LOC_HIGH")));
+                
+                this.UNARG.setLow(Double.parseDouble(prop.getProperty("UNARG_LOW")));
+                this.UNARG.setNormal(Double.parseDouble(prop.getProperty("UNARG_AVERAGE")));
+                this.UNARG.setHigh(Double.parseDouble(prop.getProperty("UNARG_HIGH")));
+                
+                this.NARGS.setLow(Double.parseDouble(prop.getProperty("NARGS_LOW")));
+                this.NARGS.setNormal(Double.parseDouble(prop.getProperty("NARGS_AVERAGE")));
+                this.NARGS.setHigh(Double.parseDouble(prop.getProperty("NARGS_HIGH")));
                 
 
 	} catch (IOException ex) {

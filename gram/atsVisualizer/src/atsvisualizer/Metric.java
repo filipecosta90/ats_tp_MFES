@@ -75,7 +75,7 @@ public class Metric {
           }
 
       else {
-              return -6;
+              return -7;
               }
       }
     }

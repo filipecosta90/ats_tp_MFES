@@ -475,7 +475,8 @@ public class Main {
             double FANOUT = 1.0;
             main.main_FANOUT = 1.0;
             double ANDC = 0.0;
-            double AHH = 0.0;
+            double IPL = main.iplMap.get(funcao);
+            double AHH = 1 / IPL;
             output.write(funcao+";");
             double CYCLO_PER_LOC = CYCLO / LOC;
             output.write ( String.format("%.2f", CYCLO_PER_LOC )  + ";" );
@@ -516,13 +517,28 @@ public class Main {
             EFFORT = DIFFICULTY * VOLUME;
             DELIVERED_BUGS = VOLUME / 3000;
             double Maintainability = Math.max(0.01 ,(171 - 5.2 * Math.log(VOLUME) - 0.23 * CYCLO - 16.2 * Math.log(LOC))*100 / 171);
-
             output.write ( String.format("%.2f", VOLUME )  + ";" );
             output.write ( String.format("%.2f", DIFFICULTY )  + ";" );
             output.write ( String.format("%.2f", EFFORT )  + ";" );
             output.write ( String.format("%.2f", DELIVERED_BUGS )  + ";" );
             output.write ( String.format("%.4f",  1.0 / Maintainability )  + ";" );
-            output.write (  main.metrics_STANDARDS + "\n");
+            double NOCOM = main.functionComments.get(funcao);
+
+            TreeSet argsNaoUsados = main.unusedArgsMap.get(funcao);
+            double UNARG = argsNaoUsados.size();
+            TreeSet declaNaoUsados = main.unusedDeclarationsMap.get(funcao);
+            double UNDEC = declaNaoUsados.size();
+            double NEGNEG = 0.0;
+            double NEGIF = 0.0;
+            output.write ( String.format("%.2f", NOCOM )  + ";" );
+            output.write ( String.format("%.2f", IPL )  + ";" );
+            output.write ( String.format("%.2f", UNARG )  + ";" );
+            output.write ( String.format("%.2f", UNDEC )  + ";" );
+            output.write ( String.format("%.2f", NEGNEG )  + ";" );
+            output.write ( String.format("%.2f", NEGIF )  + ";" );
+            double NARGS = main.argsMap.get(funcao);
+            output.write ( String.format("%.2f", NARGS )  + ";" );
+           output.write (  main.metrics_STANDARDS + "\n");
 
           }
           /*  output.write("Full Evaluation"+";");
