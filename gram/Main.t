@@ -377,7 +377,7 @@ public class Main {
           writer.write("\t" + funcao + " : " + main.functionComments.get(funcao)+"\n" );
         }
 
-        /** 9) Metric for counting total number of lines per function 
+        /** 10) Metric for counting total number of lines per function 
          * Blank lines should not be counted
          * Comments should not be counted
          **/ 
@@ -386,31 +386,31 @@ public class Main {
           writer.write("\t" + funcao + " : " + main.lnMap.get(funcao)+"\n" );
         }
 
-        /** 10) Metric to count number path length of instructions*/
+        /** 11) Metric to count number path length of instructions*/
         writer.write("Instructions Path Lenght:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.iplMap.get(funcao)+"\n" );
         }
 
-        /** 11) Metric to count Number of Operations Comparisons **/
+        /** 12) Metric to count Number of Operations Comparisons **/
         writer.write("Total Number of Operations Comparisons:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.nOperationsComparisonsMap.get(funcao)+"\n" );
         }    
 
-        /** 12) Metric to count Number of Increment/Decrement Operations **/
+        /** 13) Metric to count Number of Increment/Decrement Operations **/
         writer.write("Total Number of Increment/Decrement Operations:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.nIncrDecrOpMap.get(funcao)+"\n" );
         }     
 
-        /** 13) Metric to count Number of Atribuicao Operations **/
+        /** 14) Metric to count Number of Atribuicao Operations **/
         writer.write("Total Number of Atrib/Mult/Div/Soma/Sub:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           writer.write("\t" + funcao + " : " + main.opAtribMap.get(funcao)+"\n" );
         }
 
-        /** 14) Unused arguments per function  **/
+        /** 15) Unused arguments per function  **/
         writer.write("Unused arguments per function:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           TreeSet argsNaoUsados = main.unusedArgsMap.get(funcao);
@@ -421,7 +421,7 @@ public class Main {
           }
           writer.write("\n" );
         }
-        /** 15) Unused declarations per function  **/
+        /** 16) Unused declarations per function  **/
         writer.write("Unused declarations per function:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           TreeSet declaNaoUsados = main.unusedDeclarationsMap.get(funcao);
@@ -432,7 +432,7 @@ public class Main {
           }
           writer.write("\n" );
         }
-        /** 16) Refactoring per function  **/
+        /** 17) Refactoring per function  **/
         writer.write("Refactoring avaibility per function:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           Integer flag = main.mapRefactor.get(funcao);
@@ -445,7 +445,6 @@ public class Main {
           }
         }
 
-        /******* Printing Separated Metrics ********/
         writer.flush();
         writer.close();
         /**************************************************************************************************************/
