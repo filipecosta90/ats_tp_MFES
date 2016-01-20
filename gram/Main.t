@@ -44,15 +44,20 @@ public class Main {
 
   //Main Metrics Variables 
   String main_Description;
-  double main_CYCLO_PER_LOC;
-  double main_LOC_PER_OPERATION;
-  double main_NOM_PER_CLASS;
-  double main_NOC_PER_PACKAGE;
-  double main_CALLS_PER_OPERATION;
-  double main_FANOUT_PER_CALL;
+  double main_CYCLO;
+  double main_LOC;
+  double main_OPERATION;
+  double main_NOM;
+  double main_CLASS;
+  double main_NOC;
+  double main_PACKAGE;
+  double main_CALLS;
+  double main_FANOUT;
   double main_ANDC;
   double main_AHH;
+
   String metrics_STANDARDS;
+           
 
   // Map of Metrics Variables 
   Integer numberFunctions;
@@ -103,14 +108,17 @@ public class Main {
 
   public Main() {
     this.main_Description = "global";
-    this.main_CYCLO_PER_LOC = 0.0;
-    this.main_LOC_PER_OPERATION = 0.0;
-    this.main_NOM_PER_CLASS = 0.0;
-    this.main_NOC_PER_PACKAGE = 0.0;
-    this.main_CALLS_PER_OPERATION = 0.0;
-    this.main_FANOUT_PER_CALL = 0.0;
-    this.main_ANDC = 0.0;
-    this.main_AHH = 0.0;
+   this.main_CYCLO = 0.0;
+  this.main_LOC = 0.0;
+  this.main_OPERATION = 0.0;
+  this.main_NOM = 0.0;
+  this.main_CLASS = 0.0;
+  this.main_NOC = 1.0;
+  this.main_PACKAGE = 1.0;
+  double main_CALLS = 0.0;
+  double main_FANOUT = 0.0 ;
+  double main_ANDC = 0.0;
+  double main_AHH = 0.0;
     this.metrics_STANDARDS = "standards_c.txt";
     actualFunctionName = "";
     functionSignatures = new HashMap<String, Argumentos>();
@@ -230,8 +238,7 @@ public class Main {
             maximo_complexidade = complexidadeActual;
           }
         }
-
-
+        main.main_CYCLO = maximo_complexidade;
 
         writer.write("Calculated Cyclomatic Complexity: "+ maximo_complexidade +"\n");
         /** 2) Metric to count the number of arguments per function **/
@@ -394,18 +401,26 @@ public class Main {
         try {
           File fileParser = new File("metrics_to_gui.txt");
           output = new BufferedWriter(new FileWriter(fileParser));
-
           for (String funcao : main.functionSignatures.keySet() ){
             double CYCLO = (double) main.cyclomaticComplexityMap.get(funcao) ;
             double LOC = (double) main.lnMap.get(funcao) ;
+            main.main_LOC += LOC;
             double OPERATION = (double) main.nOperationsMap.get(funcao) ;
-            double NOM = 1.0;
+            main.main_OPERATION += OPERATION;
+            TreeSet distinctOppsTree =  main.operationsPerFunctionMap.get(funcao);
+            double NOM = (double) distinctOppsTree.size()  ;
+            main.main_NOM+=NOM;
             double CLASS = 1.0;
+            main.main_CLASS = 1.0;
             double NOC = 1.0;
+            main.main_NOC = 1.0;
             double PACKAGE = 1.0;
+            main.main_PACKAGE = 1.0;
             TreeSet distinctOpps =  main.operationsPerFunctionMap.get(funcao);
             double CALLS = (double) distinctOpps.size();
+            main.main_CALLS += CALLS;
             double FANOUT = 1.0;
+            main.main_FANOUT = 1.0;
             double ANDC = 0.0;
             double AHH = 0.0;
             output.write(funcao+";");
@@ -430,8 +445,57 @@ public class Main {
             output.write ( String.format("%.2f", PACKAGE )  + ";" );
             output.write ( String.format("%.2f", FANOUT )  + ";" );
             output.write ( String.format("%.2f", CALLS )  + ";" );
+
+          int totalOperands = main.numberIdsCallsMap.get(funcao);
+          int totalOperators =  main.nOperationsMap.get(funcao);
+          int programLength = totalOperands + totalOperators;
+          TreeSet distinctOperandsTree =  main.usedIdsMap.get(funcao);
+          int distinctOperands =  distinctOperandsTree.size(); 
+          int distinctOperators =    distinctOppsTree.size() ;
+          int  vocabulary = distinctOperators + distinctOperands;
+
+          double VOLUME, DIFFICULTY, EFFORT, DELIVERED_BUGS, HALSTEAD;
+            VOLUME = programLength * Math.log(vocabulary)/Math.log(2);
+            /*The difficulty measure is related to the difficulty of 
+              the program to write or understand, e.g. when doing code review. */
+            DIFFICULTY = distinctOperators/2 * (totalOperands/distinctOperands); 
+            /**/
+            EFFORT = DIFFICULTY * VOLUME;
+            DELIVERED_BUGS = VOLUME / 3000;
+            double Maintainability = Math.max(0.01 ,(171 - 5.2 * Math.log(VOLUME) - 0.23 * CYCLO - 16.2 * Math.log(LOC))*100 / 171);
+
+            output.write ( String.format("%.2f", VOLUME )  + ";" );
+            output.write ( String.format("%.2f", DIFFICULTY )  + ";" );
+            output.write ( String.format("%.2f", EFFORT )  + ";" );
+            output.write ( String.format("%.2f", DELIVERED_BUGS )  + ";" );
+            output.write ( String.format("%.4f",  1.0 / Maintainability )  + ";" );
             output.write (  main.metrics_STANDARDS + "\n");
-          }
+
+}
+          /*  output.write("Full Evaluation"+";");
+double main_CYCLO_PER_LOC = main.main_CYCLO / main.main_LOC;
+            output.write ( String.format("%.2f", main_CYCLO_PER_LOC )  + ";" );
+            double main_LOC_PER_OPERATION = main.main_LOC / main.main_OPERATION;
+            output.write ( String.format("%.2f", main_LOC_PER_OPERATION )  + ";" );
+            double main_NOM_PER_CLASS = main.main_NOM / main.main_CLASS;
+            output.write ( String.format("%.2f", main_NOM_PER_CLASS )  + ";" );
+            double main_NOC_PER_PACKAGE = main.main_NOC / main.main_PACKAGE;
+            output.write ( String.format("%.2f", main_NOC_PER_PACKAGE )  + ";" );
+            double main_CALLS_PER_OPERATION = main.main_CALLS / main.main_OPERATION;
+            output.write ( String.format("%.2f", main_CALLS_PER_OPERATION )  + ";" );
+            double main_FANOUT_PER_CALL = main.main_FANOUT / main.main_CALLS;
+            output.write ( String.format("%.2f", main_FANOUT_PER_CALL )  + ";" );
+            output.write ( String.format("%.2f", main.main_ANDC )  + ";" );
+            output.write ( String.format("%.2f", main.main_AHH )  + ";" );
+            output.write ( String.format("%.2f", main.main_CYCLO )  + ";" );
+            output.write ( String.format("%.2f", main.main_LOC )  + ";" );
+            output.write ( String.format("%.2f", main.main_NOM)  + ";" );
+            output.write ( String.format("%.2f", main.main_NOC )  + ";" );
+            output.write ( String.format("%.2f", main.main_PACKAGE )  + ";" );
+            output.write ( String.format("%.2f", main.main_FANOUT )  + ";" );
+            output.write ( String.format("%.2f", main.main_CALLS )  + ";" );
+            output.write (  main.metrics_STANDARDS + "\n");
+*/
         } catch ( IOException e ) {
           e.printStackTrace();
         } finally {
@@ -1000,7 +1064,6 @@ public class Main {
       }
     }
   }
-
 
   %strategy CollectCiclomaticComplex(func:HashMap, complex_c:HashMap) extends Identity() {
     visit Instrucao {

@@ -32,11 +32,18 @@ public class atsMethod {
     Metric NOP;
     Metric FANOUT;
     Metric CALLS;
+    Metric VOLUME;
+    Metric DIFFICULTY;
+    Metric EFFORT;
+    Metric BUGS;
+    Metric MAINTAIN_INDEX;
                             
     public atsMethod ( String method_desc, double ats_CYCLO_PER_LOC, double ats_LOC_PER_OPERATION, 
     double ats_NOM_PER_CLASS, double ats_NOC_PER_PACKAGE, double ats_CALLS_PER_OPERATION,
     double ats_FANOUT_PER_CALL, double ats_ANDC, double ats_AHH , double ats_CYCLO, double ats_LOC, double ats_NOM, 
-    double ats_NOC, double ats_NOP, double ats_FANOUT, double ats_CALLS, String valuesFileName ){   
+    double ats_NOC, double ats_NOP, double ats_FANOUT, double ats_CALLS, 
+    double ats_VOLUME, double  ats_DIFFICULTY, double ats_EFFORT, double ats_BUGS, double ats_MAINTAIN, 
+    String valuesFileName ){   
     this.methodDescription = method_desc;
     this.CYCLO_PER_LOC = new Metric ( "CYCLO_PER_LOC" , ats_CYCLO_PER_LOC );
     this.LOC_PER_OPERATION = new Metric ( "LOC_PER_OPERATION" , ats_LOC_PER_OPERATION );
@@ -53,6 +60,11 @@ public class atsMethod {
     this.NOP = new Metric ("NOP" , ats_NOP );
     this.FANOUT = new Metric ("FANOUT" , ats_FANOUT );
     this.CALLS = new Metric ("CALLS" , ats_CALLS );
+    this.VOLUME = new Metric ("VOLUME" , ats_VOLUME );
+    this.DIFFICULTY = new Metric ("DIFFICULTY" , ats_DIFFICULTY );
+    this.EFFORT = new Metric ("EFFORT" , ats_EFFORT );
+    this.BUGS = new Metric ("BUGS" , ats_BUGS );
+    this.MAINTAIN_INDEX = new Metric ("MAINTAIN_INDEX" , ats_MAINTAIN );
     readProperties(valuesFileName);
     
     }
@@ -67,11 +79,13 @@ public class atsMethod {
      valor += FANOUT_PER_CALL.getRate();
     valor += ANDC.getRate();
      valor += AHH.getRate();
-     if(valor > 16 ){
+     valor += MAINTAIN_INDEX.getRate();
+     valor += LOC.getRate();
+     if(valor > 20 ){
          return 3;
      }
      else {
-         if ( valor > 8){
+         if ( valor > 10){
              return 2;
          }
      else {
@@ -127,7 +141,15 @@ public class atsMethod {
                 this.AHH.setLow(Double.parseDouble(prop.getProperty("AHH_LOW")));
                 this.AHH.setNormal(Double.parseDouble(prop.getProperty("AHH_AVERAGE")));
                 this.AHH.setHigh(Double.parseDouble(prop.getProperty("AHH_HIGH")));
-                System.out.println(this.CYCLO_PER_LOC.toString());
+                
+                this.MAINTAIN_INDEX.setLow(Double.parseDouble(prop.getProperty("MAINTAIN_INDEX_LOW")));
+                this.MAINTAIN_INDEX.setNormal(Double.parseDouble(prop.getProperty("MAINTAIN_INDEX_AVERAGE")));
+                this.MAINTAIN_INDEX.setHigh(Double.parseDouble(prop.getProperty("MAINTAIN_INDEX_HIGH")));
+                
+                this.LOC.setLow(Double.parseDouble(prop.getProperty("LOC_LOW")));
+                this.LOC.setNormal(Double.parseDouble(prop.getProperty("LOC_AVERAGE")));
+                this.LOC.setHigh(Double.parseDouble(prop.getProperty("LOC_HIGH")));
+                
 
 	} catch (IOException ex) {
 		ex.printStackTrace();

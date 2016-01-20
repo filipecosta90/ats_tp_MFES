@@ -46,9 +46,7 @@ public class Metric {
     }
 
     public void setHigh(double high) {
-        this.high = high;
-        
-         
+        this.high = high;    
     }
     
     public Color getColor (){

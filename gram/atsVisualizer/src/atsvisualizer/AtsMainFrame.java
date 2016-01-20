@@ -54,18 +54,24 @@ public class AtsMainFrame extends javax.swing.JFrame {
     double ats_FANOUT_PER_CALL = Double.parseDouble(tokens[6]);
     double ats_ANDC = Double.parseDouble(tokens[7]);
     double ats_AHH = Double.parseDouble(tokens[8]);
-        double ats_CYCLO = Double.parseDouble(tokens[9]);
-            double ats_LOC = Double.parseDouble(tokens[10]);
+    double ats_CYCLO = Double.parseDouble(tokens[9]);
+    double ats_LOC = Double.parseDouble(tokens[10]);
     double ats_NOM = Double.parseDouble(tokens[11]);
     double ats_NOC = Double.parseDouble(tokens[12]);
     double ats_NOP = Double.parseDouble(tokens[13]);
     double ats_FANOUT = Double.parseDouble(tokens[14]);
     double ats_CALLS = Double.parseDouble(tokens[15]);
-    String standardValues = tokens[16];
+    double ats_VOLUME = Double.parseDouble(tokens[16]);
+    double ats_DIFFICULTY = Double.parseDouble(tokens[17]);
+    double ats_EFFORT = Double.parseDouble(tokens[18]);
+    double ats_BUGS = Double.parseDouble(tokens[19]);
+    double ats_MAINTAIN = Double.parseDouble(tokens[20]);
+    String standardValues = tokens[21];
             atsMethod newM = new atsMethod ( method_description,  ats_CYCLO_PER_LOC, ats_LOC_PER_OPERATION, 
     ats_NOM_PER_CLASS, ats_NOC_PER_PACKAGE, ats_CALLS_PER_OPERATION,
     ats_FANOUT_PER_CALL, ats_ANDC, ats_AHH , ats_CYCLO, ats_LOC, ats_NOM,
-                    ats_NOC, ats_NOP, ats_FANOUT, ats_CALLS, standardValues );
+                    ats_NOC, ats_NOP, ats_FANOUT, ats_CALLS, 
+                    ats_VOLUME, ats_DIFFICULTY, ats_EFFORT, ats_BUGS, ats_MAINTAIN, standardValues );
             this.methods.add(newM);
             System.out.println("added new ats method: " + method_description );
        }
@@ -97,7 +103,6 @@ public class AtsMainFrame extends javax.swing.JFrame {
         nop_label = new javax.swing.JLabel();
         noc_label = new javax.swing.JLabel();
         nom_label = new javax.swing.JLabel();
-        loc_label = new javax.swing.JLabel();
         cyclo_label = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         calls_label = new javax.swing.JLabel();
@@ -121,6 +126,9 @@ public class AtsMainFrame extends javax.swing.JFrame {
         estrela_1 = new javax.swing.JLabel();
         estrela_2 = new javax.swing.JLabel();
         estrela_3 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        maintain_index = new javax.swing.JTextField();
+        loc = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,8 +158,6 @@ public class AtsMainFrame extends javax.swing.JFrame {
         noc_label.setText("jLabel11");
 
         nom_label.setText("jLabel11");
-
-        loc_label.setText("jLabel11");
 
         cyclo_label.setText("jLabel11");
 
@@ -216,6 +222,10 @@ public class AtsMainFrame extends javax.swing.JFrame {
 
         estrela_3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/atsvisualizer/estrela_ats.png"))); // NOI18N
 
+        jLabel12.setText("MAINT. INDEX");
+
+        maintain_index.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -230,7 +240,7 @@ public class AtsMainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(estrela_3)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cyclo_per_loc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,19 +260,23 @@ public class AtsMainFrame extends javax.swing.JFrame {
                                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                                         .addComponent(noc_nop, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                    .addComponent(jLabel3)
+                                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                    .addComponent(nop_label))
+                                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                        .addComponent(jLabel2)
+                                                                        .addComponent(jLabel1))
+                                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                        .addComponent(ahh)
+                                                                        .addComponent(andc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addComponent(jLabel3)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(nop_label))
-                                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                    .addComponent(jLabel2)
-                                                                    .addComponent(jLabel1))
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                                    .addComponent(ahh)
-                                                                    .addComponent(andc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                                .addGap(50, 50, 50)
+                                                                .addComponent(loc, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                                         .addComponent(jLabel4)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -272,7 +286,6 @@ public class AtsMainFrame extends javax.swing.JFrame {
                                                 .addGap(279, 279, 279)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(nom_label)
-                                                    .addComponent(loc_label)
                                                     .addComponent(cyclo_label))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +306,11 @@ public class AtsMainFrame extends javax.swing.JFrame {
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel10)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(maintain_index, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,7 +325,9 @@ public class AtsMainFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(andc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(andc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(maintain_index, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ahh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,10 +351,10 @@ public class AtsMainFrame extends javax.swing.JFrame {
                             .addComponent(nom_label))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(loc_label)
                             .addComponent(calls_label)
                             .addComponent(jLabel9)
-                            .addComponent(fanout_per_calls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fanout_per_calls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cyclo_per_loc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -355,7 +374,7 @@ public class AtsMainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1120, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -427,8 +446,13 @@ public class AtsMainFrame extends javax.swing.JFrame {
        this.calls_per_nom.setText(Double.toString(seleccionado.CALLS_PER_OPERATION.registered_value));
        this.calls_per_nom.setBackground (seleccionado.CALLS_PER_OPERATION.getColor());
                
+       this.maintain_index.setText(Double.toString(seleccionado.MAINTAIN_INDEX.registered_value));
+              this.maintain_index.setBackground (seleccionado.MAINTAIN_INDEX.getColor());
+
+       this.loc.setText(Double.toString(seleccionado.LOC.registered_value));
+       this.loc.setBackground (seleccionado.LOC.getColor());
+              
        this.cyclo_label.setText(Double.toString(seleccionado.CYCLO.registered_value));
-              this.loc_label.setText(Double.toString(seleccionado.LOC.registered_value));
        this.nom_label.setText(Double.toString(seleccionado.NOM.registered_value));
        this.noc_label.setText(Double.toString(seleccionado.NOC.registered_value));
        this.nop_label.setText(Double.toString(seleccionado.NOP.registered_value));
@@ -487,6 +511,7 @@ public class AtsMainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField fanout_per_calls;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -499,8 +524,9 @@ public class AtsMainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JList lista_metricas;
-    private javax.swing.JLabel loc_label;
+    private javax.swing.JTextField loc;
     private javax.swing.JTextField loc_per_nom;
+    private javax.swing.JTextField maintain_index;
     private javax.swing.JLabel noc_label;
     private javax.swing.JTextField noc_nop;
     private javax.swing.JLabel nom_label;
