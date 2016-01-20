@@ -57,7 +57,7 @@ public class Main {
   double main_AHH;
 
   String metrics_STANDARDS;
-           
+
 
   // Map of Metrics Variables 
   Integer numberFunctions;
@@ -76,6 +76,7 @@ public class Main {
   HashMap <String, Integer> numberIdsCallsMap;
   HashMap <String, TreeSet<String> > usedArgsMap;
   HashMap <String, TreeSet<String> > unusedArgsMap;
+  HashMap <String, TreeSet<String> > unusedDeclarationsMap;
   HashMap <String, TreeSet <String> > operationsPerFunctionMap;
   HashMap <String , List<Double> > pyramidMetrics;
 
@@ -108,17 +109,17 @@ public class Main {
 
   public Main() {
     this.main_Description = "global";
-   this.main_CYCLO = 0.0;
-  this.main_LOC = 0.0;
-  this.main_OPERATION = 0.0;
-  this.main_NOM = 0.0;
-  this.main_CLASS = 0.0;
-  this.main_NOC = 1.0;
-  this.main_PACKAGE = 1.0;
-  double main_CALLS = 0.0;
-  double main_FANOUT = 0.0 ;
-  double main_ANDC = 0.0;
-  double main_AHH = 0.0;
+    this.main_CYCLO = 0.0;
+    this.main_LOC = 0.0;
+    this.main_OPERATION = 0.0;
+    this.main_NOM = 0.0;
+    this.main_CLASS = 0.0;
+    this.main_NOC = 1.0;
+    this.main_PACKAGE = 1.0;
+    double main_CALLS = 0.0;
+    double main_FANOUT = 0.0 ;
+    double main_ANDC = 0.0;
+    double main_AHH = 0.0;
     this.metrics_STANDARDS = "standards_c.txt";
     actualFunctionName = "";
     functionSignatures = new HashMap<String, Argumentos>();
@@ -143,6 +144,7 @@ public class Main {
     this.numberIdsCallsMap = new HashMap <String, Integer>();
     this.usedArgsMap = new HashMap <String, TreeSet<String> >();
     this.unusedArgsMap = new HashMap <String, TreeSet<String> >();
+  this.unusedDeclarationsMap = new HashMap <String, TreeSet<String>>();
     this.iplMap = new HashMap <String,Integer>();
     this.pyramidMetrics = new HashMap <String, List<Double>>();
   }
@@ -170,6 +172,7 @@ public class Main {
         `TopDown(collectIPL( main.iplMap )).visit(p);
         `TopDown(collectUsedIdsMap( main.usedIdsMap, main.numberIdsCallsMap )).visit(p);
         `TopDown(collectUnusedArguments(  main.unusedArgsMap , main.usedIdsMap )).visit(p);
+        `TopDown(collectUnusedDeclarations(  main.unusedDeclarationsMap , main.usedIdsMap )).visit(p);
         `TopDown(collectLN(main.lnMap)).visit(p);
 
         Instrucao p2 = p;
@@ -391,6 +394,18 @@ public class Main {
           }
           writer.write("\n" );
         }
+        /** 15) Unused declarations per function  **/
+        writer.write("Unused declarations per function:\n");
+        for ( String funcao : main.functionSignatures.keySet()){
+          TreeSet declaNaoUsados = main.unusedDeclarationsMap.get(funcao);
+          writer.write("\t" + funcao + " ( "+ declaNaoUsados.size() + " unused declarations ): " );
+          Iterator<Integer> iteratorDecla = declaNaoUsados.iterator();
+          while (iteratorDecla.hasNext()) {
+            writer.write(iteratorDecla.next() + " ");
+          }
+          writer.write("\n" );
+       }
+
 
         /******* Printing Separated Metrics ********/
         writer.flush();
@@ -446,15 +461,15 @@ public class Main {
             output.write ( String.format("%.2f", FANOUT )  + ";" );
             output.write ( String.format("%.2f", CALLS )  + ";" );
 
-          int totalOperands = main.numberIdsCallsMap.get(funcao);
-          int totalOperators =  main.nOperationsMap.get(funcao);
-          int programLength = totalOperands + totalOperators;
-          TreeSet distinctOperandsTree =  main.usedIdsMap.get(funcao);
-          int distinctOperands =  distinctOperandsTree.size(); 
-          int distinctOperators =    distinctOppsTree.size() ;
-          int  vocabulary = distinctOperators + distinctOperands;
+            int totalOperands = main.numberIdsCallsMap.get(funcao);
+            int totalOperators =  main.nOperationsMap.get(funcao);
+            int programLength = totalOperands + totalOperators;
+            TreeSet distinctOperandsTree =  main.usedIdsMap.get(funcao);
+            int distinctOperands =  distinctOperandsTree.size(); 
+            int distinctOperators =    distinctOppsTree.size() ;
+            int  vocabulary = distinctOperators + distinctOperands;
 
-          double VOLUME, DIFFICULTY, EFFORT, DELIVERED_BUGS, HALSTEAD;
+            double VOLUME, DIFFICULTY, EFFORT, DELIVERED_BUGS, HALSTEAD;
             VOLUME = programLength * Math.log(vocabulary)/Math.log(2);
             /*The difficulty measure is related to the difficulty of 
               the program to write or understand, e.g. when doing code review. */
@@ -471,31 +486,31 @@ public class Main {
             output.write ( String.format("%.4f",  1.0 / Maintainability )  + ";" );
             output.write (  main.metrics_STANDARDS + "\n");
 
-}
+          }
           /*  output.write("Full Evaluation"+";");
-double main_CYCLO_PER_LOC = main.main_CYCLO / main.main_LOC;
-            output.write ( String.format("%.2f", main_CYCLO_PER_LOC )  + ";" );
-            double main_LOC_PER_OPERATION = main.main_LOC / main.main_OPERATION;
-            output.write ( String.format("%.2f", main_LOC_PER_OPERATION )  + ";" );
-            double main_NOM_PER_CLASS = main.main_NOM / main.main_CLASS;
-            output.write ( String.format("%.2f", main_NOM_PER_CLASS )  + ";" );
-            double main_NOC_PER_PACKAGE = main.main_NOC / main.main_PACKAGE;
-            output.write ( String.format("%.2f", main_NOC_PER_PACKAGE )  + ";" );
-            double main_CALLS_PER_OPERATION = main.main_CALLS / main.main_OPERATION;
-            output.write ( String.format("%.2f", main_CALLS_PER_OPERATION )  + ";" );
-            double main_FANOUT_PER_CALL = main.main_FANOUT / main.main_CALLS;
-            output.write ( String.format("%.2f", main_FANOUT_PER_CALL )  + ";" );
-            output.write ( String.format("%.2f", main.main_ANDC )  + ";" );
-            output.write ( String.format("%.2f", main.main_AHH )  + ";" );
-            output.write ( String.format("%.2f", main.main_CYCLO )  + ";" );
-            output.write ( String.format("%.2f", main.main_LOC )  + ";" );
-            output.write ( String.format("%.2f", main.main_NOM)  + ";" );
-            output.write ( String.format("%.2f", main.main_NOC )  + ";" );
-            output.write ( String.format("%.2f", main.main_PACKAGE )  + ";" );
-            output.write ( String.format("%.2f", main.main_FANOUT )  + ";" );
-            output.write ( String.format("%.2f", main.main_CALLS )  + ";" );
-            output.write (  main.metrics_STANDARDS + "\n");
-*/
+              double main_CYCLO_PER_LOC = main.main_CYCLO / main.main_LOC;
+              output.write ( String.format("%.2f", main_CYCLO_PER_LOC )  + ";" );
+              double main_LOC_PER_OPERATION = main.main_LOC / main.main_OPERATION;
+              output.write ( String.format("%.2f", main_LOC_PER_OPERATION )  + ";" );
+              double main_NOM_PER_CLASS = main.main_NOM / main.main_CLASS;
+              output.write ( String.format("%.2f", main_NOM_PER_CLASS )  + ";" );
+              double main_NOC_PER_PACKAGE = main.main_NOC / main.main_PACKAGE;
+              output.write ( String.format("%.2f", main_NOC_PER_PACKAGE )  + ";" );
+              double main_CALLS_PER_OPERATION = main.main_CALLS / main.main_OPERATION;
+              output.write ( String.format("%.2f", main_CALLS_PER_OPERATION )  + ";" );
+              double main_FANOUT_PER_CALL = main.main_FANOUT / main.main_CALLS;
+              output.write ( String.format("%.2f", main_FANOUT_PER_CALL )  + ";" );
+              output.write ( String.format("%.2f", main.main_ANDC )  + ";" );
+              output.write ( String.format("%.2f", main.main_AHH )  + ";" );
+              output.write ( String.format("%.2f", main.main_CYCLO )  + ";" );
+              output.write ( String.format("%.2f", main.main_LOC )  + ";" );
+              output.write ( String.format("%.2f", main.main_NOM)  + ";" );
+              output.write ( String.format("%.2f", main.main_NOC )  + ";" );
+              output.write ( String.format("%.2f", main.main_PACKAGE )  + ";" );
+              output.write ( String.format("%.2f", main.main_FANOUT )  + ";" );
+              output.write ( String.format("%.2f", main.main_CALLS )  + ";" );
+              output.write (  main.metrics_STANDARDS + "\n");
+           */
         } catch ( IOException e ) {
           e.printStackTrace();
         } finally {
@@ -512,12 +527,6 @@ double main_CYCLO_PER_LOC = main.main_CYCLO / main.main_LOC;
       e.printStackTrace();
     }
   }
-
-
-
-
-
-
 
   /* Line number counting per function  */
   %strategy collectLNInside ( ln:HashMap, funcao:String ) extends Identity() {
@@ -635,6 +644,53 @@ double main_CYCLO_PER_LOC = main.main_CYCLO / main.main_LOC;
         TreeSet <String> usedIds = ( TreeSet <String> ) usedIdsMap.get(`nome);
         `TopDown(getUnusedArgsFunction(unusedArgs,usedIds)).visit(`argumentos);
         unusedArgumentsMap.put(`nome, unusedArgs );
+      }
+    }
+  }
+
+  /** Metric to compute total of Arguments per Function ***/ 
+  %strategy getUnusedDeclarationsFunction(unusedDeclarations:TreeSet, usedIds:TreeSet ) extends Identity() {
+   /* visit Instrucao {
+      Atribuicao(_,id,_,opAtrib,_,exp,_) -> {
+        if (!( usedIds.contains( `id ) )){
+      unusedDeclarations.add( `id );
+        }
+      }
+    }*/
+    visit Declaracoes {
+      Decl ( id,_,_,_,_ ) -> {
+         if (!( usedIds.contains( `id ) )){
+      unusedDeclarations.add( `id );
+        }
+      }
+    }
+/*    visit Expressao {
+      Id(id) -> { 
+        if (!( usedIds.contains( `id ) )){
+      unusedDeclarations.add( `id );
+        }
+      }
+      IncAntes(opInc,id) -> { 
+        if (!( usedIds.contains( `id ) )){
+      unusedDeclarations.add( `id );
+        }
+      }
+      IncDepois(opInc,id) -> { 
+        if (!( usedIds.contains( `id ) )){
+      unusedDeclarations.add( `id );
+        }
+      }
+    }*/
+  }
+
+  /* Metric to collect unused declarations from each function */
+  %strategy collectUnusedDeclarations ( unusedDeclarationsMap:HashMap , usedIdsMap:HashMap ) extends Identity() {
+    visit Instrucao {
+      Funcao(_,tipo,_,nome,_,_,argumentos,_,_,inst,_) -> {
+        TreeSet <String> unusedDeclarations = new TreeSet <String> ();
+        TreeSet <String> usedIds = ( TreeSet <String> ) usedIdsMap.get(`nome);
+        `TopDown(getUnusedDeclarationsFunction(unusedDeclarations,usedIds)).visit(`inst);
+        unusedDeclarationsMap.put(`nome, unusedDeclarations );
       }
     }
   }

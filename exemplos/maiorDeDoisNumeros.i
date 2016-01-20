@@ -47,6 +47,9 @@ int max(int a, int b){
 }
 
 int max3numbers (int a, int b, int c){
+  int naoUsado1;
+  int naoUsado2;
+  int naoUsado3;
   //teste comentario
   //teste comentario
   //teste comentario

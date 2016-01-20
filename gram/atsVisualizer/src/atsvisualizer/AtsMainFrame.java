@@ -134,6 +134,8 @@ public class AtsMainFrame extends javax.swing.JFrame {
 
         jSplitPane2.setMinimumSize(new java.awt.Dimension(200, 27));
 
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(204, 140));
+
         lista_metricas.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
