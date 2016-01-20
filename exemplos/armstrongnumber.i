@@ -1,32 +1,31 @@
 void main(){
-  int number;
-  number = input(int);
-  int res = armstrongNumber(number);
-  if(res==1){
-    print(res 'is an armstrong number');
+  int n, r;
+  n = input(int);
+  r = armstrongNumber(n);
+  if(r == 1){
+    print('y');
   }else{
-    print(res 'is not  an armstrong number');
+    print('n');
   }
 }
 
-int armstrongNumber (int num){
+int armstrongNumber(int n){
   int temp;
   int soma;
-  soma = a;
+  soma = 0;
   int digits;
   digits = 0;
-  int remainder;
   temp = n;
-  while(temp!=0){
+  while(temp != 0){
     digits = digits + 1;
-    temp = temp/10
+    temp = temp/10;
   }
   temp = n;
   int rem;
   while (temp != 0) {
-    rem=calculateRemainder(temp,10);
+    rem = calculateRemainder(temp,10);
     soma = soma + power(rem, digits);
-    temp = temp/10;
+    temp = temp / 10;
   }
   int res;
   if(n == soma){
@@ -34,35 +33,35 @@ int armstrongNumber (int num){
   }else{
     res = 0;
   }
+  return res;
 }
 
 int calculateRemainder(int dividend, int divisor){
-  int quotient;
-  quotient = 0;
-  int tempvisor;
+  int remainder;
+  int tempdivisor;
   tempdivisor = divisor;
   if(dividend == divisor){
-    remainder=0;
+    remainder = 0;
   }
   else if (dividend < divisor){
-
-    remainder=1;
+    remainder = 1;
   }
-  while(tempdivisor <= dividend){
+  while(tempdivisor < dividend + 1){
     tempdivisor = tempdivisor + divisor;
   }
-  remainder=dividend-(tempdivisor-divisor);
+  int aux;
+  aux = tempdivisor - divisor;
+  remainder = dividend - aux;
   return remainder;
 }
-
 
 int power(int n, int r) {
   int c;
   int p;
   p = 1;
   c = 1;
-  while (c <= r){ 
-    p = p*n;
+  while (c < r + 1){ 
+    p = p * n;
     c = c + 1;
   }
   return p;   
