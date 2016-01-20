@@ -79,6 +79,7 @@ public class Main {
   HashMap <String, TreeSet<String> > unusedDeclarationsMap;
   HashMap <String, TreeSet <String> > operationsPerFunctionMap;
   HashMap <String , List<Double> > pyramidMetrics;
+  HashMap <String , Integer> mapRefactor;
 
   /*** Separated Metrics ***/
   /** OpNum **/
@@ -144,9 +145,10 @@ public class Main {
     this.numberIdsCallsMap = new HashMap <String, Integer>();
     this.usedArgsMap = new HashMap <String, TreeSet<String> >();
     this.unusedArgsMap = new HashMap <String, TreeSet<String> >();
-  this.unusedDeclarationsMap = new HashMap <String, TreeSet<String>>();
+    this.unusedDeclarationsMap = new HashMap <String, TreeSet<String>>();
     this.iplMap = new HashMap <String,Integer>();
     this.pyramidMetrics = new HashMap <String, List<Double>>();
+    this.mapRefactor = new HashMap <String, Integer> ();
   }
 
   public static void main(String[] args) {
@@ -196,7 +198,20 @@ public class Main {
             } 
           }
           else if (args[0].equals("-bs")) {
-            Instrucao p3 = `TopDown(startBadSmells()).visit(p);
+            for ( String funcao : main.functionSignatures.keySet()){
+              TreeSet argsNaoUsados = main.unusedArgsMap.get(funcao);
+              Integer refactor = argsNaoUsados.size();
+              main.mapRefactor.put( funcao , refactor );
+            }
+            for ( String funcao : main.functionSignatures.keySet()){
+              TreeSet declaNaoUsados = main.unusedDeclarationsMap.get(funcao);
+              Integer refactorDec = declaNaoUsados.size();
+              Integer refactorArgs = main.mapRefactor.get(funcao);
+              if (refactorDec > refactorArgs ){
+                main.mapRefactor.put( funcao, refactorDec );
+              }
+            }
+            Instrucao p3 = `TopDown(startBadSmells(main.usedIdsMap, main.mapRefactor)).visit(p);
             instrucoes = main.compileAnnot(p3);
           }
           else {
@@ -404,8 +419,17 @@ public class Main {
             writer.write(iteratorDecla.next() + " ");
           }
           writer.write("\n" );
-       }
-
+        }
+         /** 16) Refactoring per function  **/
+        writer.write("Refactoring avaibility per function:\n");
+        for ( String funcao : main.functionSignatures.keySet()){
+          Integer flag = main.mapRefactor.get(funcao);
+          String flagS = "not possible";
+          if ( flag > 0 ){
+            flagS = "possible";
+          }
+          writer.write("\t" + funcao + " : "+  flagS +"\n" );
+        }
 
         /******* Printing Separated Metrics ********/
         writer.flush();
@@ -650,37 +674,37 @@ public class Main {
 
   /** Metric to compute total of Arguments per Function ***/ 
   %strategy getUnusedDeclarationsFunction(unusedDeclarations:TreeSet, usedIds:TreeSet ) extends Identity() {
-   /* visit Instrucao {
-      Atribuicao(_,id,_,opAtrib,_,exp,_) -> {
-        if (!( usedIds.contains( `id ) )){
-      unusedDeclarations.add( `id );
-        }
-      }
-    }*/
+    /* visit Instrucao {
+       Atribuicao(_,id,_,opAtrib,_,exp,_) -> {
+       if (!( usedIds.contains( `id ) )){
+       unusedDeclarations.add( `id );
+       }
+       }
+       }*/
     visit Declaracoes {
       Decl ( id,_,_,_,_ ) -> {
-         if (!( usedIds.contains( `id ) )){
-      unusedDeclarations.add( `id );
+        if (!( usedIds.contains( `id ) )){
+          unusedDeclarations.add( `id );
         }
       }
     }
-/*    visit Expressao {
-      Id(id) -> { 
-        if (!( usedIds.contains( `id ) )){
-      unusedDeclarations.add( `id );
-        }
-      }
-      IncAntes(opInc,id) -> { 
-        if (!( usedIds.contains( `id ) )){
-      unusedDeclarations.add( `id );
-        }
-      }
-      IncDepois(opInc,id) -> { 
-        if (!( usedIds.contains( `id ) )){
-      unusedDeclarations.add( `id );
-        }
-      }
-    }*/
+    /*    visit Expressao {
+          Id(id) -> { 
+          if (!( usedIds.contains( `id ) )){
+          unusedDeclarations.add( `id );
+          }
+          }
+          IncAntes(opInc,id) -> { 
+          if (!( usedIds.contains( `id ) )){
+          unusedDeclarations.add( `id );
+          }
+          }
+          IncDepois(opInc,id) -> { 
+          if (!( usedIds.contains( `id ) )){
+          unusedDeclarations.add( `id );
+          }
+          }
+          }*/
   }
 
   /* Metric to collect unused declarations from each function */
@@ -1096,7 +1120,6 @@ public class Main {
     }
   }
 
-
   /** Metric to compute total of Arguments per Function ***/ 
   %strategy countArgsFunction(mapArgs:HashMap, funcao:String) extends Identity() {
     visit Argumentos {
@@ -1203,34 +1226,43 @@ public class Main {
     return args;
   }
 
-
-  /***********************
-   **** Bad Smells *****
-   ***********************/
-
-  /** %checkBadSmells( smellsMap:HashMap ) extends Identity(){
-
-  //todo
-
-
+  public static Declaracoes removeDeclaracoesNaoUtilizadas(Declaracoes declaracoes, TreeSet<String> idsUtilizados) {
+    %match(declaracoes) {
+      ListaDecl(dec1,tailDec*) -> {
+        %match(dec1) {
+          d@Decl(id,_,_,_,_) -> {
+            if (idsUtilizados.contains(`id))
+              return `ListaDecl(d,removeDeclaracoesNaoUtilizadas(tailDec*,idsUtilizados));
+            else
+              return removeDeclaracoesNaoUtilizadas(`tailDec*,idsUtilizados);
+          }
+        }
+      }
+    }
+    return declaracoes;
   }
 
-  %RefactorBadSmells() extends Identity(){
+  %strategy startBadSmellsInside ( idsUtilizados:TreeSet ) extends Identity() {
+    visit Declaracoes {
+      ListaDecl(dec) -> {
+        return removeDeclaracoesNaoUtilizadas(`dec,idsUtilizados);
+      }
+    }
+  }
 
-  }*/
-
-  /********************************************************************/
-
-  %strategy startBadSmells() extends Identity() {
+  %strategy startBadSmells( mapaIdsUtilizados:HashMap , mapaRefactor:HashMap ) extends Identity() {
     visit Instrucao {
       If(c1,c2,c3,Nao(condicao),c4,c5,inst1,inst2) -> {
         return `If(c1,c2,c3,condicao,c4,c5,inst2,inst1);
       }
       Funcao(c1,tipo,c2,nome,c3,c4,argumentos,c5,c6,inst,c7) -> {
-        TreeSet<String> idsUtilizados = new TreeSet<String>();
-        // `TopDown(collectUsedIdsInside(idsUtilizados)).visit(`inst);
-        Argumentos args = removeArgumentosNaoUtilizados(`argumentos,idsUtilizados);
-        return `Funcao(c1,tipo,c2,nome,c3,c4,args,c5,c6,inst,c7);
+        Integer refactorFlag = (Integer) mapaRefactor.get(`nome);
+        if ( refactorFlag > 0 ){
+          TreeSet<String> idsUtilizados = (TreeSet<String>) mapaIdsUtilizados.get(`nome);
+          Argumentos args = removeArgumentosNaoUtilizados(`argumentos,idsUtilizados);
+          `TopDown(startBadSmellsInside(idsUtilizados)).visit(`inst);
+          return `Funcao(c1,tipo,c2,nome,c3,c4,args,c5,c6,inst,c7);
+        }
       }
     }
   }
