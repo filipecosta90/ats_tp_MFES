@@ -72,6 +72,7 @@ public class Main {
   HashMap <String, TreeSet<String> > usedArgsMap;
   HashMap <String, TreeSet<String> > unusedArgsMap;
   HashMap <String, TreeSet <String> > operationsPerFunctionMap;
+  HashMap <String , List<Double> > pyramidMetrics;
 
   /*** Separated Metrics ***/
   /** OpNum **/
@@ -135,6 +136,7 @@ public class Main {
     this.usedArgsMap = new HashMap <String, TreeSet<String> >();
     this.unusedArgsMap = new HashMap <String, TreeSet<String> >();
     this.iplMap = new HashMap <String,Integer>();
+    this.pyramidMetrics = new HashMap <String, List<Double>>();
   }
 
   public static void main(String[] args) {
@@ -228,6 +230,8 @@ public class Main {
             maximo_complexidade = complexidadeActual;
           }
         }
+
+
 
         writer.write("Calculated Cyclomatic Complexity: "+ maximo_complexidade +"\n");
         /** 2) Metric to count the number of arguments per function **/
@@ -386,24 +390,49 @@ public class Main {
         writer.close();
         /**************************************************************************************************************/
 
-
-        String text = "Hello world";
         BufferedWriter output = null;
         try {
           File fileParser = new File("metrics_to_gui.txt");
           output = new BufferedWriter(new FileWriter(fileParser));
-    output.write ( main.main_Description +";" );
-     output.write ( String.format("%.2f",  main.main_CYCLO_PER_LOC) + ";" );
-      output.write ( String.format("%.2f", main.main_LOC_PER_OPERATION)  + ";" );
-     output.write ( String.format("%.2f", main.main_NOM_PER_CLASS ) + ";" );
-     output.write (  String.format("%.2f", main.main_NOC_PER_PACKAGE)  + ";" );
-      output.write ( String.format("%.2f", main.main_CALLS_PER_OPERATION)  + ";" );
-     output.write ( String.format("%.2f", main.main_FANOUT_PER_CALL ) + ";" );
-     output.write ( String.format("%.2f",  main.main_ANDC)  + ";" ) ;
-     output.write ( String.format("%.2f",  main.main_AHH ) + ";" );
-     output.write (  main.metrics_STANDARDS + "\n");
 
-} catch ( IOException e ) {
+          for (String funcao : main.functionSignatures.keySet() ){
+            double CYCLO = (double) main.cyclomaticComplexityMap.get(funcao) ;
+            double LOC = (double) main.lnMap.get(funcao) ;
+            double OPERATION = (double) main.nOperationsMap.get(funcao) ;
+            double NOM = 1.0;
+            double CLASS = 1.0;
+            double NOC = 1.0;
+            double PACKAGE = 1.0;
+            TreeSet distinctOpps =  main.operationsPerFunctionMap.get(funcao);
+            double CALLS = (double) distinctOpps.size();
+            double FANOUT = 1.0;
+            double ANDC = 0.0;
+            double AHH = 0.0;
+            output.write(funcao+";");
+            double CYCLO_PER_LOC = CYCLO / LOC;
+            output.write ( String.format("%.2f", CYCLO_PER_LOC )  + ";" );
+            double LOC_PER_OPERATION = LOC / OPERATION;
+            output.write ( String.format("%.2f", LOC_PER_OPERATION )  + ";" );
+            double NOM_PER_CLASS = NOM / CLASS;
+            output.write ( String.format("%.2f", NOM_PER_CLASS )  + ";" );
+            double NOC_PER_PACKAGE = NOC / PACKAGE;
+            output.write ( String.format("%.2f", NOC_PER_PACKAGE )  + ";" );
+            double CALLS_PER_OPERATION = CALLS / OPERATION;
+            output.write ( String.format("%.2f", CALLS_PER_OPERATION )  + ";" );
+            double FANOUT_PER_CALL = FANOUT / CALLS;
+            output.write ( String.format("%.2f", FANOUT_PER_CALL )  + ";" );
+            output.write ( String.format("%.2f", ANDC )  + ";" );
+            output.write ( String.format("%.2f", AHH )  + ";" );
+            output.write ( String.format("%.2f", CYCLO )  + ";" );
+            output.write ( String.format("%.2f", LOC )  + ";" );
+            output.write ( String.format("%.2f", NOM)  + ";" );
+            output.write ( String.format("%.2f", NOC )  + ";" );
+            output.write ( String.format("%.2f", PACKAGE )  + ";" );
+            output.write ( String.format("%.2f", FANOUT )  + ";" );
+            output.write ( String.format("%.2f", CALLS )  + ";" );
+            output.write (  main.metrics_STANDARDS + "\n");
+          }
+        } catch ( IOException e ) {
           e.printStackTrace();
         } finally {
           if ( output != null ) output.close();
@@ -422,7 +451,7 @@ public class Main {
 
 
 
-  
+
 
 
 

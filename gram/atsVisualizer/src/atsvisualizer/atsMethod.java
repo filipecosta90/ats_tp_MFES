@@ -25,10 +25,18 @@ public class atsMethod {
     Metric FANOUT_PER_CALL; 
     Metric ANDC; 
     Metric AHH;
-    
+    Metric CYCLO;
+    Metric LOC;
+    Metric NOM;
+    Metric NOC;
+    Metric NOP;
+    Metric FANOUT;
+    Metric CALLS;
+                            
     public atsMethod ( String method_desc, double ats_CYCLO_PER_LOC, double ats_LOC_PER_OPERATION, 
     double ats_NOM_PER_CLASS, double ats_NOC_PER_PACKAGE, double ats_CALLS_PER_OPERATION,
-    double ats_FANOUT_PER_CALL, double ats_ANDC, double ats_AHH , String valuesFileName ){   
+    double ats_FANOUT_PER_CALL, double ats_ANDC, double ats_AHH , double ats_CYCLO, double ats_LOC, double ats_NOM, 
+    double ats_NOC, double ats_NOP, double ats_FANOUT, double ats_CALLS, String valuesFileName ){   
     this.methodDescription = method_desc;
     this.CYCLO_PER_LOC = new Metric ( "CYCLO_PER_LOC" , ats_CYCLO_PER_LOC );
     this.LOC_PER_OPERATION = new Metric ( "LOC_PER_OPERATION" , ats_LOC_PER_OPERATION );
@@ -38,8 +46,43 @@ public class atsMethod {
     this.FANOUT_PER_CALL = new Metric ("FANOUT_PER_CALL" , ats_FANOUT_PER_CALL ); 
     this.ANDC = new Metric ("ANDC" , ats_ANDC ); 
     this.AHH = new Metric ("AHH" , ats_AHH );
+    this.CYCLO = new Metric ("CYCLO" , ats_CYCLO );
+    this.LOC = new Metric ("LOC" , ats_LOC );
+    this.NOM = new Metric ("NOM" , ats_NOM );
+    this.NOC = new Metric ("NOC" , ats_NOC );
+    this.NOP = new Metric ("NOP" , ats_NOP );
+    this.FANOUT = new Metric ("FANOUT" , ats_FANOUT );
+    this.CALLS = new Metric ("CALLS" , ats_CALLS );
     readProperties(valuesFileName);
     
+    }
+    
+    public int getNumberStars (){
+        int valor = 0;
+        valor += CYCLO_PER_LOC.getRate();
+     valor += LOC_PER_OPERATION.getRate();
+     valor += NOM_PER_CLASS.getRate();
+     valor += NOC_PER_PACKAGE.getRate();
+     valor += CALLS_PER_OPERATION.getRate();
+     valor += FANOUT_PER_CALL.getRate();
+    valor += ANDC.getRate();
+     valor += AHH.getRate();
+     if(valor > 16 ){
+         return 3;
+     }
+     else {
+         if ( valor > 8){
+             return 2;
+         }
+     else {
+             if (valor > 0){
+             return 1;
+             }
+             else {
+                 return 0;
+             }
+          }
+     }
     }
     
     public void readProperties(String filename){
@@ -84,7 +127,7 @@ public class atsMethod {
                 this.AHH.setLow(Double.parseDouble(prop.getProperty("AHH_LOW")));
                 this.AHH.setNormal(Double.parseDouble(prop.getProperty("AHH_AVERAGE")));
                 this.AHH.setHigh(Double.parseDouble(prop.getProperty("AHH_HIGH")));
-                System.out.println(this.AHH.toString());
+                System.out.println(this.CYCLO_PER_LOC.toString());
 
 	} catch (IOException ex) {
 		ex.printStackTrace();

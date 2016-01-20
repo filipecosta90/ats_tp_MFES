@@ -5,6 +5,7 @@
  */
 package atsvisualizer;
 
+import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -50,10 +51,41 @@ public class Metric {
          
     }
     
+    public Color getColor (){
+      if (this.registered_value <= this.low ){
+          return Color.BLUE;
+      }
+      else {
+          if (this.registered_value <= this.normal ){
+                              Color customGreen = new Color (34,139,34);
+                              return customGreen;
+          }
+
+      else {
+              return Color.RED;
+              }
+      }
+    }
+    
+    public int getRate (){
+      if (this.registered_value <= this.low ){
+          return 3;
+      }
+      else {
+          if (this.registered_value <= this.normal ){
+                              return 1;
+          }
+
+      else {
+              return -6;
+              }
+      }
+    }
+    
     @Override
     public String toString(){
      StringBuilder sb = new StringBuilder();
-     sb.append(this.name).append("\t").append(this.registered_value).append(" ").append(this.low).append(" ").append(this.normal).append(" ").append(this.high).append("\n");
+     sb.append(this.name).append("\t").append(this.registered_value).append(" ").append(this.low).append(" ").append(this.normal).append(" ").append(this.high);
      return sb.toString();
     }
     
