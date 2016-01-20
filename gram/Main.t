@@ -212,19 +212,19 @@ public class Main {
               }
             }
             Instrucao p3 = `TopDown(startBadSmells(main.usedIdsMap, main.mapRefactor, main.unusedDeclarationsMap )).visit(p);
-        `TopDown(CollectNumberFuncs( main.functionSignatures, main.argsMap )).visit(p3);
-        `TopDown(CollectCiclomaticComplex( main.functionSignatures, main.cyclomaticComplexityMap )).visit(p3);
-        `TopDown(CollectComments( main.functionSignatures, main.functionComments )).visit(p3);
-        `TopDown(CollectOperations( main.functionSignatures, main.nOperationsMap, main.operationsPerFunctionMap )).visit(p3);
-        `TopDown(CollectNumOperationsComparisons( main.functionSignatures, main.nOperationsComparisonsMap )).visit(p3);
-        `TopDown(CollectNumOperationsIncrDecr( main.functionSignatures, main.nIncrDecrOpMap )).visit(p3);
-        `TopDown(CollectOpAtrib( main.functionSignatures, main.opAtribMap )).visit(p3);
-        `TopDown(collectIPL( main.iplMap )).visit(p3);
-        `TopDown(collectUsedIdsMap( main.usedIdsMap, main.numberIdsCallsMap )).visit(p3);
-        `TopDown(collectUnusedArguments(  main.unusedArgsMap , main.usedIdsMap )).visit(p3);
-        `TopDown(collectUnusedDeclarations(  main.unusedDeclarationsMap , main.usedIdsMap )).visit(p3);
-        `TopDown(collectLN(main.lnMap)).visit(p3);
-instrucoes = main.compileAnnot(p3);
+            `TopDown(CollectNumberFuncs( main.functionSignatures, main.argsMap )).visit(p3);
+            `TopDown(CollectCiclomaticComplex( main.functionSignatures, main.cyclomaticComplexityMap )).visit(p3);
+            `TopDown(CollectComments( main.functionSignatures, main.functionComments )).visit(p3);
+            `TopDown(CollectOperations( main.functionSignatures, main.nOperationsMap, main.operationsPerFunctionMap )).visit(p3);
+            `TopDown(CollectNumOperationsComparisons( main.functionSignatures, main.nOperationsComparisonsMap )).visit(p3);
+            `TopDown(CollectNumOperationsIncrDecr( main.functionSignatures, main.nIncrDecrOpMap )).visit(p3);
+            `TopDown(CollectOpAtrib( main.functionSignatures, main.opAtribMap )).visit(p3);
+            `TopDown(collectIPL( main.iplMap )).visit(p3);
+            `TopDown(collectUsedIdsMap( main.usedIdsMap, main.numberIdsCallsMap )).visit(p3);
+            `TopDown(collectUnusedArguments(  main.unusedArgsMap , main.usedIdsMap )).visit(p3);
+            `TopDown(collectUnusedDeclarations(  main.unusedDeclarationsMap , main.usedIdsMap )).visit(p3);
+            `TopDown(collectLN(main.lnMap)).visit(p3);
+            instrucoes = main.compileAnnot(p3);
           }
           else {
             instrucoes = main.compileAnnot(p2);
@@ -432,17 +432,17 @@ instrucoes = main.compileAnnot(p3);
           }
           writer.write("\n" );
         }
-         /** 16) Refactoring per function  **/
+        /** 16) Refactoring per function  **/
         writer.write("Refactoring avaibility per function:\n");
         for ( String funcao : main.functionSignatures.keySet()){
           Integer flag = main.mapRefactor.get(funcao);
           String flagS = "not possible";
-         if (flag != null ){
-         if ( flag > 0 ){
-            flagS = "possible";
+          if (flag != null ){
+            if ( flag > 0 ){
+              flagS = "possible";
+            }
+            writer.write("\t" + funcao + " : "+  flagS +"\n" );
           }
-          writer.write("\t" + funcao + " : "+  flagS +"\n" );
-        }
         }
 
         /******* Printing Separated Metrics ********/
@@ -688,13 +688,6 @@ instrucoes = main.compileAnnot(p3);
 
   /** Metric to compute total of Arguments per Function ***/ 
   %strategy getUnusedDeclarationsFunction(unusedDeclarations:TreeSet, usedIds:TreeSet ) extends Identity() {
-    /* visit Instrucao {
-       Atribuicao(_,id,_,opAtrib,_,exp,_) -> {
-       if (!( usedIds.contains( `id ) )){
-       unusedDeclarations.add( `id );
-       }
-       }
-       }*/
     visit Declaracoes {
       Decl ( id,_,_,_,_ ) -> {
         if (!( usedIds.contains( `id ) )){
@@ -702,23 +695,6 @@ instrucoes = main.compileAnnot(p3);
         }
       }
     }
-    /*    visit Expressao {
-          Id(id) -> { 
-          if (!( usedIds.contains( `id ) )){
-          unusedDeclarations.add( `id );
-          }
-          }
-          IncAntes(opInc,id) -> { 
-          if (!( usedIds.contains( `id ) )){
-          unusedDeclarations.add( `id );
-          }
-          }
-          IncDepois(opInc,id) -> { 
-          if (!( usedIds.contains( `id ) )){
-          unusedDeclarations.add( `id );
-          }
-          }
-          }*/
   }
 
   /* Metric to collect unused declarations from each function */
@@ -1240,48 +1216,23 @@ instrucoes = main.compileAnnot(p3);
     return args;
   }
 
-  public static Declaracoes removeDeclaracoesNaoUtilizadas(Declaracoes declaracoes, TreeSet<String> idsNaoUtilizados) {
-    %match(declaracoes) {
-     ListaDecl(dec1,tailDec*) -> {
-      %match(dec1) {
-          d@Decl(id,_,_,_,_) -> {
-           // if ( ! (idsNaoUtilizados.contains(`id)))
-             // return `ListaDecl(d,removeDeclaracoesNaoUtilizadas(tailDec*,idsNaoUtilizados));
-           // else
-              return removeDeclaracoesNaoUtilizadas(`tailDec*,idsNaoUtilizados);
+  public static Instrucao removeDeclaracoesNaoUtilizadas ( Instrucao inst, TreeSet<String> idsNaoUtilizados ) {
+    %match(inst) {
+      Declaracao(_,_,_,declaracoes,_,_) -> {
+        %match(declaracoes) {
+          ListaDecl( dec1,taliDec*) -> {
+            %match(dec1) {
+              Decl(id,_,_,_,_) -> {
+                if ( idsNaoUtilizados.contains(`id))
+                  return `Exp(Empty());
+              }
+            }
           }
         }
       }
     }
-    return declaracoes;
-  }
-
-  %strategy startBadSmellsInside ( idsNaoUtilizados:TreeSet ) extends Identity() {
-    visit Declaracoes {
-      ListaDecl(dec) -> {
-        return removeDeclaracoesNaoUtilizadas(`dec,idsNaoUtilizados);
-      }
-    }
-  }
-
-  public static Instrucao removeDeclaracoesNaoUtilizadasInstrucao( Instrucao inst, TreeSet<String> idsNaoUtilizados ) {
-    %match(inst) {
-      Declaracao(_,_,_,declaracoes,_,_) -> {
-            %match(declaracoes) {
-            ListaDecl( dec1,taliDec*) -> {
-              %match(dec1) {
-                Decl(id,_,_,_,_) -> {
-                  if ( idsNaoUtilizados.contains(`id))
-                    return `Exp(Empty());
-                }
-              }
-            }
-            }
-        }
-      }
     return inst;
   }
-
 
   %strategy startBadSmells( mapaIdsUtilizados:HashMap , mapaRefactor:HashMap, mapaIdsNaoUtilizados:HashMap ) extends Identity() {
     visit Instrucao {
@@ -1294,7 +1245,7 @@ instrucoes = main.compileAnnot(p3);
           TreeSet<String> idsUtilizados = (TreeSet<String>) mapaIdsUtilizados.get(`nome);
           TreeSet<String> idsNaoUtilizados = (TreeSet<String>) mapaIdsNaoUtilizados.get(`nome);
           Argumentos args = removeArgumentosNaoUtilizados(`argumentos,idsUtilizados);
-          Instrucao instrucoes = removeDeclaracoesNaoUtilizadasInstrucao (`inst, idsNaoUtilizados);
+          Instrucao instrucoes = removeDeclaracoesNaoUtilizadas (`inst, idsNaoUtilizados);
           `nome = `nome + "_refactored";
           return `Funcao(c1,tipo,c2,nome,c3,c4,args,c5,c6,instrucoes,c7);
         }
